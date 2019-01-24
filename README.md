@@ -4,7 +4,7 @@
 
 | Name | NEU ID | Email Address |
 | --- | --- | --- |
-| | | |
+|JinZhang|001899149|zhang.jin2@husky.neu.edu |
 | | | |
 | | | |
 | | | |
