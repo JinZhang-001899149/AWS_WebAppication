@@ -5,7 +5,7 @@
 | Name | NEU ID | Email Address |
 | --- | --- | --- |
 |JinZhang|001899149|zhang.jin2@husky.neu.edu |
-| | | |
+|Yanjuan Li |001497203|li.yanj@husky.neu.edu |
 | | | |
 | | | |
 
