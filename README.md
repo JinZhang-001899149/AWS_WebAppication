@@ -7,7 +7,7 @@
 |JinZhang01|001899149|zhang.jin2@husky.neu.edu |
 |Yanjuan Li |001497203 |li.yanj@husky.neu.edu |
 | | | |
-| | | |
+|XinxinHuang01|001898856|huang.xinx@husky.neu.edu|
 
 ## Technology Stack
 
