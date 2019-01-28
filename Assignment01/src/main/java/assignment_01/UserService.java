@@ -51,8 +51,12 @@ public class UserService {
 
 
 
-            // create the token
-            String token = newUser.getEmail()+":"+newUser.getPassword();
+            // BCrypt
+            String password = newUser.getPassword();
+            String hashed = BCrypt.hashpw(password,BCrypt.gensalt(5));
+
+             //create token
+            String token = newUser.getEmail()+":"+hashed;
 
             Base64 base64 = new Base64();
             String result = base64.encodeToString(token.getBytes());
