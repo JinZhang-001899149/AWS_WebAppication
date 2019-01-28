@@ -10,28 +10,18 @@ import javax.persistence.Id;
 
 public class User {
 
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
 
-    private String name;
+    private String password;
 
     @Id
     private String email;
 
-    public Integer getId() {
-        return id;
+    public String getPassword() {
+        return password;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
