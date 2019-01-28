@@ -1,7 +1,12 @@
 package assignment_01;
 
+
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.UnsupportedEncodingException;
+
 
 //@Controller    // This means that this class is a Controller
 //@RequestMapping(path="/demo") // This means URL's sta
@@ -34,15 +39,32 @@ public class MainServer {
     public @ResponseBody String register(@RequestBody User newUser) {
         userRepository.save(newUser);
 
-        if (userRepository.findById(Integer.parseInt(newUser.getEmail())).isPresent()) {
+        /*if (userRepository.findById(Integer.parseInt(newUser.getEmail())).isPresent()) {
          return "This User is already exist";
 
-        }
+        }*/
 
 
         if(newUser.getName().equals("Fang")) {
-            return "Fang is logged in! " + System.currentTimeMillis();
+            String token = newUser.getEmail()+":"+newUser.getName();
+            
+            Base64 base64 = new Base64();
+            String result = base64.encodeToString(token.getBytes());
+
+            return result+" " + System.currentTimeMillis();
+        }else {
+            return "{\"email\":\""+newUser.getEmail()+"\", \"name\":\""+newUser.getName()+"\"}";
         }
-        return "Successfully Registered";
     }
+/*
+    @PostMapping("/api/user/register")
+    public @ResponseBody String generateToken(@RequestBody User newUser){
+        String token = newUser.getEmail()+":"+newUser.getName();
+        Base64 base64 = new Base64();
+        String result = base64.encodeToString(token.getBytes());
+
+
+        return result;
+    }*/
+
 }
