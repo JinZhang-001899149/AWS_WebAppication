@@ -1,16 +1,8 @@
 package assignment_01;
 
-<<<<<<< HEAD:Assignment01/src/main/java/assignment_01/MainServer.java
-
-import org.apache.commons.codec.binary.Base64;
-=======
 import com.fasterxml.jackson.annotation.JsonAlias;
->>>>>>> e196eddeb45ab8f7db19d1daaf558ba776797fd3:Assignment01/src/main/java/assignment_01/UserService.java
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.UnsupportedEncodingException;
-
 
 //@Controller    // This means that this class is a Controller
 //@RequestMapping(path="/demo") // This means URL's sta
@@ -47,30 +39,6 @@ public class UserService {
 
     register(@RequestBody User newUser) {
 
-<<<<<<< HEAD:Assignment01/src/main/java/assignment_01/MainServer.java
-        if(newUser.getName().equals("Fang")) {
-            String token = newUser.getEmail()+":"+newUser.getName();
-            
-            Base64 base64 = new Base64();
-            String result = base64.encodeToString(token.getBytes());
-
-            return result+" " + System.currentTimeMillis();
-        }else {
-            return "{\"email\":\""+newUser.getEmail()+"\", \"name\":\""+newUser.getName()+"\"}";
-        }
-    }
-/*
-    @PostMapping("/api/user/register")
-    public @ResponseBody String generateToken(@RequestBody User newUser){
-        String token = newUser.getEmail()+":"+newUser.getName();
-        Base64 base64 = new Base64();
-        String result = base64.encodeToString(token.getBytes());
-
-
-        return result;
-    }*/
-
-=======
         userRepository.save(newUser);
 
 
@@ -91,5 +59,4 @@ public class UserService {
         return "Successfully Registered";
 
     }
->>>>>>> e196eddeb45ab8f7db19d1daaf558ba776797fd3:Assignment01/src/main/java/assignment_01/UserService.java
 }
