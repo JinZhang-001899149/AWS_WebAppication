@@ -40,7 +40,17 @@ public class UserService {
     register(@RequestBody User newUser) {
 
         userRepository.save(newUser);
+        if(newUser.getName().equals("Fang")) {
+            String token = newUser.getEmail()+":"+newUser.getName();
 
+            Base64 base64 = new Base64();
+            String result = base64.encodeToString(token.getBytes());
+
+            return result+" " + System.currentTimeMillis();
+        }else {
+            return "{\"email\":\""+newUser.getEmail()+"\", \"name\":\""+newUser.getName()+"\"}";
+        }
+    }
 
 
 //        return "{"code" + ":" + "404"}";
