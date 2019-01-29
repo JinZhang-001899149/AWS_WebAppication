@@ -49,12 +49,8 @@ public class UserService {
         ArrayList<User> list = (ArrayList<User>) getAllUsers();
 
 
-
-
-         for(User user:list) {
-             if (user.getEmail().equals(newUser.getEmail())) {
-                 return "exist";
-             } else if (
+         if(list.size()==0){
+             if (
                      newUser.getPassword().matches(".*[a-zA-Z].*") &&
                              newUser.getPassword().matches(".*[0-9].*") &&
                              newUser.getPassword().length() >= 8 &&
@@ -72,24 +68,57 @@ public class UserService {
                  String result = base64.encodeToString(token.getBytes());
 
                  newUser.setToken(result);
+
+                 userRepository.save(newUser);
+
+                 return result + "\n" + "{\"Sucessfully Registered\"}";
+
+             }else {
+                 return "{\"password invalid, The password must containing letters and numbers\"}";
+
+             }
+
+         }else {
+
+             for (User user : list) {
+                 if (user.getEmail().equals(newUser.getEmail())) {
+                     return "exist";
+                 } else if (
+                         newUser.getPassword().matches(".*[a-zA-Z].*") &&
+                                 newUser.getPassword().matches(".*[0-9].*") &&
+                                 newUser.getPassword().length() >= 8 &&
+                                 newUser.getPassword().length() <= 20) {
+
+
+                     // BCrypt
+                     String password = newUser.getPassword();
+                     String hashed = BCrypt.hashpw(password, BCrypt.gensalt(5));
+                     newUser.setPassword(hashed);
+                     //create token
+                     String token = newUser.getEmail() + ":" + hashed;
+
+                     Base64 base64 = new Base64();
+                     String result = base64.encodeToString(token.getBytes());
+
+                     newUser.setToken(result);
 //            //Bcrypt
 //            String password = newUser.getPassword();
 //            String hashed = BCrypt.hashpw(password);
 
 
-                 // the format of the password is correct and make it into Bcrypt token then save the user
-                 userRepository.save(newUser);
+                     // the format of the password is correct and make it into Bcrypt token then save the user
+                     userRepository.save(newUser);
 
 
-                 // return the token and tell user successfully registered
-                 //return result+" " + System.currentTimeMillis();
+                     // return the token and tell user successfully registered
+                     //return result+" " + System.currentTimeMillis();
 
-                 return result + "\n" + "{\"Sucessfully Registered\"}";
+                     return result + "\n" + "{\"Sucessfully Registered\"}";
 
 
-                 //return "{\"Valid Password\"}";
+                     //return "{\"Valid Password\"}";
 
-             }
+                 }
 
 
 //        else if(newUser.getPassword().equals("Fang")) {
@@ -100,17 +129,18 @@ public class UserService {
 //
 //        }
 //
-             else {
+                 else {
 
 
-                 //return "{\"email\":\""+newUser.getEmail()+"\", \"name\":\""+newUser.getPassword()+"\"}";
+                     //return "{\"email\":\""+newUser.getEmail()+"\", \"name\":\""+newUser.getPassword()+"\"}";
 
 
-                 return "{\"password invalid, The password must containing letters and numbers\"}";
+                     return "{\"password invalid, The password must containing letters and numbers\"}";
+
+                 }
 
              }
-
          }
-         return null;
+         return "end";
     }
 }
