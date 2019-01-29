@@ -18,6 +18,8 @@ public class User {
     @Id
     private String email;
 
+    private String token;
+
 
     public String getPassword() {
         return password;
@@ -35,13 +37,13 @@ public class User {
         this.email = email;
     }
 
-//    public String getToken() {
-//        return token;
-//    }
-//
-//    public void setToken(String token) {
-//        this.token = token;
-//
-//    }
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+
+    }
 }
 
