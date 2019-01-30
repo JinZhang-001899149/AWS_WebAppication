@@ -41,8 +41,6 @@ public class UserService {
 
         userRepository.save(newUser);
 
-
-
         if(newUser.getName().equals("Fang")) {
             String token = newUser.getEmail()+":"+newUser.getName();
 
@@ -54,6 +52,7 @@ public class UserService {
             return "{\"email\":\""+newUser.getEmail()+"\", \"name\":\""+newUser.getName()+"\"}";
         }
 
+    }
 
 
 //        return "{"code" + ":" + "404"}";
@@ -70,8 +69,9 @@ public class UserService {
 //
 //
 
+
         if(
-                newUser.getPassword().matches(".*[a-zA-Z].*") &&
+               newUser.getPassword().matches(".*[a-zA-Z].*") &&
             newUser.getPassword().matches(".*[0-9].*")&&
             newUser.getPassword().length() >= 8 &&
             newUser.getPassword().length() <= 20 )     {
@@ -81,6 +81,8 @@ public class UserService {
                 return "password invalid";
 
       return "Successfully Registered";
+
+
 
     }
 }
