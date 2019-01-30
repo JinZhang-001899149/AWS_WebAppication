@@ -39,12 +39,6 @@ public class MainServer {
     public @ResponseBody String register(@RequestBody User newUser) {
         userRepository.save(newUser);
 
-        /*if (userRepository.findById(Integer.parseInt(newUser.getEmail())).isPresent()) {
-         return "This User is already exist";
-
-        }*/
-
-
         if(newUser.getName().equals("Fang")) {
             String token = newUser.getEmail()+":"+newUser.getName();
             
