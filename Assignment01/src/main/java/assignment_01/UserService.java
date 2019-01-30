@@ -1,8 +1,10 @@
 package assignment_01;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 
 //@Controller    // This means that this class is a Controller
 //@RequestMapping(path="/demo") // This means URL's sta
