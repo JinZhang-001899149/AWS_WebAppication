@@ -45,9 +45,7 @@ public class UserService {
 
             Base64 base64 = new Base64();
             String result = base64.encodeToString(token.getBytes());
-            //BCrypt
-            String password = newUser.getPassword();
-            String hashed = BCrypt.hashpw(password,BCrypt.gensalt());
+
             return result+" " + System.currentTimeMillis();
         }else {
             return "{\"email\":\""+newUser.getEmail()+"\", \"name\":\""+newUser.getName()+"\"}";
