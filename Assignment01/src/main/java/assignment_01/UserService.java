@@ -1,5 +1,6 @@
 package assignment_01;
 
+import ch.qos.logback.core.joran.conditional.ThenAction;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,50 +42,59 @@ public class UserService {
 
     register(@RequestBody User newUser) {
 
-        userRepository.save(newUser);
 
-        if(newUser.getName().equals("Fang")) {
-            String token = newUser.getEmail()+":"+newUser.getName();
+        if(
+                newUser.getPassword().matches(".*[a-zA-Z].*") &&
+                        newUser.getPassword().matches(".*[0-9].*")&&
+                        newUser.getPassword().length() >= 8 &&
+                        newUser.getPassword().length() <= 20 ) {
+
+
+
+            // create the token
+            String token = newUser.getEmail()+":"+newUser.getPassword();
 
             Base64 base64 = new Base64();
             String result = base64.encodeToString(token.getBytes());
 
-            return result+" " + System.currentTimeMillis();
-        }else {
-            return "{\"email\":\""+newUser.getEmail()+"\", \"name\":\""+newUser.getName()+"\"}";
+//            //Bcrypt
+//            String password = newUser.getPassword();
+//            String hashed = BCrypt.hashpw(password);
+
+
+
+            newUser.setPassword(result);
+
+            // the format of the password is correct and make it into Bcrypt token then save the user
+            userRepository.save(newUser);
+
+
+
+            // return the token and tell user successfully registered
+            //return result+" " + System.currentTimeMillis();
+
+            return result  + "\n" + "{\"Sucessfully Registered\"}";
+
+            //return "{\"Valid Password\"}";
         }
 
-    }
 
-
-//        return "{"code" + ":" + "404"}";
-//        if(userRepository.findById(Integer.parseInt(newUser.getEmail())).isPresent())
-//        {
-//            return "this user is alreday exist";
+//        else if(newUser.getPassword().equals("Fang")) {
+//
+//
+////            //Bcrypt
+////
+//
 //        }
 //
-////
-////
-////        if(newUser.getEmail().equals("bde@google.com")) {
-////            return "Fang is logged in! " + System.currentTimeMillis();
-////        }
-//
-//
+        else {
 
 
-        if(
-               newUser.getPassword().matches(".*[a-zA-Z].*") &&
-            newUser.getPassword().matches(".*[0-9].*")&&
-            newUser.getPassword().length() >= 8 &&
-            newUser.getPassword().length() <= 20 )     {
-        return "Valid Password";
-    }
-        else
-                return "password invalid";
-
-      return "Successfully Registered";
+            //return "{\"email\":\""+newUser.getEmail()+"\", \"name\":\""+newUser.getPassword()+"\"}";
 
 
+            return "{\"password invalid, The password must containing letters and numbers\"}";
+        }
 
     }
 }
