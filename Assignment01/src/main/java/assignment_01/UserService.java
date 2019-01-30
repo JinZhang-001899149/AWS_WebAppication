@@ -42,6 +42,7 @@ public class UserService {
     register(@RequestBody User newUser) {
 
         userRepository.save(newUser);
+
         if(newUser.getName().equals("Fang")) {
             String token = newUser.getEmail()+":"+newUser.getName();
 
@@ -52,6 +53,7 @@ public class UserService {
         }else {
             return "{\"email\":\""+newUser.getEmail()+"\", \"name\":\""+newUser.getName()+"\"}";
         }
+
     }
 
 
@@ -68,7 +70,21 @@ public class UserService {
 ////        }
 //
 //
-        return "Successfully Registered";
+
+
+        if(
+               newUser.getPassword().matches(".*[a-zA-Z].*") &&
+            newUser.getPassword().matches(".*[0-9].*")&&
+            newUser.getPassword().length() >= 8 &&
+            newUser.getPassword().length() <= 20 )     {
+        return "Valid Password";
+    }
+        else
+                return "password invalid";
+
+      return "Successfully Registered";
+
+
 
     }
 }
