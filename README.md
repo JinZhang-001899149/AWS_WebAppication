@@ -10,7 +10,13 @@
 |XinxinHuang01|001898856|huang.xinx@husky.neu.edu|
 
 ## Technology Stack
-
+  if(newUser.getPassword().matches(".*[0-9]{1,}.*]") && 
+            newUser.getPassword().matches(".*[a-z]{1,}.*]") &&
+            newUser.getPassword().length() >= 8 &&
+            newUser.getPassword().length() <= 20 )    
+ {
+           return "Valid Password";
+       }
 
 ## Build Instructions
 
