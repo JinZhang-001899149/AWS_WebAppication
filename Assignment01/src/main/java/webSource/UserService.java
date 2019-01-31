@@ -1,7 +1,6 @@
-package assignment_01;
+package webSource;
 
-import ch.qos.logback.core.joran.conditional.ThenAction;
-import com.fasterxml.jackson.annotation.JsonAlias;
+import net.minidev.json.JSONArray;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -51,11 +50,6 @@ public class UserService {
 
         ArrayList<User> list = (ArrayList<User>) getAllUsers();
 
-
-//       User newUser = new User();
-//       newUser.getToken();
-//       newUser.setToken(auth);
-
         for (User user : list) {
             if (user.getToken().equals(auth)) {
                 return new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
@@ -100,15 +94,30 @@ public class UserService {
                     String token = newUser.getEmail() + ":" + hashed;
 
                     Base64 base64 = new Base64();
-                    String result = base64.encodeToString(token.getBytes());
+
+                    String result = base64.encodeToString(token.getBytes());String token2 = newUser.getEmail();
+                    Base64 base642 = new Base64();
+                    String result2 = base642.encodeToString(token2.getBytes());
+
+
+
+                    ArrayList<String> listtoken = new ArrayList<String>();
+                    listtoken.add(result2);
+                    JSONArray jsarray = new JSONArray();
+
+                    jsarray.add(listtoken);
+
+
 
                     newUser.setToken(result);
 
                     // the format of the password is correct and make it into Bcrypt token then save the user
                     userRepository.save(newUser);
 
-                   // return result + "\n" + "{\"Sucessfully Registered\"}";
-                      return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}";
+
+
+                    return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}" + jsarray;
+
 
                 } else {
 
@@ -142,12 +151,22 @@ public class UserService {
                                 newUser.setPassword(hashed);
                                 //create token
                                 String token = newUser.getEmail() + ":" + hashed;
-
                                 Base64 base64 = new Base64();
                                 String result = base64.encodeToString(token.getBytes());
 
-                                newUser.setToken(result);
 
+                                String token2 = newUser.getEmail();
+                                Base64 base642 = new Base64();
+                                String result2 = base642.encodeToString(token2.getBytes());
+
+
+                                ArrayList<String> listtoken = new ArrayList<String>();
+                                listtoken.add(result2);
+                                JSONArray jsarray = new JSONArray();
+
+                                jsarray.add(listtoken);
+
+                                newUser.setToken(result);
 
                                 // the format of the password is correct and make it into Bcrypt token then save the user
                                 userRepository.save(newUser);
@@ -156,7 +175,7 @@ public class UserService {
                                 // return the token and tell user successfully registered
 
  
-                                  return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}";
+                                  return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}"  + jsarray;
 
                                   
                                  
@@ -165,12 +184,6 @@ public class UserService {
 
 
                             else {
-
-
-                                //return "{\"email\":\""+newUser.getEmail()+"\", \"name\":\""+newUser.getPassword()+"\"}";
-
-
-                                //return "{\"password invalid, The password must containing letters and numbers\"}";
 
                                return "{ \n  \"code\":\"406 Not Acceptable.\",\n  \"reason\":\"Invalid Password. The password must containing letters and numbers.\"\n}";
 
@@ -182,9 +195,8 @@ public class UserService {
                 }
                 }
             }
-            //return null;
+
         } else {
-           // return "{\"result\":\"email invalid, Please input the right format of email to create an account\"}";
 
           return "{ \n  \"code\":\"406 Not Acceptable.\",\n  \"reason\":\"Invalid Email. Please input the right format of email to create an account.\"\n}";
 
