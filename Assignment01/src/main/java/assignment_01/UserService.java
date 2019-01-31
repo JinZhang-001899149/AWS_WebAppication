@@ -30,7 +30,7 @@ public class UserService {
         n.setPassword(password);
         n.setEmail(email);
         userRepository.save(n);
-        return "{ \n  \"code\":\"201 Created.\"\n  \"reason\":\"Saved.\"\n}";
+        return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Saved.\"\n}";
     }
 
     @GetMapping("/api/all/")
@@ -51,20 +51,22 @@ public class UserService {
 
         ArrayList<User> list = (ArrayList<User>) getAllUsers();
 
-//        User newUser = new User();
-//        newUser.setToken(auth);
+
+//       User newUser = new User();
+//       newUser.getToken();
+//       newUser.setToken(auth);
 
         for (User user : list) {
             if (user.getToken().equals(auth)) {
                 return new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 
-//              return String.valueOf((new Date()).getTime());
+//
             }
 
-            //else return "{ \"you are not login.\"}";
+
         }
 
-        return "{ \n  \"code\":\"404 Not Found.\"\n  \"reason\":\"You are not logged in.\"\n}";
+        return "{ \n  \"code\":\"404 Not Found.\",\n  \"reason\":\"You are not logged in.\"\n}";
 
     }
 
@@ -106,12 +108,12 @@ public class UserService {
                     userRepository.save(newUser);
 
                    // return result + "\n" + "{\"Sucessfully Registered\"}";
-                      return "{ \n  \"code\":\"201 Created.\"\n  \"reason\":\"Successfully Registered.\"\n}";
+                      return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}";
 
                 } else {
 
                    // return "{\"password invalid, The password must containing letters and numbers\"}";
-                    return "{ \n  \"code\":\"406 Not Acceptable.\"\n  \"reason\":\"Invalid Password. The password must containing letters and numbers.\"\n}";
+                    return "{ \n  \"code\":\"406 Not Acceptable.\",\n  \"reason\":\"Invalid Password. The password must containing letters and numbers.\"\n}";
 
                 }
             } else {
@@ -123,7 +125,7 @@ public class UserService {
                     User user = list.get(i);
                     if (user.getEmail().equalsIgnoreCase(newUser.getEmail())) {
                         //return "{\"result\":\"exist\"}";
-                          return "{ \n  \"code\":\"403 Not Forbidden.\"\n  \"reason\":\"The account already exists.\"\n}";
+                          return "{ \n  \"code\":\"403 Not Forbidden.\",\n  \"reason\":\"The account already exists.\"\n}";
 
                     } else {
                         if(i == list.size() - 1) {
@@ -145,9 +147,6 @@ public class UserService {
                                 String result = base64.encodeToString(token.getBytes());
 
                                 newUser.setToken(result);
-//            //Bcrypt
-//            String password = newUser.getPassword();
-//            String hashed = BCrypt.hashpw(password);
 
 
                                 // the format of the password is correct and make it into Bcrypt token then save the user
@@ -155,27 +154,16 @@ public class UserService {
 
 
                                 // return the token and tell user successfully registered
-                                //return result+" " + System.currentTimeMillis();
-
-                               // return result + "\n" + "{\"Sucessfully Registered\"}";
 
  
-                                  return "{ \n  \"code\":\"201 Created.\"\n  \"reason\":\"Successfully Registered.\"\n}";
-                                //return "{\"Valid Password\"}";
+                                  return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}";
+
                                   
                                  
 
                             }
 
 
-//        else if(newUser.getPassword().equals("Fang")) {
-//
-//
-////            //Bcrypt
-////
-//
-//        }
-//
                             else {
 
 
@@ -184,7 +172,7 @@ public class UserService {
 
                                 //return "{\"password invalid, The password must containing letters and numbers\"}";
 
-                               return "{ \n  \"code\":\"406 Not Acceptable.\"\n  \"reason\":\"Invalid Password. The password must containing letters and numbers.\"\n}";
+                               return "{ \n  \"code\":\"406 Not Acceptable.\",\n  \"reason\":\"Invalid Password. The password must containing letters and numbers.\"\n}";
 
 
                             }
@@ -198,7 +186,7 @@ public class UserService {
         } else {
            // return "{\"result\":\"email invalid, Please input the right format of email to create an account\"}";
 
-          return "{ \n  \"code\":\"406 Not Acceptable.\"\n  \"reason\":\"Invalid Email. Please input the right format of email to create an account.\"\n}";
+          return "{ \n  \"code\":\"406 Not Acceptable.\",\n  \"reason\":\"Invalid Email. Please input the right format of email to create an account.\"\n}";
 
         }
 
