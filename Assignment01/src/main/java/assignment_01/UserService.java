@@ -30,7 +30,7 @@ public class UserService {
         n.setPassword(password);
         n.setEmail(email);
         userRepository.save(n);
-        return "Saved";
+        return "{ \n  \"code\":\"201 Created.\"\n  \"reason\":\"Saved.\"\n}";
     }
 
     @GetMapping("/api/all/")
@@ -105,11 +105,13 @@ public class UserService {
                     // the format of the password is correct and make it into Bcrypt token then save the user
                     userRepository.save(newUser);
 
-                    return result + "\n" + "{\"Sucessfully Registered\"}";
+                   // return result + "\n" + "{\"Sucessfully Registered\"}";
+                      return "{ \n  \"code\":\"201 Created.\"\n  \"reason\":\"Successfully Registered.\"\n}";
 
                 } else {
 
-                    return "{\"password invalid, The password must containing letters and numbers\"}";
+                   // return "{\"password invalid, The password must containing letters and numbers\"}";
+                    return "{ \n  \"code\":\"406 Not Acceptable.\"\n  \"reason\":\"Invalid Password. The password must containing letters and numbers.\"\n}";
 
                 }
             } else {
@@ -120,7 +122,9 @@ public class UserService {
                 for (int i = 0; i < list.size(); i++) {
                     User user = list.get(i);
                     if (user.getEmail().equalsIgnoreCase(newUser.getEmail())) {
-                        return "{\"result\":\"exist\"}";
+                        //return "{\"result\":\"exist\"}";
+                          return "{ \n  \"code\":\"403 Not Forbidden.\"\n  \"reason\":\"The account already exists.\"\n}";
+
                     } else {
                         if(i == list.size() - 1) {
                             if (
@@ -153,10 +157,13 @@ public class UserService {
                                 // return the token and tell user successfully registered
                                 //return result+" " + System.currentTimeMillis();
 
-                                return result + "\n" + "{\"Sucessfully Registered\"}";
+                               // return result + "\n" + "{\"Sucessfully Registered\"}";
 
-
+ 
+                                  return "{ \n  \"code\":\"201 Created.\"\n  \"reason\":\"Successfully Registered.\"\n}";
                                 //return "{\"Valid Password\"}";
+                                  
+                                 
 
                             }
 
@@ -175,7 +182,10 @@ public class UserService {
                                 //return "{\"email\":\""+newUser.getEmail()+"\", \"name\":\""+newUser.getPassword()+"\"}";
 
 
-                                return "{\"password invalid, The password must containing letters and numbers\"}";
+                                //return "{\"password invalid, The password must containing letters and numbers\"}";
+
+                               return "{ \n  \"code\":\"406 Not Acceptable.\"\n  \"reason\":\"Invalid Password. The password must containing letters and numbers.\"\n}";
+
 
                             }
                         } else {
@@ -186,8 +196,12 @@ public class UserService {
             }
             //return null;
         } else {
-            return "{\"result\":\"email invalid, Please input the right format of email to create an account\"}";
+           // return "{\"result\":\"email invalid, Please input the right format of email to create an account\"}";
+
+          return "{ \n  \"code\":\"406 Not Acceptable.\"\n  \"reason\":\"Invalid Email. Please input the right format of email to create an account.\"\n}";
+
         }
+
         return null;
     }
 }
