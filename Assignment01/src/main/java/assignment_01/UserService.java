@@ -64,7 +64,7 @@ public class UserService {
             //else return "{ \"you are not login.\"}";
         }
 
-        return "{ \"you are not logged in .\"}";
+        return "{ \n  \"code\":\"404 Not Found.\"\n  \"reason\":\"You are not logged in.\"\n}";
 
     }
 
