@@ -44,16 +44,48 @@ public class UserService {
 
     register(@RequestBody User newUser) {
 
-
+        if(
+                newUser.getEmail().matches("[\\w\\-]+@[a-zA-Z0-9]+(\\.[A-Za-z]{2,3}){1,2}")
+        ){
         //get users from database
         ArrayList<User> list = (ArrayList<User>) getAllUsers();
 
+        if(list.size()==0){
+                    if (
+                     newUser.getPassword().matches(".*[a-zA-Z].*") &&
+                             newUser.getPassword().matches(".*[0-9].*") &&
+                             newUser.getPassword().length() >= 8 &&
+                             newUser.getPassword().length() <= 20) {
 
 
+                 // BCrypt
+                 String password = newUser.getPassword();
+                 String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
+                 newUser.setPassword(hashed);
+                 //create token
+                 String token = newUser.getEmail() + ":" + hashed;
+
+                 Base64 base64 = new Base64();
+                 String result = base64.encodeToString(token.getBytes());
+
+                 newUser.setToken(result);
+
+                 // the format of the password is correct and make it into Bcrypt token then save the user
+                 userRepository.save(newUser);
+
+                 return result + "\n" + "{\"Sucessfully Registered\"}";
+
+             }
+             else {
+
+                 return "{\"password invalid, The password must containing letters and numbers\"}";
+
+             }
+        }else{
 
          for(User user:list) {
              if (user.getEmail().equals(newUser.getEmail())) {
-                 return "exist";
+                 return "{\"result\":\"exist\"}";
              } else if (
                      newUser.getPassword().matches(".*[a-zA-Z].*") &&
                              newUser.getPassword().matches(".*[0-9].*") &&
@@ -63,7 +95,7 @@ public class UserService {
 
                  // BCrypt
                  String password = newUser.getPassword();
-                 String hashed = BCrypt.hashpw(password, BCrypt.gensalt(5));
+                 String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
                  newUser.setPassword(hashed);
                  //create token
                  String token = newUser.getEmail() + ":" + hashed;
@@ -109,8 +141,12 @@ public class UserService {
                  return "{\"password invalid, The password must containing letters and numbers\"}";
 
              }
-
          }
-         return null;
+      }
+         //return null;
+    }else {
+            return "{\"result\":\"email invalid, Please input the right format of email to create an account\"}";
+        }
+        return null;
     }
 }
