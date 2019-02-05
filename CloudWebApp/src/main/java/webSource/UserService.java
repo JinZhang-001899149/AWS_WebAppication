@@ -5,6 +5,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -70,7 +71,7 @@ public class UserService {
     public @ResponseBody
     String
 
-    register(@RequestBody User newUser) {
+    register(@RequestBody User newUser, HttpServletResponse response) {
 
         if (
                 newUser.getEmail().matches("[\\w\\-]+@[a-zA-Z0-9]+(\\.[A-Za-z]{2,3}){1,2}")
@@ -108,6 +109,9 @@ public class UserService {
                     jsarray.add(listtoken);
 
 
+                    response.setHeader("Token",result2);
+
+
 
                     newUser.setToken(result);
 
@@ -116,7 +120,7 @@ public class UserService {
 
 
 
-                    return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}" + jsarray;
+                    return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}" + response;
 
 
                 } else {
@@ -164,6 +168,8 @@ public class UserService {
                                 listtoken.add(result2);
                                 JSONArray jsarray = new JSONArray();
 
+                                response.setHeader("Token",result2);
+
                                 jsarray.add(listtoken);
 
                                 newUser.setToken(result);
@@ -175,7 +181,7 @@ public class UserService {
                                 // return the token and tell user successfully registered
 
  
-                                  return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}"  + jsarray;
+                                  return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}"  + response;
 
                                   
                                  
