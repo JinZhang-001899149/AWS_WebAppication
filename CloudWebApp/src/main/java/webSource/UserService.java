@@ -4,7 +4,10 @@ import net.minidev.json.JSONArray;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sun.misc.BASE64Decoder;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,17 +44,43 @@ public class UserService {
 
 
     //get for assignment
-    @GetMapping("/api/") // Map ONLY GET Requests
+    @GetMapping("/") // Map ONLY GET Requests
     public @ResponseBody
-    String authentiction(@RequestParam String auth) {
+    String authentiction(@RequestHeader String Authorization) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
 
         ArrayList<User> list = (ArrayList<User>) getAllUsers();
 
+        int index3 = Authorization.indexOf(" ");
+        String code = Authorization.substring(index3+1);
+        Base64 base64 = new Base64();
+        BASE64Decoder decoder = new BASE64Decoder();
+
+        String decode = null;
+        try {
+            decode = new String(decoder.decodeBuffer(code),"UTF-8");
+        } catch (IOException e) {
+            return "Decode fail";
+        }
+        int index = decode.indexOf(":");
+
+        String password = decode.substring(index+1);
+        String email = decode.substring(0,index);
+
+
+        //String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
+        String userAuth = email+":"+password;
+        String baseAuth = base64.encodeToString(userAuth.getBytes());
+
         for (User user : list) {
-            if (user.getToken().equals(auth)) {
+
+           /* if(user.getEmail().equals(email)){
+                return user.getToken()+"/"+baseAuth;
+            }*/
+
+           if (user.getToken().equals(baseAuth)) {
                 return new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 
 //
@@ -59,6 +88,7 @@ public class UserService {
 
 
         }
+
 
         return "{ \n  \"code\":\"404 Not Found.\",\n  \"reason\":\"You are not logged in.\"\n}";
 
@@ -70,7 +100,7 @@ public class UserService {
     public @ResponseBody
     String
 
-    register(@RequestBody User newUser) {
+    register(@RequestBody User newUser, HttpServletRequest request) {
 
         if (
                 newUser.getEmail().matches("[\\w\\-]+@[a-zA-Z0-9]+(\\.[A-Za-z]{2,3}){1,2}")
@@ -89,13 +119,14 @@ public class UserService {
                     // BCrypt
                     String password = newUser.getPassword();
                     String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
-                    newUser.setPassword(hashed);
+
                     //create token
-                    String token = newUser.getEmail() + ":" + hashed;
+                    String token = newUser.getEmail() + ":" + newUser.getPassword();
 
                     Base64 base64 = new Base64();
 
-                    String result = base64.encodeToString(token.getBytes());String token2 = newUser.getEmail();
+                    String result = base64.encodeToString(token.getBytes());
+                    String token2 = newUser.getEmail();
                     Base64 base642 = new Base64();
                     String result2 = base642.encodeToString(token2.getBytes());
 
@@ -111,12 +142,14 @@ public class UserService {
 
                     newUser.setToken(result);
 
+                    newUser.setPassword(hashed);
+
                     // the format of the password is correct and make it into Bcrypt token then save the user
                     userRepository.save(newUser);
 
 
 
-                    return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}" + jsarray;
+                    return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}" ;
 
 
                 } else {
@@ -134,7 +167,7 @@ public class UserService {
                     User user = list.get(i);
                     if (user.getEmail().equalsIgnoreCase(newUser.getEmail())) {
                         //return "{\"result\":\"exist\"}";
-                          return "{ \n  \"code\":\"403 Not Forbidden.\",\n  \"reason\":\"The account already exists.\"\n}";
+                          return "{ \n  \"code\":\"403 Forbidden.\",\n  \"reason\":\"The account already exists.\"\n}";
 
                     } else {
                         if(i == list.size() - 1) {
@@ -148,9 +181,9 @@ public class UserService {
                                 // BCrypt
                                 String password = newUser.getPassword();
                                 String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
-                                newUser.setPassword(hashed);
+
                                 //create token
-                                String token = newUser.getEmail() + ":" + hashed;
+                                String token = newUser.getEmail() + ":" + newUser.getPassword();
                                 Base64 base64 = new Base64();
                                 String result = base64.encodeToString(token.getBytes());
 
@@ -167,6 +200,7 @@ public class UserService {
                                 jsarray.add(listtoken);
 
                                 newUser.setToken(result);
+                                newUser.setPassword(hashed);
 
                                 // the format of the password is correct and make it into Bcrypt token then save the user
                                 userRepository.save(newUser);
@@ -175,7 +209,7 @@ public class UserService {
                                 // return the token and tell user successfully registered
 
  
-                                  return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}"  + jsarray;
+                                  return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}"  ;
 
                                   
                                  
