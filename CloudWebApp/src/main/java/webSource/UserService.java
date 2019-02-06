@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -96,11 +97,11 @@ public class UserService {
 
 
     //post for assignment
-    @PostMapping("/api/user/register")
+    @PostMapping("/user/register")
     public @ResponseBody
     String
 
-    register(@RequestBody User newUser, HttpServletRequest request) {
+    register(@RequestBody User newUser, HttpServletResponse response) {
 
         if (
                 newUser.getEmail().matches("[\\w\\-]+@[a-zA-Z0-9]+(\\.[A-Za-z]{2,3}){1,2}")
@@ -126,7 +127,9 @@ public class UserService {
                     Base64 base64 = new Base64();
 
                     String result = base64.encodeToString(token.getBytes());
-                    String token2 = newUser.getEmail();
+
+
+                    String token2 = newUser.getEmail()+ ":" + newUser.getPassword();;
                     Base64 base642 = new Base64();
                     String result2 = base642.encodeToString(token2.getBytes());
 
@@ -139,6 +142,8 @@ public class UserService {
                     jsarray.add(listtoken);
 
 
+                    response.setHeader("Token",result2);
+
 
                     newUser.setToken(result);
 
@@ -149,7 +154,7 @@ public class UserService {
 
 
 
-                    return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}" ;
+                    return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}";
 
 
                 } else {
@@ -198,6 +203,7 @@ public class UserService {
                                 JSONArray jsarray = new JSONArray();
 
                                 jsarray.add(listtoken);
+                                response.setHeader("Token",result2);
 
                                 newUser.setToken(result);
                                 newUser.setPassword(hashed);
