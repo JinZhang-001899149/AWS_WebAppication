@@ -1,10 +1,16 @@
 package webSource;
 
+import com.sun.net.httpserver.Headers;
 import net.minidev.json.JSONArray;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.tomcat.util.http.parser.Authorization;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import org.jvnet.mimepull.Header;
+import org.omg.CORBA.portable.ResponseHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Basic;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,17 +48,37 @@ public class UserService {
 
 
     //get for assignment
-    @GetMapping("/api/") // Map ONLY GET Requests
+    @GetMapping("/") // Map ONLY GET Requests
     public @ResponseBody
+    //String authentiction(@RequestParam String auth,Headers Authentication) {
     String authentiction(@RequestParam String auth) {
+
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
 
+       // auth = @RequestHeader Authorization;
         ArrayList<User> list = (ArrayList<User>) getAllUsers();
+       // System.out.println(Authorization);
+
+//        User newUser = new User();
+//        String token3 = newUser.getEmail()+":"+ newUser.getPassword();
+//        Base64 base642 = new Base64();
+//        String result3 = base642.encodeToString(token3.getBytes());
+//
+//
+//            if(result3.equals(auth)){
+//
+//
+//            }
+
+
+
 
         for (User user : list) {
             if (user.getToken().equals(auth)) {
+
+
                 return new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 
 //
@@ -91,12 +117,15 @@ public class UserService {
                     String password = newUser.getPassword();
                     String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
                     newUser.setPassword(hashed);
+
                     //create token
                     String token = newUser.getEmail() + ":" + hashed;
-
                     Base64 base64 = new Base64();
+                    String result = base64.encodeToString(token.getBytes());
 
-                    String result = base64.encodeToString(token.getBytes());String token2 = newUser.getEmail();
+
+
+                    String token2 = newUser.getEmail()+":"+ password;
                     Base64 base642 = new Base64();
                     String result2 = base642.encodeToString(token2.getBytes());
 
@@ -120,7 +149,7 @@ public class UserService {
 
 
 
-                    return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}" + response;
+                    return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}";
 
 
                 } else {
@@ -159,7 +188,7 @@ public class UserService {
                                 String result = base64.encodeToString(token.getBytes());
 
 
-                                String token2 = newUser.getEmail();
+                                String token2 = newUser.getEmail()+ ":"+ password;
                                 Base64 base642 = new Base64();
                                 String result2 = base642.encodeToString(token2.getBytes());
 
@@ -181,7 +210,7 @@ public class UserService {
                                 // return the token and tell user successfully registered
 
  
-                                  return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}"  + response;
+                                  return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}";
 
                                   
                                  
