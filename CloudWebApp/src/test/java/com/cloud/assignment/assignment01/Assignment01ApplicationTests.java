@@ -33,7 +33,6 @@ public class Assignment01ApplicationTests {
     private UserService userService;
 
 
-
     @Test
     public void register() throws Exception{
             User mockUser = new User();
@@ -64,4 +63,3 @@ public class Assignment01ApplicationTests {
     }
 
 }
-

@@ -80,7 +80,7 @@ public class UserService {
 
             if (list.size() == 0) {
                 if (
-                        newUser.getPassword().matches(".*[a-zA-Z].*") &&
+                                newUser.getPassword().matches(".*[a-zA-Z].*") &&
                                 newUser.getPassword().matches(".*[0-9].*") &&
                                 newUser.getPassword().length() >= 8 &&
                                 newUser.getPassword().length() <= 20) {
