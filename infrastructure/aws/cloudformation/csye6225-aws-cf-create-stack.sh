@@ -1,42 +1,12 @@
-set -e
+echo "Enter The Stack Name:"
+read stackname
 
+VpcName="$stackname-csye6225-vpc"
+GatewayName="$stackname-csye6225-InternetGateway"
+RouteTableName="$stackname-csye6225-rt"
 
-#Usage: setting up our networking resources such as Virtual Private Cloud (VPC), Internet Gateway, Route Table and Routes using AWS Cloud Formation
+aws cloudformation create-stack --stack-name ${stackname} --template-body file://./csye6225-cf-networking.json --parameters ParameterKey=vpcName,ParameterValue=$VpcName ParameterKey=gatewayName,ParameterValue=$GatewayName ParameterKey=routeTableName,ParameterValue=$RouteTableName
 
-STACK_NAME=$1
+aws cloudformation wait stack-create-complete --stack-name ${stackname}
 
-#Create Stack:
-
-aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://csye6225-cf-networking.json
-
-#Check Stack Status
-STACK_STATUS=`aws cloudformation describe-stacks --stack-name $STACK_NAME --query "Stacks[][ [StackStatus ] ][]" --output text`
-
-#Wait until stack completely created
-echo "Please wait..."
-
-while [ $STACK_STATUS != "CREATE_COMPLETE" ]
-do
-
-	STACK_STATUS=`aws cloudformation describe-stacks --stack-name $STACK_NAME --query "Stacks[][ [StackStatus ] ][]" --output text`
-
-done
-
-#Find vpc Id
-vpcId=`aws ec2 describe-vpcs --filter "Name=tag:Name,Values=${STACK_NAME}" --query 'Vpcs[*].{id:VpcId}' --output text`
-#Rename vpc
-aws ec2 create-tags --resources $vpcId --tags Key=Name,Value=$STACK_NAME-csye6225-vpc
-
-#Find Internet Gateway
-gatewayId=`aws ec2 describe-internet-gateways --filter "Name=tag:Name,Values=${STACK_NAME}" --query 'InternetGateways[*].{id:InternetGatewayId}' --output text`
-#Rename Internet Gateway
-aws ec2 create-tags --resources $gatewayId --tags Key=Name,Value=$STACK_NAME-csye6225-InternetGateway
-
-#Find Route Table
-routeTableId=`aws ec2 describe-route-tables --filter "Name=tag:Name,Values=${STACK_NAME}" --query 'RouteTables[*].{id:RouteTableId}' --output text` 
-#Rename Route Table
-aws ec2 create-tags --resources $routeTableId --tags Key=Name,Value=$STACK_NAME-csye6225-public-route-table
-
-#Job Done!
-echo "Job Done!"
-
+echo done

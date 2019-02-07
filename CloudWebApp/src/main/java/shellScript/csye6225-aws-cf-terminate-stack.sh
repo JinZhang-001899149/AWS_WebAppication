@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 
+<<<<<<< HEAD
+set -e
+
+
+STACK_NAME=$1
+echo "The stack you want to delete: "
+
+#Query the stack
+aws cloudformation describe-stacks --stack-name $STACK_NAME
+
+#Delete the cloudformation stack
+aws cloudformation delete-stack --stack-name $STACK_NAME
+
+
+#Job Done
+=======
 #set -e
 
 #echo "The stack you want to delete : "
@@ -51,4 +67,5 @@ echo "Deleting the Internet gateway-> gateway id: "$gatewayId
 aws ec2 delete-vpc --vpc-id $vpcId
 echo "Deleting the vpc-> vpc id: "$vpcId
 
+>>>>>>> 9e133baba1a4391db760c27afb9ebc087ca3ad59
 echo "Job done!"
