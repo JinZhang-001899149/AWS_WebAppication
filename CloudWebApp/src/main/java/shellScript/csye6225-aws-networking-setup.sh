@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+<<<<<<< HEAD
   #Author: Jin Zhang
   echo "Author: Jin Zhang"
   echo "        zhang.jin2@husky.neu.edu"
@@ -89,3 +90,8 @@
 
   #Job Done
   echo "Job Done!"
+=======
+
+
+
+>>>>>>> e4f4df1bf6360798012e54b6046b46a08ba5c224
