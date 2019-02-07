@@ -25,7 +25,7 @@ public class UserService {
     @GetMapping("/api/add/") // Map ONLY GET Requests
     public @ResponseBody
     String addNewUser(@RequestParam String password
-            , @RequestParam String email) {
+            , @RequestParam String email, HttpServletResponse response) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
@@ -33,6 +33,7 @@ public class UserService {
         n.setPassword(password);
         n.setEmail(email);
         userRepository.save(n);
+        response.setStatus(201);
         return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Saved.\"\n}";
     }
 
@@ -47,7 +48,7 @@ public class UserService {
     //get for assignment
     @GetMapping("/") // Map ONLY GET Requests
     public @ResponseBody
-    String authentiction(@RequestHeader String Authorization) {
+    String authentiction(@RequestHeader String Authorization, HttpServletResponse response) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
@@ -91,6 +92,7 @@ public class UserService {
         }
 
 
+        response.setStatus(404);
         return "{ \n  \"code\":\"404 Not Found.\",\n  \"reason\":\"You are not logged in.\"\n}";
 
     }
@@ -154,11 +156,13 @@ public class UserService {
 
 
 
+                    response.setStatus(201);
                     return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}";
 
 
                 } else {
 
+                    response.setStatus(406);
                    // return "{\"password invalid, The password must containing letters and numbers\"}";
                     return "{ \n  \"code\":\"406 Not Acceptable.\",\n  \"reason\":\"Invalid Password. The password must containing letters and numbers.\"\n}";
 
@@ -172,6 +176,7 @@ public class UserService {
                     User user = list.get(i);
                     if (user.getEmail().equalsIgnoreCase(newUser.getEmail())) {
                         //return "{\"result\":\"exist\"}";
+                        response.setStatus(403);
                           return "{ \n  \"code\":\"403 Forbidden.\",\n  \"reason\":\"The account already exists.\"\n}";
 
                     } else {
@@ -214,6 +219,7 @@ public class UserService {
 
                                 // return the token and tell user successfully registered
 
+                                response.setStatus(201);
  
                                   return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}"  ;
 
@@ -224,6 +230,7 @@ public class UserService {
 
 
                             else {
+                                response.setStatus(406);
 
                                return "{ \n  \"code\":\"406 Not Acceptable.\",\n  \"reason\":\"Invalid Password. The password must containing letters and numbers.\"\n}";
 
@@ -238,6 +245,7 @@ public class UserService {
 
         } else {
 
+            response.setStatus(406);
           return "{ \n  \"code\":\"406 Not Acceptable.\",\n  \"reason\":\"Invalid Email. Please input the right format of email to create an account.\"\n}";
 
         }
