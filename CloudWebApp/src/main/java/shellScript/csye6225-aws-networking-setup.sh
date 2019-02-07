@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-<<<<<<< HEAD
+
   #Author: Jin Zhang
   echo "Author: Jin Zhang"
   echo "        zhang.jin2@husky.neu.edu"
@@ -82,6 +82,14 @@
   aws ec2 associate-route-table --subnet-id $subnet03 --route-table-id $routeTableId
   echo "Attached subnet03: "$subnet03" to routeTable: "$routeTableId
 
+  #create security group
+  aws ec2 create-security-group --group-name MySecurityGroup --description "My security group" --vpc-id $vpcId
+
+  #groupid= `aws ec2 create-security-group --group-name MySecurityGroup --description "My security group" --vpc-id $vpcId --query 'MySecurityGroup.GroupId' --output text`
+
+
+
+  #aws ec2 authorize-security-group-ingress --group-name MySecurityGroup --protocol tcp --port 22 --cidr 203.0.113.0/24
 
 
   #Create Route
@@ -90,8 +98,4 @@
 
   #Job Done
   echo "Job Done!"
-=======
 
-
-
->>>>>>> e4f4df1bf6360798012e54b6046b46a08ba5c224
