@@ -1,7 +1,4 @@
-set -e
-
-
-#Usage: Deleting our networking resources such as Virtual Private Cloud (VPC), Internet Gateway, Route Table and Routes
+#!/usr/bin/env bash
 
 #Arguments: STACK_NAME
 STACK_NAME=$1
@@ -10,11 +7,21 @@ vpcId=`aws ec2 describe-vpcs --filter "Name=tag:Name,Values=${STACK_NAME}-csye62
 #Get a Internet Gateway Id using the name provided
 gatewayId=`aws ec2 describe-internet-gateways --filter "Name=tag:Name,Values=${STACK_NAME}-csye6225-InternetGateway" --query 'InternetGateways[*].{id:InternetGatewayId}' --output text`
 #Get a route table Id using the name provided
-routeTableId=`aws ec2 describe-route-tables --filter "Name=tag:Name,Values=${STACK_NAME}-csye6225-public-route-table" --query 'RouteTables[*].{id:RouteTableId}' --output text`
+routeTableId=`aws ec2 describe-route-tables --filter "Name=tag:Name,Values=${STACK_NAME}-csye6225-rt" --query 'RouteTables[*].{id:RouteTableId}' --output text`
+#Get subnet Id using the name provided
+subnetId=`aws ec2 describe-subnets --filter "Name=tag:Name,Values=${STACK_NAME}-csye6225-subnet" --query 'Subnets[*].{id:SubnetId}' --output text`
+subnetId2=`aws ec2 describe-subnets --filter "Name=tag:Name,Values=${STACK_NAME}-csye6225-subnet2" --query 'Subnets[*].{id:SubnetId}' --output text`
+subnetId3=`aws ec2 describe-subnets --filter "Name=tag:Name,Values=${STACK_NAME}-csye6225-subnet3" --query 'Subnets[*].{id:SubnetId}' --output text`
 
 #Delete the route
 aws ec2 delete-route --route-table-id $routeTableId --destination-cidr-block 0.0.0.0/0
 echo "Deleting the route..."
+
+#Delete the subnets
+aws ec2 delete-subnet --subnet-id $subnetId
+aws ec2 delete-subnet --subnet-id $subnetId2
+aws ec2 delete-subnet --subnet-id $subnetId3
+echo "Deleting the subnets..."
 
 #Delete the route table
 aws ec2 delete-route-table --route-table-id $routeTableId
@@ -32,4 +39,4 @@ echo "Deleting the Internet gateway-> gateway id: "$gatewayId
 aws ec2 delete-vpc --vpc-id $vpcId
 echo "Deleting the vpc-> vpc id: "$vpcId
 
-echo "Job done!"
+echo "Done!"
