@@ -1,3 +1,6 @@
+
+#!/usr/bin/env bash
+
 echo "Enter The Stack Name:"
 read stackname
 
