@@ -40,10 +40,11 @@ public class Assignment01ApplicationTests {
     @Before
     public void Setup() {mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();}
 
-
     @Test
     public void register() throws Exception{
             User mockUser = new User();
+
+            mockUser.setEmail("xinxing@gmail.com");
             mockUser.setEmail("xinxin@gmail.com");
             mockUser.setPassword("xXwooop796");
 
@@ -60,6 +61,8 @@ public class Assignment01ApplicationTests {
 
             MockHttpServletResponse response = result.getResponse();
 
+           // String expectedResult = "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}";
+          //  assertThat(expectedResult).isEqualTo(response);
            // String expectedResult = "{\n \"code\":\"201 Created.\",\n \"reason\":\"Sucessfully Registered\"\n}";
         assertThat((200)==(response.getStatus()));
 
@@ -71,4 +74,3 @@ public class Assignment01ApplicationTests {
     }
 
 }
-
