@@ -36,7 +36,7 @@ public class Assignment01ApplicationTests {
     @Test
     public void register() throws Exception{
             User mockUser = new User();
-            mockUser.setEmail("xinxingmail.com");
+            mockUser.setEmail("xinxing@gmail.com");
             mockUser.setPassword("xXwooop796");
 
             String exampleUserJson = this.mapToJson(mockUser);
@@ -52,8 +52,8 @@ public class Assignment01ApplicationTests {
 
             MockHttpServletResponse response = result.getResponse();
 
-            String expectedResult = "{\"Sucessfully Registered\"}";
-            assertThat(expectedResult).isEqualTo(result);
+            String expectedResult = "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}";
+            assertThat(expectedResult).isEqualTo(response);
 
     }
 
