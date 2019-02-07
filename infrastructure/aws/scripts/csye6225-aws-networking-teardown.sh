@@ -17,6 +17,7 @@ subnetId3=`aws ec2 describe-subnets --filter "Name=tag:Name,Values=${STACK_NAME}
 aws ec2 delete-route --route-table-id $routeTableId --destination-cidr-block 0.0.0.0/0
 echo "Deleting the route..."
 
+
 #Delete the subnets
 aws ec2 delete-subnet --subnet-id $subnetId
 aws ec2 delete-subnet --subnet-id $subnetId2
