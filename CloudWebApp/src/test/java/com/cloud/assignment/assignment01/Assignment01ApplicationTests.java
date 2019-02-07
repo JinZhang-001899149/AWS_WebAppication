@@ -1,5 +1,9 @@
 package com.cloud.assignment.assignment01;
 
+import org.junit.Before;
+import org.springframework.test.web.servlet.MockMvcBuilder;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 import webSource.UserService;
 import webSource.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,22 +26,26 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@WebMvcTest(value = UserService.class, secure = false)
 @SpringBootTest
 public class Assignment01ApplicationTests {
 
-    @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private WebApplicationContext webApplicationContext;
 
     @MockBean
     private UserService userService;
 
-
+    @Before
+    public void Setup() {mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();}
 
     @Test
     public void register() throws Exception{
             User mockUser = new User();
-            mockUser.setEmail("xinxingmail.com");
+
+            mockUser.setEmail("xinxing@gmail.com");
+            mockUser.setEmail("xinxin@gmail.com");
             mockUser.setPassword("xXwooop796");
 
             String exampleUserJson = this.mapToJson(mockUser);
@@ -45,7 +53,7 @@ public class Assignment01ApplicationTests {
      /*   Mockito.when(
                 userService.register(Mockito.any(User.class))).thenReturn(mockUser.getEmail());*/
             RequestBuilder requestBuilder = MockMvcRequestBuilders
-                    .post("/api/user/register")
+                    .post("/user/register")
                     .accept(MediaType.APPLICATION_JSON).content(exampleUserJson)
                     .contentType(MediaType.APPLICATION_JSON);
 
@@ -53,8 +61,10 @@ public class Assignment01ApplicationTests {
 
             MockHttpServletResponse response = result.getResponse();
 
-            String expectedResult = "{\"Sucessfully Registered\"}";
-            assertThat(expectedResult).isEqualTo(result);
+           // String expectedResult = "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}";
+          //  assertThat(expectedResult).isEqualTo(response);
+           // String expectedResult = "{\n \"code\":\"201 Created.\",\n \"reason\":\"Sucessfully Registered\"\n}";
+        assertThat((200)==(response.getStatus()));
 
     }
 
@@ -64,4 +74,3 @@ public class Assignment01ApplicationTests {
     }
 
 }
-
