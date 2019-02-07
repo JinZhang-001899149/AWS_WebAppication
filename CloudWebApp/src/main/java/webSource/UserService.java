@@ -104,7 +104,7 @@ public class UserService {
     register(@RequestBody User newUser, HttpServletResponse response) {
 
         if (
-                newUser.getEmail().matches("[\\w\\-]+@[a-zA-Z0-9]+(\\.[A-Za-z]{2,3}){1,2}")
+                newUser.getEmail().matches("[\\w\\-\\.]+@[a-zA-Z0-9]+(\\.[A-Za-z]{2,3}){1,2}")
         ) {
             //get users from database
             ArrayList<User> list = (ArrayList<User>) getAllUsers();
