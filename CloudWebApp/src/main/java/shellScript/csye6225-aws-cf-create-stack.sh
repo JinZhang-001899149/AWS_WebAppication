@@ -11,8 +11,14 @@ echo "Vpc created-> Vpc Id:  "$vpcId
 
 #Create subnets
 subnetId=`aws ec2 create-subnet --vpc-id $vpcId --cidr-block 10.0.0.0/24 --query 'Subnet.SubnetId' --output text`
+#Tag subnet
+aws ec2 create-tags --resources $subnetId --tags Key=Name,Value=$STACK_NAME-csye6225-subnet
+
 subnetId2=`aws ec2 create-subnet --vpc-id $vpcId --cidr-block 10.0.1.0/24 --query 'Subnet.SubnetId' --output text`
+aws ec2 create-tags --resources $subnetId2 --tags Key=Name,Value=$STACK_NAME-csye6225-subnet2
+
 subnetId3=`aws ec2 create-subnet --vpc-id $vpcId --cidr-block 10.0.2.0/24 --query 'Subnet.SubnetId' --output text`
+aws ec2 create-tags --resources $subnetId3 --tags Key=Name,Value=$STACK_NAME-csye6225-subnet3
 #aws ec2 create-subnet --vpc-id $vipId --cidr-block 10.0.2.0/24
 
 #Create Internet Gateway
@@ -28,7 +34,7 @@ echo "Attached Internet gateway: "$gatewayId" to Vpc: "$vpcId
 #Create Route Table
 routeTableId=`aws ec2 create-route-table --vpc-id $vpcId --query 'RouteTable.RouteTableId' --output text`
 #Tag Route Table
-aws ec2 create-tags --resources $routeTableId --tags Key=Name,Value=$STACK_NAME-csye6225-public-route-table
+aws ec2 create-tags --resources $routeTableId --tags Key=Name,Value=$STACK_NAME-csye6225-rt
 echo "Route table created -> route table Id: "$routeTableId
 
 #Create Route
