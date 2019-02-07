@@ -1,17 +1,14 @@
-set -e
+#!/bin/bash
 
 
-
-
-STACK_NAME=$1
 echo "The stack you want to delete: "
+read stackname
 
-#Query the stack
-aws cloudformation describe-stacks --stack-name $STACK_NAME
 
 #Delete the cloudformation stack
-aws cloudformation delete-stack --stack-name $STACK_NAME
+aws cloudformation delete-stack --stack-name ${stackname} &&
+aws cloudformation wait stack-delete-complete --stack-name ${stackname}
 
 
-#Job Done
-echo "Job done!"
+#Delete Successfully
+echo "Delete Successfully!"
