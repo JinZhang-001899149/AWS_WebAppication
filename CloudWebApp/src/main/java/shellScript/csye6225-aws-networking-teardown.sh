@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+<<<<<<< HEAD
 set -e
 
 
@@ -36,3 +37,5 @@ aws ec2 delete-vpc --vpc-id $vpcId
 echo "Deleting the vpc-> vpc id: "$vpcId
 
 echo "Job done!"
+=======
+>>>>>>> 9e133baba1a4391db760c27afb9ebc087ca3ad59
