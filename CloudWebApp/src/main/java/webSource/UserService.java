@@ -1,14 +1,24 @@
 package webSource;
 
+import com.sun.net.httpserver.Headers;
 import net.minidev.json.JSONArray;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.tomcat.util.http.parser.Authorization;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import org.jvnet.mimepull.Header;
+import org.omg.CORBA.portable.ResponseHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sun.misc.BASE64Decoder;
 
+<<<<<<< HEAD
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+=======
+import javax.persistence.Basic;
+import javax.servlet.http.HttpServletResponse;
+>>>>>>> da285cf816e1de11710d66cbb41972a4a85a1d66
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,12 +58,34 @@ public class UserService {
     //get for assignment
     @GetMapping("/") // Map ONLY GET Requests
     public @ResponseBody
+<<<<<<< HEAD
     String authentiction(@RequestHeader String Authorization, HttpServletResponse response) {
+=======
+    //String authentiction(@RequestParam String auth,Headers Authentication) {
+    String authentiction(@RequestParam String auth) {
+
+>>>>>>> da285cf816e1de11710d66cbb41972a4a85a1d66
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
 
+       // auth = @RequestHeader Authorization;
         ArrayList<User> list = (ArrayList<User>) getAllUsers();
+       // System.out.println(Authorization);
+
+//        User newUser = new User();
+//        String token3 = newUser.getEmail()+":"+ newUser.getPassword();
+//        Base64 base642 = new Base64();
+//        String result3 = base642.encodeToString(token3.getBytes());
+//
+//
+//            if(result3.equals(auth)){
+//
+//
+//            }
+
+
+
 
         int index3 = Authorization.indexOf(" ");
         String code = Authorization.substring(index3+1);
@@ -77,12 +109,18 @@ public class UserService {
         String baseAuth = base64.encodeToString(userAuth.getBytes());
 
         for (User user : list) {
+<<<<<<< HEAD
 
            /* if(user.getEmail().equals(email)){
                 return user.getToken()+"/"+baseAuth;
             }*/
 
            if (user.getToken().equals(baseAuth)) {
+=======
+            if (user.getToken().equals(auth)) {
+
+
+>>>>>>> da285cf816e1de11710d66cbb41972a4a85a1d66
                 return new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 
 //
@@ -122,16 +160,30 @@ public class UserService {
                     // BCrypt
                     String password = newUser.getPassword();
                     String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
+<<<<<<< HEAD
 
                     //create token
                     String token = newUser.getEmail() + ":" + newUser.getPassword();
 
-                    Base64 base64 = new Base64();
+=======
+                    newUser.setPassword(hashed);
 
+                    //create token
+                    String token = newUser.getEmail() + ":" + hashed;
+>>>>>>> da285cf816e1de11710d66cbb41972a4a85a1d66
+                    Base64 base64 = new Base64();
+                    String result = base64.encodeToString(token.getBytes());
+
+
+<<<<<<< HEAD
                     String result = base64.encodeToString(token.getBytes());
 
 
                     String token2 = newUser.getEmail()+ ":" + newUser.getPassword();;
+=======
+
+                    String token2 = newUser.getEmail()+":"+ password;
+>>>>>>> da285cf816e1de11710d66cbb41972a4a85a1d66
                     Base64 base642 = new Base64();
                     String result2 = base642.encodeToString(token2.getBytes());
 
@@ -146,6 +198,10 @@ public class UserService {
 
                     response.setHeader("Token",result2);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> da285cf816e1de11710d66cbb41972a4a85a1d66
 
                     newUser.setToken(result);
 
@@ -156,7 +212,10 @@ public class UserService {
 
 
 
+<<<<<<< HEAD
                     response.setStatus(201);
+=======
+>>>>>>> da285cf816e1de11710d66cbb41972a4a85a1d66
                     return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}";
 
 
@@ -198,7 +257,7 @@ public class UserService {
                                 String result = base64.encodeToString(token.getBytes());
 
 
-                                String token2 = newUser.getEmail();
+                                String token2 = newUser.getEmail()+ ":"+ password;
                                 Base64 base642 = new Base64();
                                 String result2 = base642.encodeToString(token2.getBytes());
 
@@ -206,6 +265,8 @@ public class UserService {
                                 ArrayList<String> listtoken = new ArrayList<String>();
                                 listtoken.add(result2);
                                 JSONArray jsarray = new JSONArray();
+
+                                response.setHeader("Token",result2);
 
                                 jsarray.add(listtoken);
                                 response.setHeader("Token",result2);
@@ -221,7 +282,11 @@ public class UserService {
 
                                 response.setStatus(201);
  
+<<<<<<< HEAD
                                   return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}"  ;
+=======
+                                  return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}";
+>>>>>>> da285cf816e1de11710d66cbb41972a4a85a1d66
 
                                   
                                  
