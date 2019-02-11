@@ -43,7 +43,7 @@
 				"VpcId": {
 					"Ref": "csye6225VPC"
 				},
-				"CidrBlock": "10.0.0.1/24",
+				"CidrBlock": "10.0.0.0/24",
 				"MapPublicIpOnLaunch": "true",
 				"AvailabilityZone": "us-east-1a"
 			}
