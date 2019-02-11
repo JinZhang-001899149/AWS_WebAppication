@@ -47,11 +47,6 @@ aws ec2 associate-route-table --subnet-id $subnetId2 --route-table-id $routeTabl
 aws ec2 associate-route-table --subnet-id $subnetId3 --route-table-id $routeTableId
 
 #Create security group
-<<<<<<< HEAD
-aws ec2 create-security-group --group-name MySecurityGroup description "My security group" --vpc-id $vpcId
-aws ec2 revoke-security-group-ingress --group-name MySecurityGroup --protocol tcp --port 22 --cidr 0.0.0.0/0
-aws ec2 revoke-security-group-ingress --group-name MySecurityGroup --protocol tcp --port 80 --cidr 0.0.0.0/0
-=======
 #aws ec2 create-security-group --group-name MySecurityGroup description "My security group" --vpc-id $vpcId
 #aws ec2 revoke-security-group-ingress --group-name MySecurityGroup --protocol tcp --port 22 --cidr 0.0.0.0/0
 #aws ec2 revoke-security-group-ingress --group-name MySecurityGroup --protocol tcp --port 80 --cidr 0.0.0.0/0
@@ -85,7 +80,6 @@ cat >./"$jsonFileName".json <<EOF
 	"vpcId": "$vpcId"
 }
 EOF
->>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
 
 #Done
 echo "Done!"
