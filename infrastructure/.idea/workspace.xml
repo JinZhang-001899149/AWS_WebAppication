@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e0f5aec-8485-4645-8c9a-cc00f7b89e7a" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/../.idea/csye6225-spring2019.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../.idea/encodings.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
@@ -26,6 +27,19 @@
       <change beforePath="$PROJECT_DIR$/aws/cloudformation/csye6225-cf-application.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/aws/cloudformation/csye6225-cf-networking.json" beforeDir="false" afterPath="$PROJECT_DIR$/aws/cloudformation/csye6225-cf-networking.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aws/scripts/README.md" beforeDir="false" />
+=======
+<<<<<<< HEAD
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/infrastructure.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CloudWebApp/src/main/java/webSource/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CloudWebApp/src/main/java/webSource/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CloudWebApp/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../CloudWebApp/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-stack.sh" beforeDir="false" afterPath="$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-stack.sh" afterDir="false" />
+=======
+>>>>>>> 944823396798ca9f0b4b1767b6e5e223a88fb399
+>>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
       <change beforePath="$PROJECT_DIR$/aws/scripts/csye6225-aws-networking-setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/aws/scripts/csye6225-aws-networking-setup.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aws/scripts/csye6225-aws-networking-teardown.sh" beforeDir="false" afterPath="$PROJECT_DIR$/aws/scripts/csye6225-aws-networking-teardown.sh" afterDir="false" />
     </list>
@@ -36,10 +50,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/aws/scripts/.keep">
@@ -51,24 +65,88 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
               <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+=======
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-stack.sh">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="18">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+=======
+            <state relative-caret-position="83">
+              <caret line="60" column="34" lean-forward="true" selection-start-line="60" selection-start-column="34" selection-end-line="60" selection-end-column="34" />
+              <folding>
+                <element signature="e#3408#3426#0" />
+              </folding>
+>>>>>>> 944823396798ca9f0b4b1767b6e5e223a88fb399
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aws/scripts/README-Scripts.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor />
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-terminate-stack.sh">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="54">
+              <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+=======
+            <state relative-caret-position="218">
+              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+>>>>>>> 944823396798ca9f0b4b1767b6e5e223a88fb399
+>>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/aws/scripts/csye6225-aws-networking-setup.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
               <caret line="1" selection-start-line="1" selection-end-line="1" />
+=======
+        <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-cf-networking.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1468">
+              <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
+>>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/aws/scripts/csye6225-aws-networking-teardown.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
               <caret line="1" selection-start-line="1" selection-end-line="1" />
+=======
+        <entry file="file://$PROJECT_DIR$/aws/scripts/csye6225-aws-networking-setup.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-27">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aws/cloudformation/README-cf.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor />
+              <second_editor />
+>>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
             </state>
           </provider>
         </entry>
@@ -81,12 +159,27 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/aws/scripts/csye6225-aws-networking-setup.sh" />
+>>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
         <option value="$PROJECT_DIR$/aws/scripts/csye6225-aws-networking-teardown.sh" />
+=======
+>>>>>>> 944823396798ca9f0b4b1767b6e5e223a88fb399
         <option value="$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-application-stack.sh" />
         <option value="$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-terminate-application-stack.sh" />
         <option value="$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-stack.sh" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/aws/scripts/csye6225-aws-networking-setup.sh" />
         <option value="$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-terminate-stack.sh" />
+=======
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/aws/scripts/csye6225-aws-networking-setup.sh" />
+        <option value="$PROJECT_DIR$/aws/scripts/csye6225-aws-networking-teardown.sh" />
+>>>>>>> 944823396798ca9f0b4b1767b6e5e223a88fb399
+>>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
       </list>
     </option>
   </component>
@@ -130,6 +223,24 @@
               <item name="aws" type="462c0819:PsiDirectoryNode" />
               <item name="cloudformation" type="462c0819:PsiDirectoryNode" />
             </path>
+<<<<<<< HEAD
+=======
+            <path>
+              <item name="infrastructure" type="b2602c69:ProjectViewProjectNode" />
+              <item name="infrastructure" type="462c0819:PsiDirectoryNode" />
+              <item name="aws" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infrastructure" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+            </path>
+            <path>
+              <item name="infrastructure" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+              <item name="Scratches" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
+            </path>
+>>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
           </expand>
           <select />
         </subPane>
@@ -140,8 +251,16 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+<<<<<<< HEAD
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549571911368" />
+=======
+<<<<<<< HEAD
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+=======
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549573096970" />
+>>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../CloudWebApp" />
+>>>>>>> 944823396798ca9f0b4b1767b6e5e223a88fb399
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -157,6 +276,7 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected="Bash.csye6225-aws-networking-teardown.sh">
     <configuration name="csye6225-aws-networking-setup.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
       <module name="infrastructure" />
@@ -180,14 +300,30 @@
       <option name="PARENT_ENVS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/aws/scripts/csye6225-aws-networking-teardown.sh" />
       <option name="PARAMETERS" value="" />
+=======
+  <component name="RunManager">
+    <configuration name="csye6225-aws-cf-create-stack.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="bash" />
+      <option name="INTERPRETER_PATH" value="/usr/bin/env" />
+      <option name="PROJECT_INTERPRETER" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/aws/cloudformation" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-stack.sh" />
+      <option name="PARAMETERS" value="" />
+      <module name="" />
+>>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+<<<<<<< HEAD
         <item itemvalue="Bash.csye6225-aws-networking-teardown.sh" />
         <item itemvalue="Bash.csye6225-aws-networking-setup.sh" />
+=======
+        <item itemvalue="Bash.csye6225-aws-cf-create-stack.sh" />
+>>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
       </list>
     </recent_temporary>
   </component>
@@ -202,11 +338,24 @@
       <option name="presentableId" value="Default" />
       <updated>1549568183056</updated>
       <workItem from="1549568184652" duration="1876000" />
+<<<<<<< HEAD
       <workItem from="1549571572268" duration="324000" />
+=======
+<<<<<<< HEAD
+      <workItem from="1549570788164" duration="9000" />
+      <workItem from="1549570874362" duration="34000" />
+      <workItem from="1549571191437" duration="1718000" />
+      <workItem from="1549573099401" duration="821000" />
+      <workItem from="1549574581656" duration="801000" />
+=======
+      <workItem from="1549571572268" duration="1599000" />
+>>>>>>> 944823396798ca9f0b4b1767b6e5e223a88fb399
+>>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="2333000" />
   </component>
   <component name="ToolWindowManager">
@@ -214,6 +363,22 @@
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27188328" />
+=======
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="5259000" />
+=======
+    <option name="totallyTimeSpent" value="3475000" />
+>>>>>>> 944823396798ca9f0b4b1767b6e5e223a88fb399
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
+    <layout>
+<<<<<<< HEAD
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26547685" />
+=======
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1816976" />
+>>>>>>> 944823396798ca9f0b4b1767b6e5e223a88fb399
+>>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -221,9 +386,20 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Learn" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.51605505" />
+=======
+      <window_info anchor="bottom" id="Messages" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+<<<<<<< HEAD
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32940018" />
+=======
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.19724771" />
+>>>>>>> 944823396798ca9f0b4b1767b6e5e223a88fb399
+>>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -233,7 +409,10 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Messages" order="12" />
+=======
+>>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -244,6 +423,37 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Database" order="8" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26157278" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Learn" order="6" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Maven" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Database" order="8" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -263,25 +473,50 @@
     <entry file="file://$PROJECT_DIR$/aws/cloudformation/README.md" />
     <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-application-stack.sh" />
     <entry file="file://$PROJECT_DIR$/aws/scripts/README.md" />
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-stack.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" selection-start-line="12" selection-end-line="12" />
+=======
+    <entry file="file://$PROJECT_DIR$/aws/scripts/csye6225-aws-networking-teardown.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+>>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-terminate-stack.sh">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="150">
           <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-cf-networking.json">
+=======
+        <state relative-caret-position="54">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aws/cloudformation/README-cf.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aws/scripts/.json">
+>>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/aws/scripts/csye6225-aws-networking-setup.sh">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="15">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
@@ -294,6 +529,48 @@
         </state>
       </provider>
     </entry>
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="-27">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aws/scripts/README-Scripts.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-cf-networking.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1468">
+          <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
+=======
+        <state relative-caret-position="83">
+          <caret line="60" column="34" lean-forward="true" selection-start-line="60" selection-start-column="34" selection-end-line="60" selection-end-column="34" />
+          <folding>
+            <element signature="e#3408#3426#0" />
+          </folding>
+>>>>>>> 944823396798ca9f0b4b1767b6e5e223a88fb399
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-stack.sh">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="18">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+=======
+        <state relative-caret-position="218">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+>>>>>>> 944823396798ca9f0b4b1767b6e5e223a88fb399
+        </state>
+      </provider>
+    </entry>
+>>>>>>> 9506631e807ad712f012c749ea24724bd23c41f1
   </component>
   <component name="masterDetails">
     <states>
