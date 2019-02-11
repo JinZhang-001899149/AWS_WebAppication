@@ -1,8 +1,11 @@
 #!/bin/bash
 
-echo "Enter The Stack Name:"
+echo "The stack you want to delete:"
 read stackname
 
+#Delete the cloud formation stack
 aws cloudformation delete-stack --stack-name ${stackname}&&
 aws cloudformation wait stack-delete-complete --stack-name ${stackname}
-echo done
+
+#Delete Successfully
+echo "Delete Successfully!"
