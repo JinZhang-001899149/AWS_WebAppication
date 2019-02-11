@@ -1,4 +1,4 @@
-package webSource;
+package Note;
 
 import javax.persistence.Id;
 import javax.persistence.Entity;

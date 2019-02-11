@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3a4348e8-7aa7-4d0a-8a5b-e009b152e764" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Note/NoteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Note/NoteRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webSource/Note.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Note/Note.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/webSource/NoteController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webSource/NoteRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webSource/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webSource/UserRepository.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,22 +20,17 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
+  <component name="ErrorTreeViewConfiguration">
+    <option name="hideWarnings" value="true" />
+    <option name="HIDE_WARNINGS" value="true" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/webSource/BCrypt.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2682">
-              <caret line="150" column="62" selection-start-line="150" selection-start-column="62" selection-end-line="150" selection-end-column="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/webSource/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="18">
+              <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -41,18 +41,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/webSource/UserService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+            <state relative-caret-position="270">
+              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/webSource/Note.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Note/Note.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="836">
-              <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+            <state>
+              <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#323#324#0" expanded="true" />
                 <element signature="e#352#353#0" expanded="true" />
                 <element signature="e#397#398#0" expanded="true" />
@@ -75,7 +79,7 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/webSource/NoteRepository.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Note/NoteRepository.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="72">
               <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
@@ -84,10 +88,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/webSource/NoteController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Note/NoteController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="584">
-              <caret line="33" column="30" lean-forward="true" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+            <state relative-caret-position="-236">
+              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -107,8 +111,28 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/webSource/UserRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="72">
+              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/webSource/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="33" column="39" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
+              <folding>
+                <element signature="e#327#328#0" expanded="true" />
+                <element signature="e#358#359#0" expanded="true" />
+                <element signature="e#406#407#0" expanded="true" />
+                <element signature="e#446#447#0" expanded="true" />
+                <element signature="e#478#479#0" expanded="true" />
+                <element signature="e#506#507#0" expanded="true" />
+                <element signature="e#582#583#0" expanded="true" />
+                <element signature="e#614#615#0" expanded="true" />
+                <element signature="e#642#643#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -136,8 +160,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -154,16 +178,22 @@
         <option value="$PROJECT_DIR$/src/main/java/shellScript/csye6225-aws-networking-setup.sh" />
         <option value="$PROJECT_DIR$/src/test/java/com/cloud/assignment/assignment01/Assignment01ApplicationTests.java" />
         <option value="$PROJECT_DIR$/src/main/java/webSource/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/webSource/UserRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/webSource/NoteRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/webSource/Note.java" />
         <option value="$PROJECT_DIR$/src/main/java/webSource/NoteController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/webSource/NoteRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/webSource/notere.java" />
+        <option value="$PROJECT_DIR$/src/main/java/webSource/UserRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/webSource/Note/NoteRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/webSource/Note/NoteController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Note/NoteRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Note/NoteController.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="115" />
-    <option name="y" value="100" />
-    <option name="width" value="1001" />
+    <option name="x" value="-1" />
+    <option name="y" value="27" />
+    <option name="width" value="1021" />
     <option name="height" value="700" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -204,6 +234,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Note" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CloudWebApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CloudWebApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="webSource" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -235,6 +273,16 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/Note" />
+      <recent name="$PROJECT_DIR$/src/main/java" />
+      <recent name="$PROJECT_DIR$/src/main/java/webSource/Note" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -247,7 +295,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assignment01ApplicationTests.register">
+  <component name="RunManager" selected="Spring Boot.Application (1)">
     <configuration name="Assignment01ApplicationTests.register" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="assignment01" />
       <extension name="coverage">
@@ -264,9 +312,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="webSource in CloudWebApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CloudWebApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="webSource.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="webSource" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="commons-codec-1.11.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$USER_HOME$/Documents/commons-codec-1.11.jar!/" />
       <method v="2" />
+    </configuration>
+    <configuration name="Application (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="CloudWebApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="webSource.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="webSource.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="assignment01" />
@@ -283,6 +358,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.Application (1)" />
+        <item itemvalue="JUnit.webSource in CloudWebApp" />
         <item itemvalue="JUnit.Assignment01ApplicationTests.register" />
         <item itemvalue="JAR Application.commons-codec-1.11.jar" />
         <item itemvalue="Spring Boot.Application" />
@@ -294,7 +371,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="076a65f9-a499-4e0a-bf14-bc973405a757" name="Default Changelist" comment="" />
+      <changelist id="3a4348e8-7aa7-4d0a-8a5b-e009b152e764" name="Default Changelist" comment="" />
       <created>1549379529261</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -309,11 +386,18 @@
       <workItem from="1549565776821" duration="451000" />
       <workItem from="1549566717539" duration="1886000" />
       <workItem from="1549921645985" duration="618000" />
+      <workItem from="1549926139004" duration="285000" />
+      <workItem from="1549926454912" duration="2499000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="webSource_in_CloudWebApp - 2019.02.11 at 18h 23m 06s.xml">
+      <configuration name="webSource in CloudWebApp" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21283000" />
+    <option name="totallyTimeSpent" value="26011000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -326,23 +410,25 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
       <window_info id="Designer" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.3915226" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.40379253" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info id="Web" order="7" side_tool="true" />
+      <window_info id="Learn" order="8" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" sideWeight="0.49957156" weight="0.32850242" />
       <window_info anchor="bottom" id="Terminal" order="2" sideWeight="0.49871466" weight="0.32850242" />
       <window_info anchor="bottom" id="Database Changes" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.25874126" side_tool="true" weight="0.35248446" />
+      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5002789" side_tool="true" weight="0.3284169" />
       <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="Find" order="6" />
-      <window_info anchor="bottom" id="Run" order="7" weight="0.32850242" />
+      <window_info anchor="bottom" id="Find" order="6" weight="0.32940018" />
+      <window_info anchor="bottom" id="Run" order="7" sideWeight="0.49972114" visible="true" weight="0.3284169" />
       <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.74125874" weight="0.4516696" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
@@ -366,13 +452,18 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/webSource/Application.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/shellScript/csye6225-aws-cf-create-stack.sh" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/shellScript/csye6225-aws-cf-terminate-stack.sh" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/shellScript/csye6225-aws-networking-setup.sh" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/shellScript/csye6225-aws-networking-teardown.sh" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/shellScript/README.md" />
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/webSource/BCrypt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="2682">
+          <caret line="150" column="62" selection-start-line="150" selection-start-column="62" selection-end-line="150" selection-end-column="62" />
         </state>
       </provider>
     </entry>
@@ -383,14 +474,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/shellScript/csye6225-aws-cf-create-stack.sh" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/shellScript/csye6225-aws-cf-terminate-stack.sh" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/shellScript/csye6225-aws-networking-setup.sh" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/shellScript/csye6225-aws-networking-teardown.sh" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/shellScript/README.md" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
@@ -398,36 +481,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/webSource/BCrypt.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/webSource/notere.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2682">
-          <caret line="150" column="62" selection-start-line="150" selection-start-column="62" selection-end-line="150" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/webSource/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="33" column="39" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
+        <state relative-caret-position="180">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
           <folding>
-            <element signature="e#327#328#0" expanded="true" />
-            <element signature="e#358#359#0" expanded="true" />
-            <element signature="e#406#407#0" expanded="true" />
-            <element signature="e#446#447#0" expanded="true" />
-            <element signature="e#478#479#0" expanded="true" />
-            <element signature="e#506#507#0" expanded="true" />
-            <element signature="e#582#583#0" expanded="true" />
-            <element signature="e#614#615#0" expanded="true" />
-            <element signature="e#642#643#0" expanded="true" />
+            <element signature="e#0#169#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/webSource/Note.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Note/Note.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+        <state>
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#323#324#0" expanded="true" />
             <element signature="e#352#353#0" expanded="true" />
             <element signature="e#397#398#0" expanded="true" />
@@ -450,29 +519,67 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/webSource/UserRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="72">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/webSource/NoteRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/webSource/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="33" column="39" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
+          <folding>
+            <element signature="e#327#328#0" expanded="true" />
+            <element signature="e#358#359#0" expanded="true" />
+            <element signature="e#406#407#0" expanded="true" />
+            <element signature="e#446#447#0" expanded="true" />
+            <element signature="e#478#479#0" expanded="true" />
+            <element signature="e#506#507#0" expanded="true" />
+            <element signature="e#582#583#0" expanded="true" />
+            <element signature="e#614#615#0" expanded="true" />
+            <element signature="e#642#643#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/webSource/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/webSource/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment01/Assignment01Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Note/NoteRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/webSource/UserService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Note/NoteController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/webSource/NoteController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="33" column="30" lean-forward="true" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+        <state relative-caret-position="-236">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
