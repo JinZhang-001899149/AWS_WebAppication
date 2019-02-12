@@ -36,7 +36,7 @@ public class NoteController {
 //        return "Saved";
 //    }
 
-    @GetMapping(path="/all")
+    @GetMapping(path="/all/ note")
     public @ResponseBody Iterable<Note> getAllNote() {
         // This returns a JSON or XML with the users
         return noteRepository.findAll();
@@ -53,6 +53,7 @@ public class NoteController {
         SimpleDateFormat sdf = new SimpleDateFormat("\"yyyy.MM.dd.HH.mm.ss\"");
 
         newNote.setCreated_on(sdf.format(new Date()));
+        newNote.setLast_updated_on(sdf.format(new Date()));
 
 
         noteRepository.save(newNote);

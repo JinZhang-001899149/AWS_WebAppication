@@ -3,10 +3,16 @@ package Note;
 import javax.persistence.Id;
 import javax.persistence.Entity;
 import java.util.Date;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
+@Entity // This tells Hibernate to make a table out of this class
 public class Note {
+
   @Id
+  @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer noteId;
+
   private String content;
   private String title;
   private String created_on;
