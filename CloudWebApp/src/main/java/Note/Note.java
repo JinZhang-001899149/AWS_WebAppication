@@ -3,21 +3,28 @@ package Note;
 import javax.persistence.Id;
 import javax.persistence.Entity;
 import java.util.Date;
+import java.util.UUID;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
+@Entity // This tells Hibernate to make a table out of this class
 public class Note {
+
   @Id
-  private Integer noteId;
+  @GeneratedValue(strategy=GenerationType.AUTO)
+  private UUID noteId;
+
   private String content;
   private String title;
-  private Date created_on;
-  private Date last_updated_on;
+  private String created_on;
+  private String last_updated_on;
   private String email;
 
-    public Integer getNoteId() {
+    public UUID getNoteId() {
         return noteId;
     }
 
-    public void setNoteId(Integer noteId) {
+    public void setNoteId(UUID noteId) {
         this.noteId = noteId;
     }
 
@@ -37,19 +44,19 @@ public class Note {
         this.title = title;
     }
 
-    public Date getCreated_on() {
+    public String getCreated_on() {
         return created_on;
     }
 
-    public void setCreated_on(Date created_on) {
+    public void setCreated_on(String created_on) {
         this.created_on = created_on;
     }
 
-    public Date getLast_updated_on() {
+    public String getLast_updated_on() {
         return last_updated_on;
     }
 
-    public void setLast_updated_on(Date last_updated_on) {
+    public void setLast_updated_on(String last_updated_on) {
         this.last_updated_on = last_updated_on;
     }
 
