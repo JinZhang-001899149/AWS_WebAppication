@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-
+@RestController
 public class NoteController {
 
     @Autowired // This means to get the bean called noteRepository
@@ -46,15 +46,13 @@ public class NoteController {
 
     @PostMapping("/note/create")
     public @ResponseBody
-    String
-
-    register(@RequestBody Note newNote, HttpServletResponse response) {
+    String register(@RequestBody Note newNote, HttpServletResponse response) {
 
 
 
         SimpleDateFormat sdf = new SimpleDateFormat("\"yyyy.MM.dd.HH.mm.ss\"");
 
-        newNote.setCreated_on(sdf.get2DigitYearStart());
+        newNote.setCreated_on(sdf.format(new Date()));
 
 
         noteRepository.save(newNote);
