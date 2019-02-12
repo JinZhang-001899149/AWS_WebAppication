@@ -1,4 +1,4 @@
-package Note;
+package com.cloud.assignment.assignment.Note;
 
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,4 +1,4 @@
-package webSource;
+package com.cloud.assignment.assignment.webSource;
 
 import org.springframework.data.repository.CrudRepository;
 

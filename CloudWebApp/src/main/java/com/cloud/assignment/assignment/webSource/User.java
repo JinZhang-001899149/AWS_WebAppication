@@ -1,4 +1,4 @@
-package webSource;
+package com.cloud.assignment.assignment.webSource;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
