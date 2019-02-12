@@ -1,12 +1,7 @@
-package webSource;
+package com.cloud.assignment.assignment.webSource;
 
-import com.sun.net.httpserver.Headers;
 import net.minidev.json.JSONArray;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.tomcat.util.http.parser.Authorization;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
-import org.jvnet.mimepull.Header;
-import org.omg.CORBA.portable.ResponseHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sun.misc.BASE64Decoder;

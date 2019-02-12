@@ -1,27 +1,13 @@
-package Note;
+package com.cloud.assignment.assignment.Note;
 //
 
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.sun.net.httpserver.Headers;
-import net.bytebuddy.utility.RandomString;
-import net.minidev.json.JSONArray;
-import org.apache.commons.codec.binary.Base64;
-import org.apache.tomcat.util.http.parser.Authorization;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
-import org.hibernate.id.UUIDGenerationStrategy;
-import org.hibernate.id.UUIDGenerator;
-import org.hibernate.type.UUIDBinaryType;
-import org.jvnet.mimepull.Header;
-import org.omg.CORBA.portable.ResponseHandler;
+import com.cloud.assignment.assignment.webSource.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import sun.misc.BASE64Decoder;
+
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
 import java.util.UUID;
 
 @RestController
@@ -69,6 +55,14 @@ public class NoteController {
         String createdate = newNote.getCreated_on();
 
         newNote.setLast_updated_on(sdf.format(new Date()));
+
+        //newNote.setEmail(newNote.getEmail());
+
+
+        //User newuser = new User();
+
+        //newNote.setEmail(newuser.getEmail());
+
 
 
         noteRepository.save(newNote);
