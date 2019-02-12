@@ -3,6 +3,7 @@ package Note;
 import javax.persistence.Id;
 import javax.persistence.Entity;
 import java.util.Date;
+import java.util.UUID;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -11,7 +12,7 @@ public class Note {
 
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
-  private Integer noteId;
+  private UUID noteId;
 
   private String content;
   private String title;
@@ -19,11 +20,11 @@ public class Note {
   private String last_updated_on;
   private String email;
 
-    public Integer getNoteId() {
+    public UUID getNoteId() {
         return noteId;
     }
 
-    public void setNoteId(Integer noteId) {
+    public void setNoteId(UUID noteId) {
         this.noteId = noteId;
     }
 
