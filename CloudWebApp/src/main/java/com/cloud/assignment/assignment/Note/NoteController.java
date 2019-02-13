@@ -75,13 +75,12 @@ public class NoteController {
     }
 
    @RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
-    public Note getSingleNote(@PathVariable("id") UUID id, HttpServletResponse response) {
+    public Note getSingleNote(@PathVariable("id") String id, HttpServletResponse response) {
        ArrayList<Note> list = (ArrayList<Note>) getAllNote();
        for (Note note : list) {
            if (note.getNoteId().equals(id)) {
                response.setStatus(200);
                return note;
-              // return singleNote;
 
            } else {
                response.setStatus(404);
