@@ -46,7 +46,9 @@ public class NoteController {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
-        newNote.setNoteId(UUID.randomUUID());
+        //newNote.setNoteId(UUID.randomUUID());
+
+        newNote.setNoteId(UUID.randomUUID().toString());
 
         newNote.setCreated_on(sdf.format(new Date()));
 

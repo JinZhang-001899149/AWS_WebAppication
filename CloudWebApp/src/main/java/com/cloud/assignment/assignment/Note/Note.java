@@ -11,20 +11,20 @@ import javax.persistence.GenerationType;
 public class Note {
 
   @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
-  private UUID noteId;
-
+  private String noteId;
   private String content;
   private String title;
   private String created_on;
   private String last_updated_on;
   private String email;
 
-    public UUID getNoteId() {
+
+
+    public String getNoteId() {
         return noteId;
     }
 
-    public void setNoteId(UUID noteId) {
+    public void setNoteId(String noteId) {
         this.noteId = noteId;
     }
 
