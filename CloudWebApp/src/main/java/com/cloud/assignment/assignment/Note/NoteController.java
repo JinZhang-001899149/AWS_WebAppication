@@ -91,4 +91,30 @@ public class NoteController {
           return null;
    }
 
+    @RequestMapping(value="/note/{noteId}",method=RequestMethod.PUT)
+    public String update(@PathVariable String noteId,@RequestBody Note note){
+        ArrayList<Note> noteList = (ArrayList<Note>) getAllNote();
+
+        String realId = noteId.substring(1,noteId.length()-1);
+
+        Note note2 = new Note();
+        for(int i=0;i<noteList.size();i++){
+            if(realId.equals(noteList.get(i).getNoteId())){
+                note2 = noteList.get(i);
+
+
+                SimpleDateFormat updateTime = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+                note2.setLast_updated_on(updateTime.format(new Date()));
+                note2.setTitle(note.getTitle());
+                note2.setContent(note.getContent());
+                //noteRepository.save(note2);
+
+                return note2.getContent();
+            }
+        }
+
+
+
+        return "end";
+    }
 }
