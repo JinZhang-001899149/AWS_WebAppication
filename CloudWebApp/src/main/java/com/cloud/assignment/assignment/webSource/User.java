@@ -11,12 +11,10 @@ public class User {
 
     private String password;
 
-//    private String token;
-
     @Id
     private String email;
 
-    private String token;
+    //private String token;
 
 
     public String getPassword() {
@@ -35,13 +33,13 @@ public class User {
         this.email = email;
     }
 
-    public String getToken() {
+    /*public String getToken() {
         return token;
     }
 
     public void setToken(String token) {
         this.token = token;
 
-    }
+    }*/
 }
 
