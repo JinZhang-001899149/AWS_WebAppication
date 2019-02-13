@@ -218,7 +218,8 @@ public class UserService {
                                             newUser.getPassword().length() <= 20) {
 
 
-                                // BCrypt
+                                // BCrypts
+
                                 String password = newUser.getPassword();
                                 String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
 

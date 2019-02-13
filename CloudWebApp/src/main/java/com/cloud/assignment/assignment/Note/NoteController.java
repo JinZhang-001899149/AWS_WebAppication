@@ -33,50 +33,81 @@ public class NoteController {
 
     @GetMapping(path = "/note")
     public @ResponseBody
-    Iterable<Note> getAllNote() {
+    Iterable <Note> getAllNote(@RequestHeader String Authorization,  Note newNote, HttpServletResponse response, User newUser) {
+
         // This returns a JSON or XML with the users
-        return noteRepository.findAll();
+        //if(!newNote.getEmail().equals())
+        if(newNote.getEmail().equals(newUser.getEmail())) {
+
+            response.setStatus(200);
+            return noteRepository.findAll();
+        }
+
+        else {
+
+            response.setStatus(401);
+            //return "(\"Unauthorized\")";
+            return null;
+
+        }
+
     }
 
 
     @PostMapping("/note/create")
     public @ResponseBody
-    String register(@RequestBody Note newNote, HttpServletResponse response) {
+    String register(@RequestBody Note newNote, HttpServletResponse response, User newUser) {
 
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+        if(newNote.getEmail().equals(newUser.getEmail())) {
 
-        //newNote.setNoteId(UUID.randomUUID());
+            if(newNote.getTitle().equals(null) && newNote.getContent().equals(null) && newNote.getTitle().length()<=20)
+            {
+              response.setStatus(400);
+              return "(\"Bad Request\")";
+            }
 
-        newNote.setNoteId(UUID.randomUUID().toString());
+            else {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
-        newNote.setCreated_on(sdf.format(new Date()));
+                //newNote.setNoteId(UUID.randomUUID());
 
-        // get the create date for later use
-        String createdate = newNote.getCreated_on();
+                newNote.setNoteId(UUID.randomUUID().toString());
 
-        newNote.setLast_updated_on(sdf.format(new Date()));
+                newNote.setCreated_on(sdf.format(new Date()));
 
-        //newNote.setEmail(newNote.getEmail());
+                // get the create date for later use
+                String createdate = newNote.getCreated_on();
+
+                newNote.setLast_updated_on(sdf.format(new Date()));
+
+                //newNote.setEmail(newNote.getEmail());
 
 
-        //User newuser = new User();
+                //User newuser = new User();
 
-        //newNote.setEmail(newuser.getEmail());
+                //newNote.setEmail(newuser.getEmail());
+
+                response.setStatus(200);
+                noteRepository.save(newNote);
+                return "(\"saved\")";
+            }
+
+        }
 
 
-        noteRepository.save(newNote);
+        else {
 
-        response.setStatus(200);
-
-        return ("saved");
+            response.setStatus(401);
+            return "(\"Unauthorized\")";
+        }
 
 
     }
 
    @RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
     public Note getSingleNote(@PathVariable("id") UUID id, HttpServletResponse response) {
-       ArrayList<Note> list = (ArrayList<Note>) getAllNote();
+       ArrayList<Note> list = (ArrayList<Note>) noteRepository.findAll();
        for (Note note : list) {
            if (note.getNoteId().equals(id)) {
                response.setStatus(200);
