@@ -1,11 +1,8 @@
 package com.cloud.assignment.assignment.Note;
 
-import javax.persistence.Id;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Note {
@@ -16,6 +13,9 @@ public class Note {
   private String title;
   private String created_on;
   private String last_updated_on;
+
+  @ManyToOne (fetch = FetchType.LAZY,optional = false)
+  @JoinColumn(name = "email", nullable =false)
   private String email;
 
 
