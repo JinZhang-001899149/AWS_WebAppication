@@ -2,8 +2,10 @@ package com.cloud.assignment.assignment.Note;
 //
 
 import com.cloud.assignment.assignment.webSource.User;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
@@ -44,6 +46,7 @@ public class NoteController {
     String register(@RequestBody Note newNote, HttpServletResponse response) {
 
 
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
         //newNote.setNoteId(UUID.randomUUID());
@@ -75,30 +78,44 @@ public class NoteController {
     }
 
    @RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
-    public Note getSingleNote(@PathVariable("id") String id, HttpServletResponse response) {
-       ArrayList<Note> list = (ArrayList<Note>) getAllNote();
-       for (Note note : list) {
-           if (note.getNoteId().equals(id)) {
-               response.setStatus(200);
-               return note;
+    public Object getSingleNote(@PathVariable("id") String id, HttpServletResponse response, @RequestHeader String Authorization) {
 
-           } else {
-               response.setStatus(404);
-               return null;
-           }
+       ArrayList<Note> list = (ArrayList<Note>) getAllNote();
+       int index3 = Authorization.indexOf(" ");
+       String code = Authorization.substring(index3+1);
+       Base64 base64 = new Base64();
+       BASE64Decoder decoder = new BASE64Decoder();
+       String decode = null;
+       int index = decode.indexOf(":");
+       String password = decode.substring(index+1);
+       String email = decode.substring(0,index);
+
+       for (Note note : list) {
+           if (note.getEmail().equals(email)){
+               if (note.getNoteId().equals(id)) {
+                   response.setStatus(200);
+                   return note;
+
+               } else {
+                   response.setStatus(404);
+                   return null;
+               }
+        }
+           response.setStatus(401);
+           return "{ \"Unaothorized\" }";
        }
           return null;
    }
 
-    @RequestMapping(value="/note/{noteId}",method=RequestMethod.PUT)
-    public String update(@PathVariable String noteId,@RequestBody Note note){
+    @RequestMapping(value="/note/{id}",method=RequestMethod.PUT)
+    public String update(@PathVariable("id") String id,@RequestBody Note note){
         ArrayList<Note> noteList = (ArrayList<Note>) getAllNote();
 
-        String realId = noteId.substring(1,noteId.length()-1);
+        //String realId = noteId.substring(1,noteId.length()-1);
 
         Note note2 = new Note();
         for(int i=0;i<noteList.size();i++){
-            if(realId.equals(noteList.get(i).getNoteId())){
+            if(id.equals(noteList.get(i).getNoteId())){
                 note2 = noteList.get(i);
 
 

@@ -92,8 +92,8 @@ public class UserService {
 
 
         //String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
-        String userAuth = email+":"+password;
-        String baseAuth = base64.encodeToString(userAuth.getBytes());
+        //String userAuth = email+":"+password;
+        //String baseAuth = base64.encodeToString(userAuth.getBytes());
 
         for (User user : list) {
 
@@ -102,7 +102,7 @@ public class UserService {
                 return user.getToken()+"/"+baseAuth;
             }*/
 
-           if (user.getToken().equals(baseAuth)) {
+           if (user.getEmail().equals(email)) {
 
                 return new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 
@@ -175,7 +175,7 @@ public class UserService {
 
 
 
-                    newUser.setToken(result);
+                    //newUser.setToken(result);
 
                     newUser.setPassword(hashed);
 
@@ -242,7 +242,7 @@ public class UserService {
                                 jsarray.add(listtoken);
 
 
-                                newUser.setToken(result);
+                                //newUser.setToken(result);
                                 newUser.setPassword(token2);
 
                                 // the format of the password is correct and make it into Bcrypt token then save the user
