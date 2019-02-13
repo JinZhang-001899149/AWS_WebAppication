@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -29,20 +31,17 @@ public class NoteController {
 //        return "Saved";
 //    }
 
-    @GetMapping(path="/all/note")
-    public @ResponseBody Iterable<Note> getAllNote() {
+    @GetMapping(path = "/note")
+    public @ResponseBody
+    Iterable<Note> getAllNote() {
         // This returns a JSON or XML with the users
         return noteRepository.findAll();
     }
 
 
-
     @PostMapping("/note/create")
     public @ResponseBody
     String register(@RequestBody Note newNote, HttpServletResponse response) {
-
-
-
 
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
@@ -64,15 +63,30 @@ public class NoteController {
         //newNote.setEmail(newuser.getEmail());
 
 
-
         noteRepository.save(newNote);
 
         response.setStatus(200);
 
-        return("saved");
+        return ("saved");
 
 
     }
 
+   @RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
+    public Note getSingleNote(@PathVariable("id") UUID id, HttpServletResponse response) {
+       ArrayList<Note> list = (ArrayList<Note>) getAllNote();
+       for (Note note : list) {
+           if (note.getNoteId().equals(id)) {
+               response.setStatus(200);
+               return note;
+              // return singleNote;
+
+           } else {
+               response.setStatus(404);
+               return null;
+           }
+       }
+          return null;
+   }
 
 }
