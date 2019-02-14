@@ -39,7 +39,7 @@ public class NoteController {
 //    }
 
     @GetMapping(path = "/note")
-    public Object getAllNote(@RequestHeader String Authorization, Note newNote, HttpServletResponse response) {
+    public List<Note> getAllNote(@RequestHeader String Authorization, Note newNote, HttpServletResponse response) {
 
         // This returns a JSON or XML with the users
         //if(!newNote.getEmail().equals())
@@ -70,35 +70,33 @@ public class NoteController {
          User user = userRepository.findByEmail(email);
 
 
+         if(userRepository.findByEmail(email)!=null) {
 
+             response.setStatus(200);
 
-            if(userRepository.findByEmail(email)!=null) {
+             List<Note> notes = noteRepository.findAllByUser(user);
 
-
-
-                response.setStatus(200);
-
-                return noteRepository.findAll();
+             if(notes.isEmpty()){
+                 return  new ArrayList<>();
+             }
+             else{
+                 return notes;
+             }
+             //return noteRepository.findAll();
             }
 
             else {
 
                 response.setStatus(401);
-                return "(\"Unauthorized\")";
-                //return null;
-
+                //return "(\"Unauthorized\")";
             }
-
-
-
-        //return null;
-
+            return null;
 
     }
 
 
     @PostMapping("/note")
-    public String register(@RequestBody Note newNote, HttpServletResponse response, User newUser, @RequestHeader  String Authorization) {
+    public Note register(@RequestBody Note newNote, HttpServletResponse response, User newUser, @RequestHeader  String Authorization) {
 
 
 
@@ -123,20 +121,25 @@ public class NoteController {
 
          User user = userRepository.findByEmail(email);
 
+
+
+
          if(user!=null){
 
 
 
-                if(newNote.getTitle().equals(null) && newNote.getContent().equals(null) && newNote.getTitle().length()>=20)
+                if(newNote.getTitle().equals("") || newNote.getContent().equals("") || newNote.getTitle().length()>=20)
                 {
                     response.setStatus(400);
-                    return "(\"Bad Request\")";
+                    //return "(\"Bad Request\")";
                 }
 
                 else{
 
 
                     //newNote.setNoteId(UUID.randomUUID());
+
+
 
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
@@ -151,11 +154,14 @@ public class NoteController {
 
                     newNote.setUser(user);
 
+                    Note savenote = noteRepository.save(newNote);
 
+                    user.getNotes().add(newNote);
+                    userRepository.save(user);
                     response.setStatus(200);
-                    noteRepository.save(newNote);
-                    return "(\"saved\")";
-
+                    return newNote;
+                    //noteRepository.save(newNote);
+                    //return "(\"saved\")";
 
                 }
 
@@ -163,8 +169,10 @@ public class NoteController {
             else {
 
                 response.setStatus(401);
-                return "(\"Unauthorized\")";
+                return null;
+                //return "(\"Unauthorized\")";
             }
+            return null;
     }
 
    //@RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
