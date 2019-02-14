@@ -177,7 +177,7 @@ public class UserService {
 
                     //newUser.setToken(result);
 
-                    newUser.setPassword(hashed);
+                    //newUser.setPassword(hashed);
 
                     // the format of the password is correct and make it into Bcrypt token then save the user
                     userRepository.save(newUser);
@@ -221,7 +221,7 @@ public class UserService {
                                 // BCrypts
 
                                 String password = newUser.getPassword();
-                                String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
+                                String hashed = BCrypt.hashpw(password, BCrypt.gensalt(10));
 
                                 //create token
                                 String token = newUser.getEmail() + ":" + newUser.getPassword();
@@ -244,7 +244,7 @@ public class UserService {
 
 
                                 //newUser.setToken(result);
-                                newUser.setPassword(token2);
+                                newUser.setPassword(hashed);
 
                                 // the format of the password is correct and make it into Bcrypt token then save the user
                                 userRepository.save(newUser);

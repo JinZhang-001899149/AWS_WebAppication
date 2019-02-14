@@ -20,8 +20,6 @@ public class User {
     @Id
     private String email;
 
-
-
     //private String token;
     @OneToMany(mappedBy = "user")
     private List<Note> notes;
@@ -41,14 +39,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public List<Note> getNotes() {
-        return notes;
-    }
-
-    public void setNotes(List<Note> notes) {
-        this.notes = notes;
     }
 
     /*public String getToken() {
