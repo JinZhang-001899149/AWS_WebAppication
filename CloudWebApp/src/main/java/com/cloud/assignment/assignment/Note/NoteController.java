@@ -125,39 +125,31 @@ public class NoteController {
             }
     }
 
-   @RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
 
     public Object getSingleNote(@RequestHeader String Authorization,@PathVariable("id") String id, HttpServletResponse response) {
-         User user = authorizeUser(Authorization);
-         String realId = id.substring(1,id.length()-1);
-         if (user == null){
-             response.setStatus(401);
-             return "{\"Unauthorized\"}";
-         }else {
-             if (realId.equals("")){
-                 response.setStatus(400);
-                 return"{\"Bad Request\"}";
-             }else{
-                 List<Note> list = noteRepository.findAllByUser(user);
-                 for(int i = 0; i<list.size();i++){
-                     if(list.get(i).getNoteId().equals(realId)){
-                         response.setStatus(200);
-                         return list.get(i);
-                     }
-                     /*else{
-                        /*if (i == list.size()-1){
-                             response.setStatus(404);
-                             return"{\"Not Found\"}";
-                         }
-
-                         return "Not Found";
-                     }*/
-                 }
-             }
-         }
-         response.setStatus(404);
-       return "{\"Not Found\"}";
-   }
+        User user = authorization.authorizeUser(Authorization);
+        String realId = id.substring(1,id.length()-1);
+        if (user == null){
+            response.setStatus(401);
+            return "{\"Unauthorized\"}";
+        }else {
+            if (realId.equals("")){
+                response.setStatus(400);
+                return"{\"Bad Request\"}";
+            }else{
+                List<Note> list = noteRepository.findAllByUser(user);
+                for(int i = 0; i<list.size();i++){
+                    if(list.get(i).getNoteId().equals(realId)) {
+                        response.setStatus(200);
+                        return list.get(i);
+                    }
+                }
+            }
+        }
+        response.setStatus(404);
+        return "{\"Not Found\"}";
+    }
 
 
 
