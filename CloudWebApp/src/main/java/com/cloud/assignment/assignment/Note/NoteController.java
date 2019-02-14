@@ -148,7 +148,13 @@ public class NoteController {
             if (realId.equals(noteList.get(i).getNoteId())) {
                 note2 = noteList.get(i);
 
-                if (note.getContent().equals(note2.getContent()) && note.getTitle().equals(note2.getTitle())) {
+                if(note.getContent().equals("")||note.getTitle().equals(""))
+                {
+                    response.setStatus(400);
+                    return "{\"Bad Request\"}";
+
+                }
+                else if (note.getContent().equals(note2.getContent()) && note.getTitle().equals(note2.getTitle())) {
 
                     response.setStatus(400);
                     return "{\"Bad Request\"}";
