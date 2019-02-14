@@ -3,11 +3,13 @@ package com.cloud.assignment.assignment.Note;
 import com.cloud.assignment.assignment.webSource.User;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Note {
+@Table(name = "note")
+public class Note implements Serializable {
 
   @Id
   private String noteId;

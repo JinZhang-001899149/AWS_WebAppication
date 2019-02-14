@@ -156,8 +156,8 @@ public class NoteController {
 
                     Note savenote = noteRepository.save(newNote);
 
-                    user.getNotes().add(newNote);
-                    userRepository.save(user);
+                    //user.getNotes().add(newNote);
+                    //userRepository.save(user);
                     response.setStatus(200);
                     return newNote;
                     //noteRepository.save(newNote);
