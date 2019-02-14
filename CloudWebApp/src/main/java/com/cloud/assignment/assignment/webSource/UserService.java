@@ -1,12 +1,7 @@
-package webSource;
+package com.cloud.assignment.assignment.webSource;
 
-import com.sun.net.httpserver.Headers;
 import net.minidev.json.JSONArray;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.tomcat.util.http.parser.Authorization;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
-import org.jvnet.mimepull.Header;
-import org.omg.CORBA.portable.ResponseHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sun.misc.BASE64Decoder;
@@ -97,8 +92,8 @@ public class UserService {
 
 
         //String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
-        String userAuth = email+":"+password;
-        String baseAuth = base64.encodeToString(userAuth.getBytes());
+        //String userAuth = email+":"+password;
+        //String baseAuth = base64.encodeToString(userAuth.getBytes());
 
         for (User user : list) {
 
@@ -107,7 +102,7 @@ public class UserService {
                 return user.getToken()+"/"+baseAuth;
             }*/
 
-           if (user.getToken().equals(baseAuth)) {
+           if (user.getEmail().equals(email)&&BCrypt.checkpw(password,user.getPassword())) {
 
                 return new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 
@@ -180,9 +175,9 @@ public class UserService {
 
 
 
-                    newUser.setToken(result);
+                    //newUser.setToken(result);
 
-                    newUser.setPassword(hashed);
+                    //newUser.setPassword(hashed);
 
                     // the format of the password is correct and make it into Bcrypt token then save the user
                     userRepository.save(newUser);
@@ -223,9 +218,10 @@ public class UserService {
                                             newUser.getPassword().length() <= 20) {
 
 
-                                // BCrypt
+                                // BCrypts
+
                                 String password = newUser.getPassword();
-                                String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
+                                String hashed = BCrypt.hashpw(password, BCrypt.gensalt(10));
 
                                 //create token
                                 String token = newUser.getEmail() + ":" + newUser.getPassword();
@@ -247,8 +243,8 @@ public class UserService {
                                 jsarray.add(listtoken);
 
 
-                                newUser.setToken(result);
-                                newUser.setPassword(token2);
+                                //newUser.setToken(result);
+                                newUser.setPassword(hashed);
 
                                 // the format of the password is correct and make it into Bcrypt token then save the user
                                 userRepository.save(newUser);
