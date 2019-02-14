@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="2c72397f-8964-427e-b236-faf1b7a6f6ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+=======
+    <list default="true" id="108c9bbc-2eb1-4835-8ff6-fd75500b4db8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserService.java" afterDir="false" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -39,7 +45,37 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db_assignment1@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db_assignment1@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db_assignment1@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="db_assignment1: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db_assignment1@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="db_assignment1: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="note: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db_assignment1@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="db_assignment1: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="user: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="DefaultGradleProjectSettings">
@@ -50,8 +86,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteController.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="387">
               <caret line="308" column="9" selection-start-line="308" selection-start-column="9" selection-end-line="308" selection-end-column="9" />
+=======
+            <state relative-caret-position="1848">
+              <caret line="122" column="65" selection-start-line="122" selection-start-column="65" selection-end-line="122" selection-end-column="65" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -59,6 +100,7 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/Note.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -67,15 +109,29 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="104" column="88" selection-start-line="104" selection-start-column="88" selection-end-line="104" selection-end-column="88" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteRepository.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
               <caret line="10" column="28" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="28" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/Authorization.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -84,10 +140,17 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/User.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
               <caret line="25" selection-start-line="25" selection-end-line="25" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,6 +161,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserRepository.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="170">
               <caret line="10" selection-start-line="10" selection-end-line="10" />
             </state>
@@ -112,11 +176,16 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+=======
+            <state relative-caret-position="240">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -125,14 +194,62 @@
         <entry file="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.13/mysql-connector-java-8.0.13.jar!/com/mysql/cj/jdbc/exceptions/SQLError.class">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-102" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="24">
+              <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
+            </state>
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserService.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/Note.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="34">
               <caret line="45" selection-start-line="45" selection-end-line="45" />
+=======
+            <state relative-caret-position="120">
+              <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#752#753#0" expanded="true" />
+                <element signature="e#779#780#0" expanded="true" />
+                <element signature="e#817#818#0" expanded="true" />
+                <element signature="e#849#850#0" expanded="true" />
+                <element signature="e#882#883#0" expanded="true" />
+                <element signature="e#911#912#0" expanded="true" />
+                <element signature="e#955#956#0" expanded="true" />
+                <element signature="e#991#992#0" expanded="true" />
+                <element signature="e#1025#1026#0" expanded="true" />
+                <element signature="e#1055#1056#0" expanded="true" />
+                <element signature="e#1101#1102#0" expanded="true" />
+                <element signature="e#1139#1140#0" expanded="true" />
+                <element signature="e#1171#1172#0" expanded="true" />
+                <element signature="e#1199#1200#0" expanded="true" />
+                <element signature="e#1241#1242#0" expanded="true" />
+                <element signature="e#1275#1276#0" expanded="true" />
+                <element signature="e#1312#1313#0" expanded="true" />
+                <element signature="e#1345#1346#0" expanded="true" />
+                <element signature="e#1397#1398#0" expanded="true" />
+                <element signature="e#1441#1442#0" expanded="true" />
+                <element signature="e#1483#1484#0" expanded="true" />
+                <element signature="e#1521#1522#0" expanded="true" />
+                <element signature="e#1583#1584#0" expanded="true" />
+                <element signature="e#1637#1638#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -141,15 +258,27 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+        <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.9.8/jackson-databind-2.9.8.jar!/com/fasterxml/jackson/databind/ser/BeanSerializer.class">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="119">
               <caret line="7" column="42" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
+=======
+            <state relative-caret-position="1296">
+              <caret line="75" selection-start-line="75" selection-end-line="75" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -157,6 +286,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/a24a868b-9a8a-40c1-9521-e6c58467b56b/console.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/User.java" />
@@ -164,6 +294,12 @@
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteController.java" />
+=======
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/Authorization.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserService.java" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
       </list>
     </option>
   </component>
@@ -174,6 +310,7 @@
       </MavenImportingSettings>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="MavenProjectNavigator">
     <treeState>
       <expand>
@@ -185,6 +322,8 @@
       <select />
     </treeState>
   </component>
+=======
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-1" />
     <option name="y" value="27" />
@@ -198,7 +337,10 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+<<<<<<< HEAD
       <pane id="PackagesPane" />
+=======
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -257,24 +399,31 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
+<<<<<<< HEAD
             <path>
               <item name="CloudWebApp" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
+=======
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
           </expand>
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
+=======
+      <pane id="PackagesPane" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+<<<<<<< HEAD
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550173419587" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/commons-codec-1.11/commons-codec-1.11.jar!/" />
@@ -287,6 +436,8 @@
       <recent name="$PROJECT_DIR$/src/main/java" />
       <recent name="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment" />
     </key>
+=======
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -353,7 +504,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2c72397f-8964-427e-b236-faf1b7a6f6ba" name="Default Changelist" comment="" />
+      <changelist id="108c9bbc-2eb1-4835-8ff6-fd75500b4db8" name="Default Changelist" comment="" />
       <created>1549379529261</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -383,15 +534,26 @@
       <workItem from="1550100846419" duration="8680000" />
       <workItem from="1550119609459" duration="228000" />
       <workItem from="1550152209829" duration="5577000" />
+<<<<<<< HEAD
       <workItem from="1550170452699" duration="3589000" />
+=======
+      <workItem from="1550171896378" duration="2039000" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="28153000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1213" height="775" extended-state="6" />
+=======
+    <option name="totallyTimeSpent" value="4523000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
     <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
@@ -399,7 +561,11 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
+<<<<<<< HEAD
       <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.24507284" />
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.21472393" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info id="Learn" order="8" />
@@ -410,7 +576,11 @@
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5002789" side_tool="true" weight="0.3284169" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.32940018" />
+<<<<<<< HEAD
       <window_info active="true" anchor="bottom" id="Run" order="7" sideWeight="0.49972114" visible="true" weight="0.05152979" />
+=======
+      <window_info anchor="bottom" id="Run" order="7" sideWeight="0.49972114" visible="true" weight="0.28023598" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
       <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.74125874" weight="0.44954127" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
@@ -423,7 +593,11 @@
       <window_info anchor="right" id="Theme Preview" order="1" />
       <window_info anchor="right" id="Capture Analysis" order="2" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
+<<<<<<< HEAD
       <window_info anchor="right" id="Maven" order="4" weight="0.32819194" />
+=======
+      <window_info anchor="right" id="Maven" order="4" weight="0.32891247" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
       <window_info anchor="right" id="Database" order="5" weight="0.3965421" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.24986057" />
@@ -473,16 +647,20 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+<<<<<<< HEAD
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
+=======
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CloudWebApp$Assignment_Application.ic" NAME="Assignment_Application Coverage Results" MODIFIED="1550100569255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.cloud.assignment.assignment.*</FILTER>
     </SUITE>
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/shellScript/csye6225-aws-cf-create-stack.sh" />
     <entry file="file://$PROJECT_DIR$/src/main/java/shellScript/csye6225-aws-cf-terminate-stack.sh" />
     <entry file="file://$PROJECT_DIR$/src/main/java/shellScript/csye6225-aws-networking-setup.sh" />
@@ -526,12 +704,43 @@
     </entry>
     <entry file="das://a24a868b-9a8a-40c1-9521-e6c58467b56b/schema/db_assignment1/table/note" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/2.1.4.RELEASE/spring-data-commons-2.1.4.RELEASE.jar!/org/springframework/data/mapping/PropertyPath.class">
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/Note.java">
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        <state relative-caret-position="120">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#752#753#0" expanded="true" />
+            <element signature="e#779#780#0" expanded="true" />
+            <element signature="e#817#818#0" expanded="true" />
+            <element signature="e#849#850#0" expanded="true" />
+            <element signature="e#882#883#0" expanded="true" />
+            <element signature="e#911#912#0" expanded="true" />
+            <element signature="e#955#956#0" expanded="true" />
+            <element signature="e#991#992#0" expanded="true" />
+            <element signature="e#1025#1026#0" expanded="true" />
+            <element signature="e#1055#1056#0" expanded="true" />
+            <element signature="e#1101#1102#0" expanded="true" />
+            <element signature="e#1139#1140#0" expanded="true" />
+            <element signature="e#1171#1172#0" expanded="true" />
+            <element signature="e#1199#1200#0" expanded="true" />
+            <element signature="e#1241#1242#0" expanded="true" />
+            <element signature="e#1275#1276#0" expanded="true" />
+            <element signature="e#1312#1313#0" expanded="true" />
+            <element signature="e#1345#1346#0" expanded="true" />
+            <element signature="e#1397#1398#0" expanded="true" />
+            <element signature="e#1441#1442#0" expanded="true" />
+            <element signature="e#1483#1484#0" expanded="true" />
+            <element signature="e#1521#1522#0" expanded="true" />
+            <element signature="e#1583#1584#0" expanded="true" />
+            <element signature="e#1637#1638#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/BCrypt.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10829">
@@ -543,12 +752,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="25" selection-start-line="25" selection-end-line="25" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -573,6 +789,26 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+=======
+    <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.9.8/jackson-databind-2.9.8.jar!/com/fasterxml/jackson/databind/ser/BeanSerializer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1296">
+          <caret line="75" selection-start-line="75" selection-end-line="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
         </state>
       </provider>
     </entry>
@@ -581,6 +817,7 @@
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.13/mysql-connector-java-8.0.13.jar!/com/mysql/cj/jdbc/exceptions/SQLError.class">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-102" />
       </provider>
     </entry>
@@ -595,6 +832,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="45" selection-start-line="45" selection-end-line="45" />
+=======
+        <state relative-caret-position="264">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/Authorization.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -603,14 +854,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteRepository.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="170">
           <caret line="10" column="28" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="28" />
+=======
+        <state relative-caret-position="1848">
+          <caret line="122" column="65" selection-start-line="122" selection-start-column="65" selection-end-line="122" selection-end-column="65" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="387">
@@ -618,83 +875,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="104" column="88" selection-start-line="104" selection-start-column="88" selection-end-line="104" selection-end-column="88" />
+>>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
         </state>
       </provider>
     </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>Spring</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>CloudWebApp</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>Maven: antlr:antlr:2.7.7</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
