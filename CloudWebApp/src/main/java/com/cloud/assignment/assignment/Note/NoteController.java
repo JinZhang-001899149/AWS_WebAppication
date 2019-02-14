@@ -177,36 +177,6 @@ public class NoteController {
         return "{\"Not Found\"}";
     }
 
-<<<<<<< HEAD
-    private User authorizeUser(String Authorization){
-        int index3 = Authorization.indexOf(" ");
-        String code = Authorization.substring(index3+1);
-        Base64 base64 = new Base64();
-        BASE64Decoder decoder = new BASE64Decoder();
-        String decode = null;
-
-        try {
-            decode = new String(decoder.decodeBuffer(code),"UTF-8");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        int index = decode.indexOf(":");
-
-        String password = decode.substring(index+1);
-        String email = decode.substring(0,index);
-
-        User user = userRepository.findByEmail(email);
-        if(user == null){
-            return null;
-        }else{
-            if(BCrypt.checkpw(password,user.getPassword())){
-                return user;
-            }
-        }
-        return null;
-    }
-
-
     @DeleteMapping("delete/{id}")
     public @ResponseBody
     String deleteNote(@PathVariable("id") String id, HttpServletResponse response,
@@ -237,7 +207,6 @@ public class NoteController {
             return null;
         }
     }
-=======
->>>>>>> cff1944fb0e3ab8a36a8735126a9599d3b84726f
+
 }
 
