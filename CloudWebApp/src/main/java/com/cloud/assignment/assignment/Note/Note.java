@@ -1,6 +1,7 @@
 package com.cloud.assignment.assignment.Note;
 
 import com.cloud.assignment.assignment.webSource.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,9 +19,12 @@ public class Note {
 
   @ManyToOne (fetch = FetchType.LAZY,optional = false)
   @JoinColumn(name = "email", nullable =false)
+  @JsonIgnore
   private User user;
 
 
+
+    @com.fasterxml.jackson.annotation.JsonIgnore
     public User getUser() {
         return user;
     }
@@ -68,6 +72,7 @@ public class Note {
     public void setLast_updated_on(String last_updated_on) {
         this.last_updated_on = last_updated_on;
     }
+
 
 
 

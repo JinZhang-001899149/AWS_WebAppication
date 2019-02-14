@@ -39,11 +39,11 @@ public class NoteController {
 //    }
 
     @GetMapping(path = "/note")
-    public List<Note> getAllNote(@RequestHeader String Authorization, Note newNote, HttpServletResponse response) {
+    public Object getAllNote(@RequestHeader String Authorization, Note newNote, HttpServletResponse response) {
 
         // This returns a JSON or XML with the users
         //if(!newNote.getEmail().equals())
-        int index3 = Authorization.indexOf(" ");
+        /*int index3 = Authorization.indexOf(" ");
         String code = Authorization.substring(index3+1);
         Base64 base64 = new Base64();
         BASE64Decoder decoder = new BASE64Decoder();
@@ -69,38 +69,55 @@ public class NoteController {
 
          User user = userRepository.findByEmail(email);
 
+*/
+        User user = authorizeUser(Authorization);
 
-         if(userRepository.findByEmail(email)!=null) {
 
-             response.setStatus(200);
+            if(user!=null) {
 
-             List<Note> notes = noteRepository.findAllByUser(user);
 
-             if(notes.isEmpty()){
-                 return  new ArrayList<>();
-             }
-             else{
-                 return notes;
-             }
-             //return noteRepository.findAll();
+                List<Note> noteList = noteRepository.findAllByUser(user);
+                List resultList = new ArrayList();
+
+
+                if(noteList.isEmpty()){
+                    return new ArrayList<>();
+                }else {
+                   /* for(int i=0;i<noteList.size();i++){
+                        String str= "id:"+noteList.get(i).getNoteId()+",content:"+noteList.get(i).getContent()
+                                +",title:"+noteList.get(i).getTitle()+",create_on:"+noteList.get(i).getCreated_on()
+                                +",last_updated_on:"+noteList.get(i).getLast_updated_on();
+                        resultList.add(str);
+                    }*/
+                    response.setStatus(200);
+                   // String json = JSON.toJSONString(noteList);
+
+                    return noteList;
+                }
             }
 
             else {
 
                 response.setStatus(401);
-                //return "(\"Unauthorized\")";
+                return "(\"Unauthorized\")";
+                //return null;
+
             }
-            return null;
+
+
+
+        //return null;
+
 
     }
 
 
     @PostMapping("/note")
-    public Note register(@RequestBody Note newNote, HttpServletResponse response, User newUser, @RequestHeader  String Authorization) {
+    public String register(@RequestBody Note newNote, HttpServletResponse response, User newUser, @RequestHeader  String Authorization) {
 
 
 
-        int index3 = Authorization.indexOf(" ");
+       /* int index3 = Authorization.indexOf(" ");
         String code = Authorization.substring(index3+1);
         Base64 base64 = new Base64();
         BASE64Decoder decoder = new BASE64Decoder();
@@ -121,25 +138,23 @@ public class NoteController {
 
          User user = userRepository.findByEmail(email);
 
-
-
+*/
+        User user = authorizeUser(Authorization);
 
          if(user!=null){
 
 
 
-                if(newNote.getTitle().equals("") || newNote.getContent().equals("") || newNote.getTitle().length()>=20)
+                if(newNote.getTitle().equals(null) && newNote.getContent().equals(null) && newNote.getTitle().length()>=20)
                 {
                     response.setStatus(400);
-                    //return "(\"Bad Request\")";
+                    return "(\"Bad Request\")";
                 }
 
                 else{
 
 
                     //newNote.setNoteId(UUID.randomUUID());
-
-
 
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
@@ -154,14 +169,11 @@ public class NoteController {
 
                     newNote.setUser(user);
 
-                    Note savenote = noteRepository.save(newNote);
 
-                    user.getNotes().add(newNote);
-                    userRepository.save(user);
                     response.setStatus(200);
-                    return newNote;
-                    //noteRepository.save(newNote);
-                    //return "(\"saved\")";
+                    noteRepository.save(newNote);
+                    return "(\"saved\")";
+
 
                 }
 
@@ -169,10 +181,8 @@ public class NoteController {
             else {
 
                 response.setStatus(401);
-                return null;
-                //return "(\"Unauthorized\")";
+                return "(\"Unauthorized\")";
             }
-            return null;
     }
 
    //@RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
@@ -254,4 +264,33 @@ public class NoteController {
         response.setStatus(404);
         return "{\"Not Found\"}";
     }
+
+    private User authorizeUser(String Authorization){
+        int index3 = Authorization.indexOf(" ");
+        String code = Authorization.substring(index3+1);
+        Base64 base64 = new Base64();
+        BASE64Decoder decoder = new BASE64Decoder();
+        String decode = null;
+
+        try {
+            decode = new String(decoder.decodeBuffer(code),"UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        int index = decode.indexOf(":");
+
+        String password = decode.substring(index+1);
+        String email = decode.substring(0,index);
+
+        User user = userRepository.findByEmail(email);
+        if(user == null){
+            return null;
+        }else{
+            if(BCrypt.checkpw(password,user.getPassword())){
+                return user;
+            }
+        }
+        return null;
+    }
+
 }
