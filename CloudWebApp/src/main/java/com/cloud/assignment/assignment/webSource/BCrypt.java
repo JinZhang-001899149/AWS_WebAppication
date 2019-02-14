@@ -1,4 +1,4 @@
-package webSource;
+package com.cloud.assignment.assignment.webSource;
 import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
 
