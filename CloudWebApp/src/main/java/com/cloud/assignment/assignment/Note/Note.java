@@ -16,6 +16,11 @@ public class Note {
   private String created_on;
   private String last_updated_on;
 
+  @ManyToOne (fetch = FetchType.LAZY,optional = false)
+  @JoinColumn(name = "email", nullable =false)
+  private User user;
+
+
     public User getUser() {
         return user;
     }
@@ -23,12 +28,6 @@ public class Note {
     public void setUser(User user) {
         this.user = user;
     }
-
-    @ManyToOne (fetch = FetchType.LAZY,optional = false)
-  @JoinColumn(name = "email", nullable =false)
-  private User user;
-
-
 
     public String getNoteId() {
         return noteId;

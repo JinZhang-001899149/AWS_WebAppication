@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c72397f-8964-427e-b236-faf1b7a6f6ba" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/Note.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/Note.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -68,8 +68,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="123" column="119" selection-start-line="123" selection-start-column="119" selection-end-line="123" selection-end-column="119" />
+            <state relative-caret-position="205">
+              <caret line="125" column="22" selection-start-line="125" selection-start-column="22" selection-end-line="125" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,10 +78,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Assignment_Application.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/BCrypt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="205">
+              <caret line="643" column="22" selection-start-line="643" selection-start-column="22" selection-end-line="643" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -91,24 +100,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
               <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.1.2.RELEASE/spring-boot-autoconfigure-2.1.2.RELEASE.jar!/org/springframework/boot/autoconfigure/orm/jpa/JpaBaseConfiguration.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="99" column="50" selection-start-line="99" selection-start-column="50" selection-end-line="99" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.1.4.RELEASE/spring-web-5.1.4.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="58" selection-start-line="58" selection-end-line="58" />
             </state>
           </provider>
         </entry>
@@ -126,25 +117,16 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="36" selection-start-column="36" selection-end-column="36" />
+              <caret column="37" selection-start-column="37" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/User.java">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/2.1.4.RELEASE/spring-data-commons-2.1.4.RELEASE.jar!/org/springframework/data/mapping/PropertyPath.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
-              <folding>
-                <element signature="e#332#333#0" expanded="true" />
-                <element signature="e#363#364#0" expanded="true" />
-                <element signature="e#411#412#0" expanded="true" />
-                <element signature="e#451#452#0" expanded="true" />
-                <element signature="e#511#512#0" expanded="true" />
-                <element signature="e#553#554#0" expanded="true" />
-                <element signature="e#587#588#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="576">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
             </state>
           </provider>
         </entry>
@@ -152,8 +134,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1206">
-              <caret line="78" column="21" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
+            <state relative-caret-position="486">
+              <caret line="144" column="75" selection-start-line="144" selection-start-column="75" selection-end-line="144" selection-end-column="75" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -162,15 +144,25 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="das://a24a868b-9a8a-40c1-9521-e6c58467b56b/schema/db_assignment1/table/note">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/Note.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+            <state relative-caret-position="342">
+              <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#463#464#0" expanded="true" />
-                <element signature="e#501#502#0" expanded="true" />
-                <element signature="e#533#534#0" expanded="true" />
+                <element signature="e#581#582#0" expanded="true" />
+                <element signature="e#608#609#0" expanded="true" />
+                <element signature="e#646#647#0" expanded="true" />
+                <element signature="e#678#679#0" expanded="true" />
                 <element signature="e#943#944#0" expanded="true" />
                 <element signature="e#976#977#0" expanded="true" />
               </folding>
@@ -187,9 +179,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/a24a868b-9a8a-40c1-9521-e6c58467b56b/console.sql" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/Note.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/Note.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/User.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteController.java" />
       </list>
     </option>
@@ -200,6 +195,11 @@
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="assignment01" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="assignment01" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
         </path>
       </expand>
       <select />
@@ -357,12 +357,12 @@
       <workItem from="1550069041521" duration="1742000" />
       <workItem from="1550083800374" duration="2673000" />
       <workItem from="1550086966429" duration="13599000" />
-      <workItem from="1550100846419" duration="1505000" />
+      <workItem from="1550100846419" duration="8680000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9752000" />
+    <option name="totallyTimeSpent" value="16927000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
@@ -373,7 +373,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.35136643" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.2593419" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info id="Learn" order="8" />
@@ -384,7 +384,7 @@
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5002789" side_tool="true" weight="0.3284169" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.32940018" />
-      <window_info anchor="bottom" id="Run" order="7" sideWeight="0.49972114" visible="true" weight="0.32743362" />
+      <window_info active="true" anchor="bottom" id="Run" order="7" sideWeight="0.49972114" visible="true" weight="0.32251722" />
       <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.74125874" weight="0.45132744" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
@@ -398,7 +398,7 @@
       <window_info anchor="right" id="Capture Analysis" order="2" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="right" id="Maven" order="4" weight="0.32961518" />
-      <window_info anchor="right" id="Database" order="5" weight="0.21974345" />
+      <window_info anchor="right" id="Database" order="5" weight="0.3965421" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.24986057" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
@@ -411,35 +411,37 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.3275862" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.35136643" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info id="Learn" order="8" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" sideWeight="0.49957156" weight="0.32850242" />
       <window_info anchor="bottom" id="Terminal" order="2" sideWeight="0.49871466" weight="0.32850242" />
-      <window_info anchor="bottom" id="Database Changes" order="3" />
+      <window_info anchor="bottom" id="Database Changes" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5002789" side_tool="true" weight="0.3284169" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.32940018" />
-      <window_info anchor="bottom" id="Run" order="7" sideWeight="0.49972114" weight="0.32798165" />
-      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.74125874" weight="0.4516696" />
+      <window_info anchor="bottom" id="Run" order="7" sideWeight="0.49972114" visible="true" weight="0.32251722" />
+      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.74125874" weight="0.45132744" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="11" sideWeight="0.49957156" weight="0.32850242" />
       <window_info anchor="bottom" id="Spring" order="12" sideWeight="0.49871466" weight="0.32850242" />
-      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.58011997" weight="0.38151425" />
+      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.58011997" weight="0.38053098" />
       <window_info anchor="bottom" id="Java Enterprise" order="14" sideWeight="0.49957156" weight="0.32850242" />
+      <window_info anchor="bottom" id="Database Console" order="15" weight="0.32940018" />
       <window_info anchor="right" id="Palette" order="0" />
       <window_info anchor="right" id="Theme Preview" order="1" />
       <window_info anchor="right" id="Capture Analysis" order="2" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info anchor="right" id="Maven" order="4" />
-      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Maven" order="4" weight="0.32961518" />
+      <window_info anchor="right" id="Database" order="5" visible="true" weight="0.21974345" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="7" weight="0.24986057" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
-      <window_info anchor="right" id="Bean Validation" order="9" />
+      <window_info anchor="right" id="Bean Validation" order="9" weight="0.32961518" />
+      <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.32961518" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -460,13 +462,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/shellScript/csye6225-aws-networking-setup.sh" />
     <entry file="file://$PROJECT_DIR$/src/main/java/shellScript/csye6225-aws-networking-teardown.sh" />
     <entry file="file://$PROJECT_DIR$/src/main/java/shellScript/README.md" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/BCrypt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2682">
-          <caret line="150" column="62" selection-start-line="150" selection-start-column="62" selection-end-line="150" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/webSource/notere.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/com/cloud/assignment/assignment01/AssignmentApplicationTests.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -483,20 +478,6 @@
     <entry file="file://$PROJECT_DIR$/CloudWebApp.iml" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/Application.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment01/Note/ApplicationNote.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://a24a868b-9a8a-40c1-9521-e6c58467b56b/schema/db_assignment1/table/note">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a24a868b-9a8a-40c1-9521-e6c58467b56b/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -514,35 +495,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.1.4.RELEASE/spring-webmvc-5.1.4.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Assignment_Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        <state relative-caret-position="90">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="108">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#332#333#0" expanded="true" />
             <element signature="e#363#364#0" expanded="true" />
             <element signature="e#411#412#0" expanded="true" />
             <element signature="e#451#452#0" expanded="true" />
+            <element signature="e#483#484#0" expanded="true" />
             <element signature="e#511#512#0" expanded="true" />
             <element signature="e#553#554#0" expanded="true" />
             <element signature="e#587#588#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1206">
-          <caret line="78" column="21" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -554,25 +527,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.1.4.RELEASE/spring-webmvc-5.1.4.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="36" selection-start-column="36" selection-end-column="36" />
+        <state relative-caret-position="360">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/Note.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+        <state relative-caret-position="342">
+          <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#463#464#0" expanded="true" />
-            <element signature="e#501#502#0" expanded="true" />
-            <element signature="e#533#534#0" expanded="true" />
+            <element signature="e#581#582#0" expanded="true" />
+            <element signature="e#608#609#0" expanded="true" />
+            <element signature="e#646#647#0" expanded="true" />
+            <element signature="e#678#679#0" expanded="true" />
             <element signature="e#943#944#0" expanded="true" />
             <element signature="e#976#977#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://a24a868b-9a8a-40c1-9521-e6c58467b56b/schema/db_assignment1/table/note">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -583,17 +564,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Assignment_Application.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        <state>
+          <caret column="37" selection-start-column="37" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/2.1.4.RELEASE/spring-data-commons-2.1.4.RELEASE.jar!/org/springframework/data/mapping/PropertyPath.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="144" column="75" selection-start-line="144" selection-start-column="75" selection-end-line="144" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/webSource/BCrypt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="643" column="22" selection-start-line="643" selection-start-column="22" selection-end-line="643" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cloud/assignment/assignment/Note/NoteController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="123" column="119" selection-start-line="123" selection-start-column="119" selection-end-line="123" selection-end-column="119" />
+        <state relative-caret-position="205">
+          <caret line="125" column="22" selection-start-line="125" selection-start-column="22" selection-end-line="125" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
