@@ -170,6 +170,7 @@ public class NoteController {
                     newNote.setUser(user);
 
 
+
                     response.setStatus(200);
                     noteRepository.save(newNote);
                     return "(\"saved\")";
