@@ -55,8 +55,10 @@ public class NoteController {
 
 
                 if(noteList.isEmpty()){
-                    return new ArrayList<>();
-                }else {
+                    response.setStatus(404);
+                    return "{\"Not Found\"}";
+                }
+                else {
 
                     response.setStatus(200);
                     return noteList;
@@ -66,14 +68,14 @@ public class NoteController {
             else {
 
                 response.setStatus(401);
-                return "(\"Unauthorized\")";
+                return "{\"Unauthorized\"}";
             }
 
     }
 
 
     @PostMapping("/note")
-    public String register(@RequestBody Note newNote, HttpServletResponse response, User newUser, @RequestHeader  String Authorization) {
+    public String CreateNote(@RequestBody Note newNote, HttpServletResponse response, User newUser, @RequestHeader  String Authorization) {
 
 
 
@@ -89,7 +91,7 @@ public class NoteController {
                 if(newNote.getTitle().equals("") || newNote.getContent().equals("") || newNote.getTitle().length()>=20)
                 {
                     response.setStatus(400);
-                    return "(\"Bad Request\")";
+                    return "{\"Bad Request\"}";
                 }
 
                 else{
@@ -112,7 +114,7 @@ public class NoteController {
 
                     response.setStatus(200);
                     noteRepository.save(newNote);
-                    return "(\"saved\")";
+                    return "{\"saved\"}";
 
 
                 }
@@ -121,7 +123,7 @@ public class NoteController {
             else {
 
                 response.setStatus(401);
-                return "(\"Unauthorized\")";
+                return "{\"Unauthorized\"}";
             }
     }
 
@@ -193,8 +195,8 @@ public class NoteController {
                     note2.setContent(note.getContent());
                     noteRepository.save(note2);
 
-                    response.setStatus(205);
-                    return "{\"Reset Content\"}";
+                    response.setStatus(204);
+                    return "{\"No Content\"}";
                 }
             }
             }
@@ -202,36 +204,44 @@ public class NoteController {
 
         }
         response.setStatus(404);
-        return "{\"Note Not Found\"}";
+        return "{\"Not Found\"}";
     }
 
-    @DeleteMapping("delete/{id}")
+    @RequestMapping (value="/note/{id}",method=RequestMethod.DELETE)
     public @ResponseBody
     String deleteNote(@PathVariable("id") String id, HttpServletResponse response,
                       @RequestHeader String Authorization) {
 
         User user = authorization.authorizeUser(Authorization);
 
+        String realId = id.substring(1,id.length()-1);
+
         //User user = authorizeUser(Authorization);
 
         if (user == null) {
             response.setStatus(401);
-            return ("unauthorized user");
+            return "{\"Unauthorized\"}";
         } else {
             List<Note> list = noteRepository.findAllByUser(user);
             if (list.size() < 1) {
                 response.setStatus(404);
-                return ("there is no note");
+                return "{\"Not Found\"}";
             } else {
                 for (Note note : list) {
-                    if (note.getNoteId().equals(id)) {
+                    if (note.getNoteId().equals(realId)) {
                         noteRepository.delete(note);
                         //response.setStatus(200);
                         response.setStatus(204);
-                        return ("note deleted");
-                    } else {
+                        return "{\"No Content\"}";
+                    }
+                    else if(realId.equals(""))
+                    {
+                        response.setStatus(400);
+                        return "{\"Bad Request\"}";
+                    }
+                    else {
                         response.setStatus(404);
-                        return ("the note does not exist");
+                        return "{\"Not Found\"}";
                     }
                 }
             }
