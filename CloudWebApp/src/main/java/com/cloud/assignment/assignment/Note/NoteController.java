@@ -128,8 +128,9 @@ public class NoteController {
     @RequestMapping(value="/note/{id}",method=RequestMethod.PUT)
 
         public String update(@PathVariable("id") String id,@RequestBody Note note, HttpServletResponse response,@RequestHeader String Authorization){
-        User user = authorizeUser(Authorization);
+        //User user = authorizeUser(Authorization);
 
+        User user = authorization.authorizeUser(Authorization);
 
         if(user==null){
             response.setStatus(404);
@@ -149,8 +150,8 @@ public class NoteController {
 
                 if (note.getContent().equals(note2.getContent()) && note.getTitle().equals(note2.getTitle())) {
 
-                    response.setStatus(406);
-                    return "{\"Not Acceptable\"}";
+                    response.setStatus(400);
+                    return "{\"Bad Request\"}";
                 } else {
                     SimpleDateFormat updateTime = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
                     note2.setLast_updated_on(updateTime.format(new Date()));
