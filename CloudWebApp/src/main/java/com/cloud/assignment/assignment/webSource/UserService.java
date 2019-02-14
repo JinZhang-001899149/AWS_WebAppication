@@ -102,7 +102,7 @@ public class UserService {
                 return user.getToken()+"/"+baseAuth;
             }*/
 
-           if (user.getEmail().equals(email)) {
+           if (user.getEmail().equals(email)&&BCrypt.checkpw(password,user.getPassword())) {
 
                 return new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 
