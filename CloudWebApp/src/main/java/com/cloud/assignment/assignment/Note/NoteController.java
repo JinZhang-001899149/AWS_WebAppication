@@ -5,7 +5,6 @@ import com.cloud.assignment.assignment.webSource.BCrypt;
 import com.cloud.assignment.assignment.webSource.User;
 import com.cloud.assignment.assignment.webSource.UserRepository;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sun.misc.BASE64Decoder;
@@ -13,7 +12,10 @@ import sun.misc.BASE64Decoder;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 
 @RestController
@@ -186,82 +188,90 @@ public class NoteController {
             }
     }
 
-   //@RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
+   @RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
 
-//    public Object getSingleNote(@PathVariable("id") String id, HttpServletResponse response, @RequestHeader String Authorization) {
-//
-//       ArrayList<Note> list = (ArrayList<Note>) noteRepository.findAll();
-//
-//       int index3 = Authorization.indexOf(" ");
-//       String code = Authorization.substring(index3+1);
-//       Base64 base64 = new Base64();
-//       BASE64Decoder decoder = new BASE64Decoder();
-//       String decode = null;
-//
-//       try {
-//           decode = new String(decoder.decodeBuffer(code),"UTF-8");
-//       } catch (IOException e) {
-//           e.printStackTrace();
-//       }
-//
-//
-//       int index = decode.indexOf(":");
-//
-//       String password = decode.substring(index+1);
-//       String email = decode.substring(0,index);
-//
-//       Note note = new Note();
-//       for (Note note : list) {
-//           if (note.getEmail().equals(email)){
-//               if (note.getNoteId().equals(id)) {
-//                   response.setStatus(200);
-//                   return note;
-//
-//               } else {
-//                   response.setStatus(404);
-//                   return null;
-//               }
-//        }
-//           response.setStatus(401);
-//           return "{ \"Unaothorized\" }";
-//       }
-//          return null;
-//   }
+    public Object getSingleNote(@RequestHeader String Authorization,@PathVariable("id") String id, HttpServletResponse response) {
+         User user = authorizeUser(Authorization);
+         String realId = id.substring(1,id.length()-1);
+         if (user == null){
+             response.setStatus(401);
+             return "{\"Unauthorized\"}";
+         }else {
+             if (realId.equals("")){
+                 response.setStatus(400);
+                 return"{\"Bad Request\"}";
+             }else{
+                 List<Note> list = noteRepository.findAllByUser(user);
+                 for(int i = 0; i<list.size();i++){
+                     if(list.get(i).getNoteId().equals(realId)){
+                         response.setStatus(200);
+                         return list.get(i);
+                     }
+                     /*else{
+                        /*if (i == list.size()-1){
+                             response.setStatus(404);
+                             return"{\"Not Found\"}";
+                         }
+
+                         return "Not Found";
+                     }*/
+                 }
+             }
+         }
+         response.setStatus(404);
+       return "{\"Not Found\"}";
+   }
 
 
 
     @RequestMapping(value="/note/{id}",method=RequestMethod.PUT)
 
-        public String update(@PathVariable("id") String id,@RequestBody Note note, HttpServletResponse response){
-        ArrayList<Note> noteList = (ArrayList<Note>) noteRepository.findAll();
+        public String update(@PathVariable("id") String id,@RequestBody Note note, HttpServletResponse response,@RequestHeader String Authorization){
 
-        String realId = id.substring(1,id.length()-1);
+        User user = authorizeUser(Authorization);
+
+        if(user==null){
+            response.setStatus(404);
+            return "{\"Not Found\"}";
+        }else {
 
 
-        Note note2 = new Note();
-        for(int i=0;i<noteList.size();i++){
-            if(realId.equals(noteList.get(i).getNoteId())) {
-                note2 = noteList.get(i);
 
-                if (note.getContent().equals(note2.getContent()) || note.getTitle().equals(note2.getTitle())) {
+            List<Note> noteList =noteRepository.findAllByUser(user);
 
-                    response.setStatus(406);
-                    return "{\"Not Acceptable\"}";
-                } else {
-                    SimpleDateFormat updateTime = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
-                note2.setLast_updated_on(updateTime.format(new Date()));
-                note2.setTitle(note.getTitle());
-                note2.setContent(note.getContent());
-                noteRepository.save(note2);
 
-                response.setStatus(205);
-                return "{\"Reset Content\"}";
-             }
+            String realId = id.substring(1, id.length() - 1);
+
+            if(realId.equals("")){
+                response.setStatus(400);
+                return "{\"Bad Request\"}";
+            }else{
+
+            Note note2 = new Note();
+            for (int i = 0; i < noteList.size(); i++) {
+                if (realId.equals(noteList.get(i).getNoteId())) {
+                    note2 = noteList.get(i);
+
+                    if (note.getContent().equals(note2.getContent()) || note.getTitle().equals(note2.getTitle())) {
+
+                        response.setStatus(406);
+                        return "{\"Not Acceptable\"}";
+                    } else {
+                        SimpleDateFormat updateTime = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+                        note2.setLast_updated_on(updateTime.format(new Date()));
+                        note2.setTitle(note.getTitle());
+                        note2.setContent(note.getContent());
+                        noteRepository.save(note2);
+
+                        response.setStatus(205);
+                        return "{\"Reset Content\"}";
+                    }
+                }
+                }
             }
+
+
         }
-
-
-
         response.setStatus(404);
         return "{\"Not Found\"}";
     }
