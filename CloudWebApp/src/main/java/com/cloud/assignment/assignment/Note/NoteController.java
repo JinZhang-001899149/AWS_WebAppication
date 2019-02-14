@@ -148,33 +148,46 @@ public class NoteController {
 
     @RequestMapping(value="/note/{id}",method=RequestMethod.PUT)
 
-        public String update(@PathVariable("id") String id,@RequestBody Note note, HttpServletResponse response){
-        ArrayList<Note> noteList = (ArrayList<Note>) noteRepository.findAll();
+        public String update(@PathVariable("id") String id,@RequestBody Note note, HttpServletResponse response,@RequestHeader String Authorization){
+        User user = authorizeUser(Authorization);
+
+
+        if(user==null){
+            response.setStatus(404);
+            return "{\"Not Found\"}";
+        }else{
+        List<Note> noteList = noteRepository.findAllByUser(user);
         String realId = id.substring(1,id.length()-1);
 
+        if(realId.equals("")){
+            response.setStatus(400);
+            return "{\"Bad Request\"}";
+        }else{
         Note note2 = new Note();
-        for(int i=0;i<noteList.size();i++){
-            if(realId.equals(noteList.get(i).getNoteId())) {
+        for(int i=0;i<noteList.size();i++) {
+            if (realId.equals(noteList.get(i).getNoteId())) {
                 note2 = noteList.get(i);
 
-                if (note.getContent().equals(note2.getContent()) || note.getTitle().equals(note2.getTitle())) {
+                if (note.getContent().equals(note2.getContent()) && note.getTitle().equals(note2.getTitle())) {
 
                     response.setStatus(406);
                     return "{\"Not Acceptable\"}";
                 } else {
                     SimpleDateFormat updateTime = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
-                note2.setLast_updated_on(updateTime.format(new Date()));
-                note2.setTitle(note.getTitle());
-                note2.setContent(note.getContent());
-                noteRepository.save(note2);
+                    note2.setLast_updated_on(updateTime.format(new Date()));
+                    note2.setTitle(note.getTitle());
+                    note2.setContent(note.getContent());
+                    noteRepository.save(note2);
 
-                response.setStatus(205);
-                return "{\"Reset Content\"}";
-             }
+                    response.setStatus(205);
+                    return "{\"Reset Content\"}";
+                }
+            }
             }
         }
+        }
         response.setStatus(404);
-        return "{\"Not Found\"}";
+        return "{\"Note Not Found\"}";
     }
 
     @DeleteMapping("delete/{id}")
@@ -196,7 +209,8 @@ public class NoteController {
                 for (Note note : list) {
                     if (note.getNoteId().equals(id)) {
                         noteRepository.delete(note);
-                        response.setStatus(200);
+                        //response.setStatus(200);
+                        response.setStatus(204);
                         return ("note deleted");
                     } else {
                         response.setStatus(404);
