@@ -28,98 +28,10 @@ public class NoteController {
     private UserRepository userRepository;
 
 
-//    @GetMapping(path="/add") // Map ONLY GET Requests
-//    public @ResponseBody String addNewNote (@RequestParam String name, @RequestParam String email) {
-//        // @ResponseBody means the returned String is the response, not a view name
-//        // @RequestParam means it is a parameter from the GET or POST request
-//
-//        User n = new User();
-//        n.setName(name);
-//        n.setEmail(email);
-//        userRepository.save(n);
-//        return "Saved";
-//    }
-
-    @GetMapping(path = "/note")
-    public Object getAllNote(@RequestHeader String Authorization, Note newNote, HttpServletResponse response) {
-
-        // This returns a JSON or XML with the users
-        //if(!newNote.getEmail().equals())
-        /*int index3 = Authorization.indexOf(" ");
-        String code = Authorization.substring(index3+1);
-        Base64 base64 = new Base64();
-        BASE64Decoder decoder = new BASE64Decoder();
-
-        String decode = null;
-
-        try {
-            decode = new String(decoder.decodeBuffer(code),"UTF-8");
-        } catch (IOException e) {
-            return null;
-        }
-        int index = decode.indexOf(":");
-
-        String password = decode.substring(index+1);
-        String email = decode.substring(0,index);
 
 
-       // ArrayList<User> list = (ArrayList<User>) userRepository.findAll();
-
-        //for (int i = 0; i < list.size(); i++) {
-           // User user = list.get(i);
-
-
-         User user = userRepository.findByEmail(email);
-
-*/
-        User user = authorizeUser(Authorization);
-
-
-            if(user!=null) {
-
-
-                List<Note> noteList = noteRepository.findAllByUser(user);
-                List resultList = new ArrayList();
-
-
-                if(noteList.isEmpty()){
-                    return new ArrayList<>();
-                }else {
-                   /* for(int i=0;i<noteList.size();i++){
-                        String str= "id:"+noteList.get(i).getNoteId()+",content:"+noteList.get(i).getContent()
-                                +",title:"+noteList.get(i).getTitle()+",create_on:"+noteList.get(i).getCreated_on()
-                                +",last_updated_on:"+noteList.get(i).getLast_updated_on();
-                        resultList.add(str);
-                    }*/
-                    response.setStatus(200);
-                   // String json = JSON.toJSONString(noteList);
-
-                    return noteList;
-                }
-            }
-
-            else {
-
-                response.setStatus(401);
-                return "(\"Unauthorized\")";
-                //return null;
-
-            }
-
-
-
-        //return null;
-
-
-    }
-
-
-    @PostMapping("/note")
-    public String register(@RequestBody Note newNote, HttpServletResponse response, User newUser, @RequestHeader  String Authorization) {
-
-
-
-       /* int index3 = Authorization.indexOf(" ");
+    public User authorizeUser( String Authorization){
+        int index3 = Authorization.indexOf(" ");
         String code = Authorization.substring(index3+1);
         Base64 base64 = new Base64();
         BASE64Decoder decoder = new BASE64Decoder();
@@ -135,19 +47,67 @@ public class NoteController {
         String password = decode.substring(index+1);
         String email = decode.substring(0,index);
 
+        User user = userRepository.findByEmail(email);
+        if(user == null){
+            return null;
+        }else{
+            if(BCrypt.checkpw(password,user.getPassword())){
+                return user;
+            }
+        }
+        return null;
+    }
 
-        //ArrayList<User> list = (ArrayList<User>) userRepository.findByEmail(email);
+    @GetMapping(path = "/note")
+    public Object getAllNote(@RequestHeader String Authorization, Note newNote, HttpServletResponse response) {
 
-         User user = userRepository.findByEmail(email);
+        //Authorization authorization = new Authorization();
 
-*/
+        //User user = authorization.authorizeUser(Authorization);
+
+        User user = authorizeUser(Authorization);
+
+
+            if(user!=null) {
+
+
+                List<Note> noteList = noteRepository.findAllByUser(user);
+                List resultList = new ArrayList();
+
+
+                if(noteList.isEmpty()){
+                    return new ArrayList<>();
+                }else {
+
+                    response.setStatus(200);
+                    return noteList;
+                }
+            }
+
+            else {
+
+                response.setStatus(401);
+                return "(\"Unauthorized\")";
+            }
+
+    }
+
+
+    @PostMapping("/note")
+    public String register(@RequestBody Note newNote, HttpServletResponse response, User newUser, @RequestHeader  String Authorization) {
+
+
+        //Authorization authorization = new Authorization();
+
+        //User user = authorization.authorizeUser(Authorization);
+
         User user = authorizeUser(Authorization);
 
          if(user!=null){
 
 
 
-                if(newNote.getTitle().equals(null) && newNote.getContent().equals(null) && newNote.getTitle().length()>=20)
+                if(newNote.getTitle().equals("") || newNote.getContent().equals("") || newNote.getTitle().length()>=20)
                 {
                     response.setStatus(400);
                     return "(\"Bad Request\")";
@@ -170,8 +130,6 @@ public class NoteController {
                     newNote.setLast_updated_on(sdf.format(new Date()));
 
                     newNote.setUser(user);
-
-
 
                     response.setStatus(200);
                     noteRepository.save(newNote);
@@ -226,18 +184,19 @@ public class NoteController {
 
     @RequestMapping(value="/note/{id}",method=RequestMethod.PUT)
 
-        public String update(@PathVariable("id") String id,@RequestBody Note note, HttpServletResponse response,@RequestHeader String Authorization){
+        public String update(@PathVariable("id") String id,@RequestBody Note note, HttpServletResponse response){
+        ArrayList<Note> noteList = (ArrayList<Note>) noteRepository.findAll();
+        String realId = id.substring(1,id.length()-1);
 
-        User user = authorizeUser(Authorization);
-
-        if(user==null){
-            response.setStatus(404);
-            return "{\"Not Found\"}";
-        }else {
+        Note note2 = new Note();
+        for(int i=0;i<noteList.size();i++){
+            if(realId.equals(noteList.get(i).getNoteId())) {
+                note2 = noteList.get(i);
 
 
 
             List<Note> noteList =noteRepository.findAllByUser(user);
+
 
 
             String realId = id.substring(1, id.length() - 1);
@@ -271,37 +230,47 @@ public class NoteController {
             }
 
 
+
+                response.setStatus(205);
+                return "{\"Reset Content\"}";
+             }
+            }
+
         }
         response.setStatus(404);
         return "{\"Not Found\"}";
     }
 
-    private User authorizeUser(String Authorization){
-        int index3 = Authorization.indexOf(" ");
-        String code = Authorization.substring(index3+1);
-        Base64 base64 = new Base64();
-        BASE64Decoder decoder = new BASE64Decoder();
-        String decode = null;
+    @DeleteMapping("delete/{id}")
+    public @ResponseBody
+    String deleteNote(@PathVariable("id") String id, HttpServletResponse response,
+                      @RequestHeader String Authorization) {
 
-        try {
-            decode = new String(decoder.decodeBuffer(code),"UTF-8");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        int index = decode.indexOf(":");
+        User user = authorizeUser(Authorization);
 
-        String password = decode.substring(index+1);
-        String email = decode.substring(0,index);
-
-        User user = userRepository.findByEmail(email);
-        if(user == null){
-            return null;
-        }else{
-            if(BCrypt.checkpw(password,user.getPassword())){
-                return user;
+        if (user == null) {
+            response.setStatus(401);
+            return ("unauthorized user");
+        } else {
+            List<Note> list = noteRepository.findAllByUser(user);
+            if (list.size() < 1) {
+                response.setStatus(404);
+                return ("there is no note");
+            } else {
+                for (Note note : list) {
+                    if (note.getNoteId().equals(id)) {
+                        noteRepository.delete(note);
+                        response.setStatus(200);
+                        return ("note deleted");
+                    } else {
+                        response.setStatus(404);
+                        return ("the note does not exist");
+                    }
+                }
             }
+            return null;
         }
-        return null;
     }
 
 }
+
