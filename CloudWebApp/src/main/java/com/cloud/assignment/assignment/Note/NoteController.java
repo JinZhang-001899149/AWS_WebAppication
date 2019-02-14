@@ -1,19 +1,18 @@
 package com.cloud.assignment.assignment.Note;
 //
 
-import com.cloud.assignment.assignment.webSource.BCrypt;
+import com.cloud.assignment.assignment.webSource.Authorization;
 import com.cloud.assignment.assignment.webSource.User;
 import com.cloud.assignment.assignment.webSource.UserRepository;
-import org.apache.commons.codec.binary.Base64;
-import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 
 @RestController
@@ -26,51 +25,44 @@ public class NoteController {
     private UserRepository userRepository;
 
 
-//    @GetMapping(path="/add") // Map ONLY GET Requests
-//    public @ResponseBody String addNewNote (@RequestParam String name, @RequestParam String email) {
-//        // @ResponseBody means the returned String is the response, not a view name
-//        // @RequestParam means it is a parameter from the GET or POST request
+//    private User authorizeUser(String Authorization){
+//        int index3 = Authorization.indexOf(" ");
+//        String code = Authorization.substring(index3+1);
+//        Base64 base64 = new Base64();
+//        BASE64Decoder decoder = new BASE64Decoder();
+//        String decode = null;
 //
-//        User n = new User();
-//        n.setName(name);
-//        n.setEmail(email);
-//        userRepository.save(n);
-//        return "Saved";
+//        try {
+//            decode = new String(decoder.decodeBuffer(code),"UTF-8");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        int index = decode.indexOf(":");
+//
+//        String password = decode.substring(index+1);
+//        String email = decode.substring(0,index);
+//
+//        User user = userRepository.findByEmail(email);
+//        if(user == null){
+//            return null;
+//        }else{
+//            if(BCrypt.checkpw(password,user.getPassword())){
+//                return user;
+//            }
+//        }
+//        return null;
 //    }
+
+
 
     @GetMapping(path = "/note")
     public Object getAllNote(@RequestHeader String Authorization, Note newNote, HttpServletResponse response) {
 
-        // This returns a JSON or XML with the users
-        //if(!newNote.getEmail().equals())
-        /*int index3 = Authorization.indexOf(" ");
-        String code = Authorization.substring(index3+1);
-        Base64 base64 = new Base64();
-        BASE64Decoder decoder = new BASE64Decoder();
+        Authorization authorization = new Authorization();
 
-        String decode = null;
+        User user = authorization.authorizeUser(Authorization);
 
-        try {
-            decode = new String(decoder.decodeBuffer(code),"UTF-8");
-        } catch (IOException e) {
-            return null;
-        }
-        int index = decode.indexOf(":");
-
-        String password = decode.substring(index+1);
-        String email = decode.substring(0,index);
-
-
-       // ArrayList<User> list = (ArrayList<User>) userRepository.findAll();
-
-        //for (int i = 0; i < list.size(); i++) {
-           // User user = list.get(i);
-
-
-         User user = userRepository.findByEmail(email);
-
-*/
-        User user = authorizeUser(Authorization);
+       // User user = authorizeUser(Authorization);
 
 
             if(user!=null) {
@@ -83,15 +75,8 @@ public class NoteController {
                 if(noteList.isEmpty()){
                     return new ArrayList<>();
                 }else {
-                   /* for(int i=0;i<noteList.size();i++){
-                        String str= "id:"+noteList.get(i).getNoteId()+",content:"+noteList.get(i).getContent()
-                                +",title:"+noteList.get(i).getTitle()+",create_on:"+noteList.get(i).getCreated_on()
-                                +",last_updated_on:"+noteList.get(i).getLast_updated_on();
-                        resultList.add(str);
-                    }*/
-                    response.setStatus(200);
-                   // String json = JSON.toJSONString(noteList);
 
+                    response.setStatus(200);
                     return noteList;
                 }
             }
@@ -100,14 +85,7 @@ public class NoteController {
 
                 response.setStatus(401);
                 return "(\"Unauthorized\")";
-                //return null;
-
             }
-
-
-
-        //return null;
-
 
     }
 
@@ -116,30 +94,9 @@ public class NoteController {
     public String register(@RequestBody Note newNote, HttpServletResponse response, User newUser, @RequestHeader  String Authorization) {
 
 
+        Authorization authorization = new Authorization();
 
-       /* int index3 = Authorization.indexOf(" ");
-        String code = Authorization.substring(index3+1);
-        Base64 base64 = new Base64();
-        BASE64Decoder decoder = new BASE64Decoder();
-        String decode = null;
-
-        try {
-            decode = new String(decoder.decodeBuffer(code),"UTF-8");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        int index = decode.indexOf(":");
-
-        String password = decode.substring(index+1);
-        String email = decode.substring(0,index);
-
-
-        //ArrayList<User> list = (ArrayList<User>) userRepository.findByEmail(email);
-
-         User user = userRepository.findByEmail(email);
-
-*/
-        User user = authorizeUser(Authorization);
+        User user = authorization.authorizeUser(Authorization);
 
          if(user!=null){
 
@@ -169,8 +126,6 @@ public class NoteController {
 
                     newNote.setUser(user);
 
-
-
                     response.setStatus(200);
                     noteRepository.save(newNote);
                     return "(\"saved\")";
@@ -186,57 +141,11 @@ public class NoteController {
             }
     }
 
-   //@RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
-
-//    public Object getSingleNote(@PathVariable("id") String id, HttpServletResponse response, @RequestHeader String Authorization) {
-//
-//       ArrayList<Note> list = (ArrayList<Note>) noteRepository.findAll();
-//
-//       int index3 = Authorization.indexOf(" ");
-//       String code = Authorization.substring(index3+1);
-//       Base64 base64 = new Base64();
-//       BASE64Decoder decoder = new BASE64Decoder();
-//       String decode = null;
-//
-//       try {
-//           decode = new String(decoder.decodeBuffer(code),"UTF-8");
-//       } catch (IOException e) {
-//           e.printStackTrace();
-//       }
-//
-//
-//       int index = decode.indexOf(":");
-//
-//       String password = decode.substring(index+1);
-//       String email = decode.substring(0,index);
-//
-//       Note note = new Note();
-//       for (Note note : list) {
-//           if (note.getEmail().equals(email)){
-//               if (note.getNoteId().equals(id)) {
-//                   response.setStatus(200);
-//                   return note;
-//
-//               } else {
-//                   response.setStatus(404);
-//                   return null;
-//               }
-//        }
-//           response.setStatus(401);
-//           return "{ \"Unaothorized\" }";
-//       }
-//          return null;
-//   }
-
-
-
     @RequestMapping(value="/note/{id}",method=RequestMethod.PUT)
 
         public String update(@PathVariable("id") String id,@RequestBody Note note, HttpServletResponse response){
         ArrayList<Note> noteList = (ArrayList<Note>) noteRepository.findAll();
-
         String realId = id.substring(1,id.length()-1);
-
 
         Note note2 = new Note();
         for(int i=0;i<noteList.size();i++){
@@ -259,39 +168,8 @@ public class NoteController {
              }
             }
         }
-
-
-
         response.setStatus(404);
         return "{\"Not Found\"}";
-    }
-
-    private User authorizeUser(String Authorization){
-        int index3 = Authorization.indexOf(" ");
-        String code = Authorization.substring(index3+1);
-        Base64 base64 = new Base64();
-        BASE64Decoder decoder = new BASE64Decoder();
-        String decode = null;
-
-        try {
-            decode = new String(decoder.decodeBuffer(code),"UTF-8");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        int index = decode.indexOf(":");
-
-        String password = decode.substring(index+1);
-        String email = decode.substring(0,index);
-
-        User user = userRepository.findByEmail(email);
-        if(user == null){
-            return null;
-        }else{
-            if(BCrypt.checkpw(password,user.getPassword())){
-                return user;
-            }
-        }
-        return null;
     }
 
 }
