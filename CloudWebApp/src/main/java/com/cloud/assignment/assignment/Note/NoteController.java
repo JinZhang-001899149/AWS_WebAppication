@@ -213,29 +213,37 @@ public class NoteController {
 
     @RequestMapping(value="/note/{id}",method=RequestMethod.PUT)
 
-        public String update(@PathVariable("id") String id,@RequestBody Note note){
+        public String update(@PathVariable("id") String id,@RequestBody Note note, HttpServletResponse response){
         ArrayList<Note> noteList = (ArrayList<Note>) noteRepository.findAll();
 
-        //String realId = noteId.substring(1,noteId.length()-1);
+        String realId = id.substring(1,id.length()-1);
+
 
         Note note2 = new Note();
         for(int i=0;i<noteList.size();i++){
-            if(id.equals(noteList.get(i).getNoteId())){
+            if(realId.equals(noteList.get(i).getNoteId())) {
                 note2 = noteList.get(i);
 
+                if (note.getContent().equals(note2.getContent()) || note.getTitle().equals(note2.getTitle())) {
 
-                SimpleDateFormat updateTime = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+                    response.setStatus(406);
+                    return "{\"Not Acceptable\"}";
+                } else {
+                    SimpleDateFormat updateTime = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
                 note2.setLast_updated_on(updateTime.format(new Date()));
                 note2.setTitle(note.getTitle());
                 note2.setContent(note.getContent());
-                //noteRepository.save(note2);
+                noteRepository.save(note2);
 
-                return note2.getContent();
+                response.setStatus(205);
+                return "{\"Reset Content\"}";
+             }
             }
         }
 
 
 
-        return "end";
+        response.setStatus(404);
+        return "{\"Not Found\"}";
     }
 }

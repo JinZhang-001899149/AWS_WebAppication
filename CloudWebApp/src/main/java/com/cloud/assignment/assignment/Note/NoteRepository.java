@@ -4,5 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface NoteRepository extends CrudRepository<Note,Integer>{
 
-    //Note findByEmail(String email);
+    Note save(Note note);
 }
