@@ -68,7 +68,7 @@ public class NoteController {
            // User user = list.get(i);
 
 
-            if((email).equals(newNote.getEmail())) {
+            if((email).equals(newNote.getUser().getEmail())) {
 
                 response.setStatus(200);
 
@@ -113,15 +113,15 @@ public class NoteController {
         String email = decode.substring(0,index);
 
 
-        ArrayList<User> list = (ArrayList<User>) userRepository.findAll();
+        //ArrayList<User> list = (ArrayList<User>) userRepository.findByEmail(email);
 
-        for (int i = 0; i < list.size(); i++) {
-            User user = list.get(i);
+         User user = userRepository.findByEmail(email);
 
-            if(email.equals(user.getEmail())){
+         if(user!=null){
 
 
-                if(newNote.getTitle().equals(null) && newNote.getContent().equals(null) && newNote.getTitle().length()<=20)
+
+                if(newNote.getTitle().equals(null) && newNote.getContent().equals(null) && newNote.getTitle().length()>=20)
                 {
                     response.setStatus(400);
                     return "(\"Bad Request\")";
@@ -143,7 +143,7 @@ public class NoteController {
 
                     newNote.setLast_updated_on(sdf.format(new Date()));
 
-                    newNote.setEmail(email);
+                    newNote.setUser(user);
 
                     response.setStatus(200);
                     noteRepository.save(newNote);
@@ -158,52 +158,49 @@ public class NoteController {
                 response.setStatus(401);
                 return "(\"Unauthorized\")";
             }
-
-            }
-        return null;
     }
 
-   @RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
+   //@RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
 
-
-    public Object getSingleNote(@PathVariable("id") String id, HttpServletResponse response, @RequestHeader String Authorization) {
-
-       ArrayList<Note> list = (ArrayList<Note>) noteRepository.findAll();
-
-       int index3 = Authorization.indexOf(" ");
-       String code = Authorization.substring(index3+1);
-       Base64 base64 = new Base64();
-       BASE64Decoder decoder = new BASE64Decoder();
-       String decode = null;
-
-       try {
-           decode = new String(decoder.decodeBuffer(code),"UTF-8");
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-
-
-       int index = decode.indexOf(":");
-
-       String password = decode.substring(index+1);
-       String email = decode.substring(0,index);
-
-       for (Note note : list) {
-           if (note.getEmail().equals(email)){
-               if (note.getNoteId().equals(id)) {
-                   response.setStatus(200);
-                   return note;
-
-               } else {
-                   response.setStatus(404);
-                   return null;
-               }
-        }
-           response.setStatus(401);
-           return "{ \"Unaothorized\" }";
-       }
-          return null;
-   }
+//    public Object getSingleNote(@PathVariable("id") String id, HttpServletResponse response, @RequestHeader String Authorization) {
+//
+//       ArrayList<Note> list = (ArrayList<Note>) noteRepository.findAll();
+//
+//       int index3 = Authorization.indexOf(" ");
+//       String code = Authorization.substring(index3+1);
+//       Base64 base64 = new Base64();
+//       BASE64Decoder decoder = new BASE64Decoder();
+//       String decode = null;
+//
+//       try {
+//           decode = new String(decoder.decodeBuffer(code),"UTF-8");
+//       } catch (IOException e) {
+//           e.printStackTrace();
+//       }
+//
+//
+//       int index = decode.indexOf(":");
+//
+//       String password = decode.substring(index+1);
+//       String email = decode.substring(0,index);
+//
+//       Note note = new Note();
+//       for (Note note : list) {
+//           if (note.getEmail().equals(email)){
+//               if (note.getNoteId().equals(id)) {
+//                   response.setStatus(200);
+//                   return note;
+//
+//               } else {
+//                   response.setStatus(404);
+//                   return null;
+//               }
+//        }
+//           response.setStatus(401);
+//           return "{ \"Unaothorized\" }";
+//       }
+//          return null;
+//   }
 
 
 

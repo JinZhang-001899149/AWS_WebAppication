@@ -1,5 +1,7 @@
 package com.cloud.assignment.assignment.Note;
 
+import com.cloud.assignment.assignment.webSource.User;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
@@ -14,9 +16,17 @@ public class Note {
   private String created_on;
   private String last_updated_on;
 
-  @ManyToOne (fetch = FetchType.LAZY,optional = false)
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @ManyToOne (fetch = FetchType.LAZY,optional = false)
   @JoinColumn(name = "email", nullable =false)
-  private String email;
+  private User user;
 
 
 
@@ -60,13 +70,7 @@ public class Note {
         this.last_updated_on = last_updated_on;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
 
 }
