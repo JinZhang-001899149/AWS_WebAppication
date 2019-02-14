@@ -5,7 +5,6 @@ import com.cloud.assignment.assignment.webSource.BCrypt;
 import com.cloud.assignment.assignment.webSource.User;
 import com.cloud.assignment.assignment.webSource.UserRepository;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sun.misc.BASE64Decoder;
@@ -13,7 +12,10 @@ import sun.misc.BASE64Decoder;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 
 @RestController
@@ -294,4 +296,36 @@ public class NoteController {
         return null;
     }
 
+
+    @DeleteMapping("delete/{id}")
+    public @ResponseBody
+    String deleteNote(@PathVariable("id") String id, HttpServletResponse response,
+                      @RequestHeader String Authorization) {
+
+        User user = authorizeUser(Authorization);
+
+        if (user == null) {
+            response.setStatus(401);
+            return ("unauthorized user");
+        } else {
+            List<Note> list = noteRepository.findAllByUser(user);
+            if (list.size() < 1) {
+                response.setStatus(404);
+                return ("there is no note");
+            } else {
+                for (Note note : list) {
+                    if (note.getNoteId().equals(id)) {
+                        noteRepository.delete(note);
+                        response.setStatus(200);
+                        return ("note deleted");
+                    } else {
+                        response.setStatus(404);
+                        return ("the note does not exist");
+                    }
+                }
+            }
+            return null;
+        }
+    }
 }
+
