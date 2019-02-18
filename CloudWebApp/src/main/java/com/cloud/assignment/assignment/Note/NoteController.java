@@ -267,5 +267,216 @@ public class NoteController {
         }
     }
 
+    @GetMapping(path = "/note/idNotes/attachments")
+    public Object getAllAttachment(@PathVariable("idNotes") String idNotes,
+             @RequestHeader String Authorization, Note newNote, HttpServletResponse response) {
+
+
+
+        User user = authorization.authorizeUser(Authorization);
+
+
+        if(user!=null) {
+
+
+            List<Note> noteList = noteRepository.findAllByUser(user);
+
+
+            if (idNotes.equals("")) {
+                response.setStatus(400);
+                return "{\"Bad Request\"}";
+            }else {
+                if (noteList.isEmpty()) {
+                    response.setStatus(404);
+                    return "{\"Not Found\"}";
+                } else {
+
+                    for (Note n : noteList) {
+                        if (n.getNoteId().equals(idNotes)) {
+
+                            response.setStatus(200);
+                            return n.getAtcDirectory();
+                        } else {
+                            response.setStatus(404);
+                            return "{\"Not Found\"}";
+                        }
+                    }
+
+
+                }
+            }
+        }
+
+        else {
+
+            response.setStatus(401);
+            return "{\"Unauthorized\"}";
+        }
+
+        return null;
+    }
+
+    @PostMapping("/note/idNotes/attachments")
+    public Object createAttachment(@PathVariable("idNotes") String idNotes, @RequestBody Attachment attachment, HttpServletResponse response, User newUser, @RequestHeader  String Authorization) {
+
+
+
+
+        User user = authorization.authorizeUser(Authorization);
+
+        if(user!=null) {
+
+            List<Note> noteList = noteRepository.findAllByUser(user);
+
+
+            if (idNotes.equals("")) {
+                response.setStatus(400);
+                return "{\"Bad Request\"}";
+            }else{
+            if (noteList.isEmpty()) {
+                response.setStatus(404);
+                return "{\"Not Found\"}";
+            } else {
+
+                for (Note note : noteList) {
+                    if (note.getNoteId().equals(idNotes)) {
+
+                        Attachment newAttachment = note.addAttachment();
+
+                        newAttachment.setId(UUID.randomUUID().toString());
+
+
+                        response.setStatus(200);
+                        return newAttachment;
+
+                    } else {
+                        response.setStatus(404);
+                        return "{\"Not Found\"}";
+                    }
+                }
+
+
+            }
+
+        }
+
+        }
+        else {
+
+            response.setStatus(401);
+            return "{\"Unauthorized\"}";
+        }
+        return null;
+    }
+
+
+    @RequestMapping(value="/note/idNotes/attachments/idAttachments",method=RequestMethod.PUT)
+
+    public String updateAttachment(@PathVariable("idNotes") String idNotes,@PathVariable("idAttachments") String idAttachments,@RequestBody Note note, HttpServletResponse response,@RequestHeader String Authorization) {
+
+        User user = authorization.authorizeUser(Authorization);
+
+        if (user == null) {
+            response.setStatus(401);
+            return "{\"Unauthorized\"}";
+        } else {
+            List<Note> noteList = noteRepository.findAllByUser(user);
+
+
+            if (idNotes.equals("") || idAttachments.equals("")) {
+                response.setStatus(400);
+                return "{\"Bad Request\"}";
+            } else {
+                if (noteList.size() < 1) {
+                    response.setStatus(404);
+                    return "{\"Not Found\"}";
+                } else {
+                    for (Note note2 : noteList) {
+                        if (note2.getNoteId().equals(idNotes)) {
+
+                            Attachment attachment = note2.getSingleAttachment(idAttachments);
+                            if (attachment == null) {
+                                response.setStatus(404);
+                                return "{\"Not Found\"}";
+                            } else {
+                                //update attachment
+
+                                response.setStatus(204);
+                                return null;
+                            }
+
+
+                        } else {
+                            response.setStatus(404);
+                            return "{\"Not Found\"}";
+                        }
+                    }
+
+
+                }
+
+            }
+            response.setStatus(404);
+            return "{\"Not Found\"}";
+        }
+    }
+
+    @RequestMapping (value="/note/idNotes/attachments/idAttachments",method=RequestMethod.DELETE)
+    public String deleteAttachment(@PathVariable("idNotes") String idNotes, @PathVariable("idAttachments") String idAttachments,HttpServletResponse response,
+                      @RequestHeader String Authorization) {
+
+        User user = authorization.authorizeUser(Authorization);
+
+        if (user == null) {
+            response.setStatus(401);
+            return "{\"Unauthorized\"}";
+        } else {
+
+            List<Note> list = noteRepository.findAllByUser(user);
+
+
+            if(idNotes.equals("")||idAttachments.equals("")){
+                response.setStatus(400);
+                return "{\"Bad Request\"}";
+            }else{
+                if (list.size() < 1) {
+                    response.setStatus(404);
+                    return "{\"Not Found\"}";
+                } else {
+
+                    for(Note note2:list){
+                        if(note2.getNoteId().equals(idNotes)){
+
+                            Attachment attachment = note2.getSingleAttachment(idAttachments);
+                            if(attachment==null){
+                                response.setStatus(404);
+                                return "{\"Not Found\"}";
+                            }else{
+                                note2.deleteAttachment(idAttachments);
+                                response.setStatus(204);
+                                return null;
+
+                            }
+
+
+
+
+
+                        }else{
+                            response.setStatus(404);
+                            return "{\"Not Found\"}";
+                        }
+                    }
+                }
+
+
+            }
+
+
+            response.setStatus(404);
+            return "{\"Not Found\"}";
+            //return null;
+        }
+    }
 }
 
