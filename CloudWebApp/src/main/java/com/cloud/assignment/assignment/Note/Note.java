@@ -4,7 +4,9 @@ import com.cloud.assignment.assignment.webSource.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.File;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
@@ -24,7 +26,12 @@ public class Note implements Serializable {
   @JsonIgnore
   private User user;
 
+  private ArrayList<Attachment> atcDirectory;
 
+
+  public Note(){
+      atcDirectory = new ArrayList<Attachment>();
+  }
 
     @com.fasterxml.jackson.annotation.JsonIgnore
     public User getUser() {
@@ -76,7 +83,47 @@ public class Note implements Serializable {
     }
 
 
+    public ArrayList<Attachment> getAtcDirectory() {
+        return atcDirectory;
+    }
+
+    public Attachment addAttachment(){
+      Attachment attachment = new Attachment();
+      this.atcDirectory.add(attachment);
+      return attachment;
+    }
+
+    public void deleteAttachment(String id) {
+        for (Attachment a : atcDirectory) {
+            if (a.getId().equals(id)) {
+                atcDirectory.remove(a);
+            }
+        }
+    }
+
+      public Attachment getSingleAttachment(String id){
+           Attachment attachment = new Attachment();
+          for (Attachment a : atcDirectory) {
+              if (a.getId().equals(id)) {
+                  attachment = a;
+              }
+          }
+        return attachment;
+    }
 
 
+    public Attachment updateAttachment(String id, String url, File file){
+
+        Attachment attachment = new Attachment();
+      for(Attachment a:atcDirectory){
+          if (a.getId().equals(id)) {
+              attachment = a;
+              attachment.setUrl(url);
+              attachment.setFile(file);
+          }
+      }
+      return attachment;
+
+    }
 
 }
