@@ -114,7 +114,7 @@ public class NoteController {
 
                     response.setStatus(200);
                     noteRepository.save(newNote);
-                    return "{\"saved\"}";
+                    return "{\"Created\"}";
 
 
                 }
@@ -127,7 +127,7 @@ public class NoteController {
             }
     }
 
-    @RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/note/id", method = RequestMethod.GET)
 
     public Object getSingleNote(@RequestHeader String Authorization,@PathVariable("id") String id, HttpServletResponse response) {
         User user = authorization.authorizeUser(Authorization);
@@ -155,7 +155,7 @@ public class NoteController {
 
 
 
-    @RequestMapping(value="/note/{id}",method=RequestMethod.PUT)
+    @RequestMapping(value="/note/id",method=RequestMethod.PUT)
 
         public String update(@PathVariable("id") String id,@RequestBody Note note, HttpServletResponse response,@RequestHeader String Authorization){
         //User user = authorizeUser(Authorization);
@@ -163,8 +163,8 @@ public class NoteController {
         User user = authorization.authorizeUser(Authorization);
 
         if(user==null){
-            response.setStatus(404);
-            return "{\"Not Found\"}";
+            response.setStatus(401);
+            return "{\"Unauthorized\"}";
         }else{
         List<Note> noteList = noteRepository.findAllByUser(user);
         String realId = id.substring(1,id.length()-1);
@@ -207,14 +207,14 @@ public class NoteController {
         return "{\"Not Found\"}";
     }
 
-    @RequestMapping (value="/note/{id}",method=RequestMethod.DELETE)
+    @RequestMapping (value="/note/id",method=RequestMethod.DELETE)
     public @ResponseBody
     String deleteNote(@PathVariable("id") String id, HttpServletResponse response,
                       @RequestHeader String Authorization) {
 
         User user = authorization.authorizeUser(Authorization);
 
-        String realId = id.substring(1,id.length()-1);
+
 
         //User user = authorizeUser(Authorization);
 
@@ -222,14 +222,30 @@ public class NoteController {
             response.setStatus(401);
             return "{\"Unauthorized\"}";
         } else {
+
             List<Note> list = noteRepository.findAllByUser(user);
+            String realId = id.substring(1,id.length()-1);
+
+
             if (list.size() < 1) {
                 response.setStatus(404);
                 return "{\"Not Found\"}";
             } else {
-                for (Note note : list) {
-                    if (note.getNoteId().equals(realId)) {
-                        noteRepository.delete(note);
+                //for (Note note : list) {
+                Note note2 = new Note();
+
+                for(int i = 0; i <list.size(); i++)
+                    {
+                        //Note note = list.get(i);
+
+                    //if (note.getNoteId().equals(realId)) {
+
+
+                        if(realId.equals(list.get(i).getNoteId())){
+
+                            note2 = list.get(i);
+
+                            noteRepository.delete(note2);
                         //response.setStatus(200);
                         response.setStatus(204);
                         return "{\"No Content\"}";
@@ -239,13 +255,15 @@ public class NoteController {
                         response.setStatus(400);
                         return "{\"Bad Request\"}";
                     }
-                    else {
-                        response.setStatus(404);
-                        return "{\"Not Found\"}";
-                    }
+//                    else {
+//                        response.setStatus(404);
+//                        return "{\"Not Found\"}";
+//                    }
                 }
             }
-            return null;
+            response.setStatus(404);
+            return "{\"Not Found\"}";
+            //return null;
         }
     }
 
