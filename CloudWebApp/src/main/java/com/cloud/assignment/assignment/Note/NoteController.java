@@ -1,19 +1,17 @@
 package com.cloud.assignment.assignment.Note;
 //
 
-import com.cloud.assignment.assignment.webSource.BCrypt;
+import com.cloud.assignment.assignment.Attachment.Attachment;
+import com.cloud.assignment.assignment.Attachment.AttachmentRepository;
 import com.cloud.assignment.assignment.webSource.User;
 import com.cloud.assignment.assignment.webSource.UserRepository;
 
 import com.cloud.assignment.assignment.webSource.Authorization;
 
-import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,6 +27,9 @@ public class NoteController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AttachmentRepository attachmentRepository;
 
     @Autowired
     Authorization authorization = new Authorization();
@@ -75,7 +76,7 @@ public class NoteController {
 
 
     @PostMapping("/note")
-    public String CreateNote(@RequestBody Note newNote, HttpServletResponse response, User newUser, @RequestHeader  String Authorization) {
+    public Object createNote(@RequestBody Note newNote, HttpServletResponse response, User newUser, @RequestHeader  String Authorization) {
 
 
 
@@ -112,9 +113,10 @@ public class NoteController {
 
                     newNote.setUser(user);
 
-                    response.setStatus(200);
+                    response.setStatus(201);
                     noteRepository.save(newNote);
-                    return "{\"Created\"}";
+                    //return "{\"Created\"}";
+                    return (newNote);
 
 
                 }
@@ -127,22 +129,22 @@ public class NoteController {
             }
     }
 
-    @RequestMapping(value = "/note/id", method = RequestMethod.GET)
+    @RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
 
     public Object getSingleNote(@RequestHeader String Authorization,@PathVariable("id") String id, HttpServletResponse response) {
         User user = authorization.authorizeUser(Authorization);
-        String realId = id.substring(1,id.length()-1);
+
         if (user == null){
             response.setStatus(401);
             return "{\"Unauthorized\"}";
         }else {
-            if (realId.equals("")){
+            if (id.equals("")){
                 response.setStatus(400);
                 return"{\"Bad Request\"}";
             }else{
                 List<Note> list = noteRepository.findAllByUser(user);
                 for(int i = 0; i<list.size();i++){
-                    if(list.get(i).getNoteId().equals(realId)) {
+                    if(list.get(i).getNoteId().equals(id)) {
                         response.setStatus(200);
                         return list.get(i);
                     }
@@ -155,7 +157,7 @@ public class NoteController {
 
 
 
-    @RequestMapping(value="/note/id",method=RequestMethod.PUT)
+    @RequestMapping(value="/note/{id}",method=RequestMethod.PUT)
 
         public String update(@PathVariable("id") String id,@RequestBody Note note, HttpServletResponse response,@RequestHeader String Authorization){
         //User user = authorizeUser(Authorization);
@@ -167,15 +169,15 @@ public class NoteController {
             return "{\"Unauthorized\"}";
         }else{
         List<Note> noteList = noteRepository.findAllByUser(user);
-        String realId = id.substring(1,id.length()-1);
 
-        if(realId.equals("")){
+
+        if(id.equals("")){
             response.setStatus(400);
             return "{\"Bad Request\"}";
         }else{
         Note note2 = new Note();
         for(int i=0;i<noteList.size();i++) {
-            if (realId.equals(noteList.get(i).getNoteId())) {
+            if (id.equals(noteList.get(i).getNoteId())) {
                 note2 = noteList.get(i);
 
                 if(note.getContent().equals("")||note.getTitle().equals(""))
@@ -207,7 +209,7 @@ public class NoteController {
         return "{\"Not Found\"}";
     }
 
-    @RequestMapping (value="/note/id",method=RequestMethod.DELETE)
+    @RequestMapping (value="/note/{id}",method=RequestMethod.DELETE)
     public @ResponseBody
     String deleteNote(@PathVariable("id") String id, HttpServletResponse response,
                       @RequestHeader String Authorization) {
@@ -224,7 +226,7 @@ public class NoteController {
         } else {
 
             List<Note> list = noteRepository.findAllByUser(user);
-            String realId = id.substring(1,id.length()-1);
+
 
 
             if (list.size() < 1) {
@@ -241,7 +243,7 @@ public class NoteController {
                     //if (note.getNoteId().equals(realId)) {
 
 
-                        if(realId.equals(list.get(i).getNoteId())){
+                        if(id.equals(list.get(i).getNoteId())){
 
                             note2 = list.get(i);
 
@@ -250,7 +252,7 @@ public class NoteController {
                         response.setStatus(204);
                         return "{\"No Content\"}";
                     }
-                    else if(realId.equals(""))
+                    else if(id.equals(""))
                     {
                         response.setStatus(400);
                         return "{\"Bad Request\"}";
@@ -267,7 +269,7 @@ public class NoteController {
         }
     }
 
-    @GetMapping(path = "/note/idNotes/attachments")
+    @GetMapping(path = "/note/{idNotes}/{attachments}")
     public Object getAllAttachment(@PathVariable("idNotes") String idNotes,
              @RequestHeader String Authorization, Note newNote, HttpServletResponse response) {
 
@@ -295,7 +297,8 @@ public class NoteController {
                         if (n.getNoteId().equals(idNotes)) {
 
                             response.setStatus(200);
-                            return n.getAtcDirectory();
+                            //return n.getAttachments();
+                            return attachmentRepository.findAllByNote(n);
                         } else {
                             response.setStatus(404);
                             return "{\"Not Found\"}";
@@ -316,7 +319,9 @@ public class NoteController {
         return null;
     }
 
-    @PostMapping("/note/idNotes/attachments")
+    //@PostMapping("/note/{idNotes}/attachments")
+
+    @RequestMapping(value = "/note/{idNotes}/attachments", method = RequestMethod.POST)
     public Object createAttachment(@PathVariable("idNotes") String idNotes, @RequestBody Attachment attachment, HttpServletResponse response, User newUser, @RequestHeader  String Authorization) {
 
 
@@ -341,13 +346,20 @@ public class NoteController {
                 for (Note note : noteList) {
                     if (note.getNoteId().equals(idNotes)) {
 
-                        Attachment newAttachment = note.addAttachment();
+                        //attachment = note.addAttachment();
 
-                        newAttachment.setId(UUID.randomUUID().toString());
+
+
+
+                        attachment.setId(UUID.randomUUID().toString());
+                        attachment.setNote(note);
+                        attachmentRepository.save(attachment);
+
+
 
 
                         response.setStatus(200);
-                        return newAttachment;
+                        return attachment;
 
                     } else {
                         response.setStatus(404);
@@ -370,7 +382,7 @@ public class NoteController {
     }
 
 
-    @RequestMapping(value="/note/idNotes/attachments/idAttachments",method=RequestMethod.PUT)
+    @RequestMapping(value="/note/{idNotes}/attachments/{idAttachments}",method=RequestMethod.PUT)
 
     public String updateAttachment(@PathVariable("idNotes") String idNotes,@PathVariable("idAttachments") String idAttachments,@RequestBody Note note, HttpServletResponse response,@RequestHeader String Authorization) {
 
@@ -382,22 +394,23 @@ public class NoteController {
         } else {
             List<Note> noteList = noteRepository.findAllByUser(user);
 
-
             if (idNotes.equals("") || idAttachments.equals("")) {
                 response.setStatus(400);
                 return "{\"Bad Request\"}";
-            } else {
-                if (noteList.size() < 1) {
-                    response.setStatus(404);
-                    return "{\"Not Found\"}";
-                } else {
+            } else if (noteList.size() < 1) {
+                response.setStatus(404);
+                return "{\"Not Found\"}";
+            }
+                else {
                     for (Note note2 : noteList) {
                         if (note2.getNoteId().equals(idNotes)) {
 
-                            Attachment attachment = note2.getSingleAttachment(idAttachments);
-                            if (attachment == null) {
+                            //Attachment attachment = note2.getSingleAttachment(idAttachments);
+
+                            List attachementList = attachmentRepository.findAllByNote(note2);
+                            if (attachementList.size() == 0) {
                                 response.setStatus(404);
-                                return "{\"Not Found\"}";
+                                return "{\"Attachment Not Found\"}";
                             } else {
                                 //update attachment
 
@@ -405,23 +418,21 @@ public class NoteController {
                                 return null;
                             }
 
-
-                        } else {
-                            response.setStatus(404);
-                            return "{\"Not Found\"}";
-                        }
+                        } else
+                            {
+                                response.setStatus(404);
+                                return "{\"Not Found\"}";
+                            }
                     }
 
-
                 }
-
-            }
-            response.setStatus(404);
-            return "{\"Not Found\"}";
+                return null;
         }
     }
 
-    @RequestMapping (value="/note/idNotes/attachments/idAttachments",method=RequestMethod.DELETE)
+
+
+    @RequestMapping (value="/note/{idNotes}/attachments/{idAttachments}",method=RequestMethod.DELETE)
     public String deleteAttachment(@PathVariable("idNotes") String idNotes, @PathVariable("idAttachments") String idAttachments,HttpServletResponse response,
                       @RequestHeader String Authorization) {
 
@@ -447,20 +458,28 @@ public class NoteController {
                     for(Note note2:list){
                         if(note2.getNoteId().equals(idNotes)){
 
-                            Attachment attachment = note2.getSingleAttachment(idAttachments);
-                            if(attachment==null){
+                            //Attachment attachment = note2.getSingleAttachment(idAttachments);
+                            List <Attachment> attcahmentList = attachmentRepository.findAllByNote(note2);
+                            if(attcahmentList.size() == 0){
                                 response.setStatus(404);
                                 return "{\"Not Found\"}";
                             }else{
-                                note2.deleteAttachment(idAttachments);
-                                response.setStatus(204);
-                                return null;
+                                //note2.deleteAttachment(idAttachments);
+
+                                for(int i= 0; i < attcahmentList.size(); i++){
+
+                                    if(attcahmentList.get(i).getId().equals(idAttachments))
+                                    {
+                                        attachmentRepository.delete(attcahmentList.get(i));
+                                        response.setStatus(204);
+                                        return null;
+
+                                    }
+
+
+                                }
 
                             }
-
-
-
-
 
                         }else{
                             response.setStatus(404);
@@ -471,11 +490,7 @@ public class NoteController {
 
 
             }
-
-
-            response.setStatus(404);
-            return "{\"Not Found\"}";
-            //return null;
+            return null;
         }
     }
 }
