@@ -57,7 +57,7 @@ public class NoteController {
 
                 if(noteList.isEmpty()){
                     response.setStatus(404);
-                    return "{\"Not Found\"}";
+                    return "{\n \"description\":\"Note Not Found\"}";
                 }
                 else {
 
@@ -69,7 +69,7 @@ public class NoteController {
             else {
 
                 response.setStatus(401);
-                return "{\"Unauthorized\"}";
+                return "{\n \"description\":\"Unauthorized\"}";
             }
 
     }
@@ -92,7 +92,7 @@ public class NoteController {
                 if(newNote.getTitle().equals("") || newNote.getContent().equals("") || newNote.getTitle().length()>=20)
                 {
                     response.setStatus(400);
-                    return "{\"Bad Request\"}";
+                    return "{\n \"description\":\"Bad Request\"}";
                 }
 
                 else{
@@ -125,7 +125,7 @@ public class NoteController {
             else {
 
                 response.setStatus(401);
-                return "{\"Unauthorized\"}";
+                return "{\n \"description\":\"Unauthorized\"}";
             }
     }
 
@@ -136,11 +136,11 @@ public class NoteController {
 
         if (user == null){
             response.setStatus(401);
-            return "{\"Unauthorized\"}";
+            return "{\n \"description\":\"Unauthorized\"}";
         }else {
             if (id.equals("")){
                 response.setStatus(400);
-                return"{\"Bad Request\"}";
+                return"{\n \"description\":\"Bad Request\"}";
             }else{
                 List<Note> list = noteRepository.findAllByUser(user);
                 for(int i = 0; i<list.size();i++){
@@ -152,7 +152,7 @@ public class NoteController {
             }
         }
         response.setStatus(404);
-        return "{\"Not Found\"}";
+        return "{\n \"description\":\"Note Not Found\"}";
     }
 
 
@@ -390,16 +390,16 @@ public class NoteController {
 
         if (user == null) {
             response.setStatus(401);
-            return "{\"Unauthorized\"}";
+            return "{\n \"description\":\"Unauthorized\"}";
         } else {
             List<Note> noteList = noteRepository.findAllByUser(user);
 
             if (idNotes.equals("") || idAttachments.equals("")) {
                 response.setStatus(400);
-                return "{\"Bad Request\"}";
+                return "{\n \"description\":\"Bad Request\"}";
             } else if (noteList.size() < 1) {
                 response.setStatus(404);
-                return "{\"Not Found\"}";
+                return "{\n \"description\":\"Note Not Found\"}";
             }
                 else {
                     for (Note note2 : noteList) {
@@ -410,7 +410,7 @@ public class NoteController {
                             List attachementList = attachmentRepository.findAllByNote(note2);
                             if (attachementList.size() == 0) {
                                 response.setStatus(404);
-                                return "{\"Attachment Not Found\"}";
+                                return "{\n \"description\":\"Attachment Not Found\"}";
                             } else {
                                 //update attachment
 
@@ -421,7 +421,7 @@ public class NoteController {
                         } else
                             {
                                 response.setStatus(404);
-                                return "{\"Not Found\"}";
+                                return "{\n \"description\":\"Note Not Found\"}";
                             }
                     }
 
@@ -440,7 +440,7 @@ public class NoteController {
 
         if (user == null) {
             response.setStatus(401);
-            return "{\"Unauthorized\"}";
+            return "{\n \"description\":\"Unauthorized\"}";
         } else {
 
             List<Note> list = noteRepository.findAllByUser(user);
@@ -448,11 +448,11 @@ public class NoteController {
 
             if(idNotes.equals("")||idAttachments.equals("")){
                 response.setStatus(400);
-                return "{\"Bad Request\"}";
+                return "{\n \"description\":\"Bad Request\"}";
             }else{
                 if (list.size() < 1) {
                     response.setStatus(404);
-                    return "{\"Not Found\"}";
+                    return "{\n \"description\":\"Note Not Found\"}";
                 } else {
 
                     for(Note note2:list){
@@ -462,7 +462,7 @@ public class NoteController {
                             List <Attachment> attcahmentList = attachmentRepository.findAllByNote(note2);
                             if(attcahmentList.size() == 0){
                                 response.setStatus(404);
-                                return "{\"Not Found\"}";
+                                return "{\n \"description\":\"Attachment Not Found\"}";
                             }else{
                                 //note2.deleteAttachment(idAttachments);
 
@@ -483,7 +483,7 @@ public class NoteController {
 
                         }else{
                             response.setStatus(404);
-                            return "{\"Not Found\"}";
+                            return "{\n \"description\":\" Note Not Found\"}";
                         }
                     }
                 }
