@@ -152,10 +152,11 @@ public class NoteController {
                         return list.get(i);
                     }
                 }
+                response.setStatus(404);
+                return "{\n \"description\":\"Note Not Found\" \n}";
             }
         }
-        response.setStatus(404);
-        return "{\n \"description\":\"Note Not Found\" \n}";
+
     }
 
 
@@ -193,7 +194,12 @@ public class NoteController {
 
                     response.setStatus(400);
                     return "{\n \"description\":\"Bad Request\" \n}";
-                } else {
+                }
+
+
+
+
+                else {
                     SimpleDateFormat updateTime = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
                     note2.setLast_updated_on(updateTime.format(new Date()));
                     note2.setTitle(note.getTitle());
@@ -201,15 +207,26 @@ public class NoteController {
                     noteRepository.save(note2);
 
                     response.setStatus(204);
-                 //   return "{\"No Content\"}";
+                    return null;
                 }
+
+
+
+
             }
-            }
-        }
+
 
         }
-        response.setStatus(404);
-        return "{\n \"description\":\"Not Found\" \n}";
+            response.setStatus(404);
+            return "{\n \"description\":\"Not Found\" \n}";
+
+
+        }
+
+
+
+        }
+
     }
 
     @RequestMapping (value="/note/{id}",method=RequestMethod.DELETE)
@@ -253,6 +270,7 @@ public class NoteController {
                             noteRepository.delete(note2);
                         //response.setStatus(200);
                         response.setStatus(204);
+                        return null;
                     //    return "{\"No Content\"}";
                     }
                     else if(id.equals(""))
@@ -267,9 +285,10 @@ public class NoteController {
 //                        return "{\"Not Found\"}";
 //                    }
                 }
+                response.setStatus(404);
+                return "{\n \"description\":\"Not Found\" \n}";
             }
-            response.setStatus(404);
-            return "{\n \"description\":\"Not Found\" \n}";
+
             //return null;
         }
     }
@@ -306,9 +325,10 @@ public class NoteController {
                             return attachmentRepository.findAllByNote(n);
                         }
                     }
+                    response.setStatus(404);
+                    return "{\n \"description\":\"Not Found\" \n}";
                 }
-                response.setStatus(404);
-                return "{\n \"description\":\"Not Found\" \n}";
+
             }
         }
 
@@ -456,10 +476,12 @@ public class NoteController {
 
                         }
                     }
+                response.setStatus(404);
+                return "{\n \"description\":\"Note Not Found\" \n}";
+
 
                 }
-            response.setStatus(404);
-            return "{\n \"description\":\"Note Not Found\" \n}";
+
 
         }
     }
@@ -518,9 +540,10 @@ public class NoteController {
                         }
 
                     }
+                    response.setStatus(404);
+                    return "{\n \"description\":\" Note Not Found\" \n}";
                 }
-                response.setStatus(404);
-                return "{\n \"description\":\" Note Not Found\" \n}";
+
 
 
             }
