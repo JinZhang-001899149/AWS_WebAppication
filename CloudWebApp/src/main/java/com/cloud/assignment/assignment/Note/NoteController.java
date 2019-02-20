@@ -10,8 +10,11 @@ import com.cloud.assignment.assignment.webSource.Authorization;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -257,6 +260,8 @@ public class NoteController {
                         response.setStatus(400);
                         return "{\n \"description\":\"Bad Request\"}";
                     }
+
+
 //                    else {
 //                        response.setStatus(404);
 //                        return "{\"Not Found\"}";
@@ -299,14 +304,11 @@ public class NoteController {
                             response.setStatus(200);
                             //return n.getAttachments();
                             return attachmentRepository.findAllByNote(n);
-                        } else {
-                            response.setStatus(404);
-                            return "{\n \"description\":\"Not Found\"}";
                         }
                     }
-
-
                 }
+                response.setStatus(404);
+                return "{\n \"description\":\"Not Found\"}";
             }
         }
 
@@ -316,13 +318,12 @@ public class NoteController {
             return "{\n \"description\":\"Unauthorized\"}";
         }
 
-        return null;
     }
 
-    //@PostMapping("/note/{idNotes}/attachments")
+
 
     @RequestMapping(value = "/note/{idNotes}/attachments", method = RequestMethod.POST)
-    public Object createAttachment(@PathVariable("idNotes") String idNotes, @RequestBody Attachment attachment, HttpServletResponse response, User newUser, @RequestHeader  String Authorization) {
+    public Object createAttachment(@PathVariable("idNotes") String idNotes, @RequestParam(value = "file",required = false) MultipartFile file, HttpServletResponse response, User newUser,Attachment attachment, @RequestHeader  String Authorization) {
 
 
 
@@ -344,31 +345,47 @@ public class NoteController {
             } else {
 
                 for (Note note : noteList) {
+
+
+                    String filename = file.getOriginalFilename();
+                    String filegetUrl = ServletUriComponentsBuilder.fromCurrentContextPath().path(filename).toUriString();
+
+
                     if (note.getNoteId().equals(idNotes)) {
 
                         //attachment = note.addAttachment();
+                        Attachment attachment1 = attachmentRepository.findByUrl(filegetUrl);
 
+                        if(attachment1==null) {
 
+                            attachment.setId(UUID.randomUUID().toString());
+                            attachment.setNote(note);
+                            attachment.setUrl(filegetUrl);
+                            attachmentRepository.save(attachment);
 
+                            response.setStatus(200);
+                            return attachment;
+                        }
+                        else
+                        {
+                            response.setStatus(400);
+                            return "{\n \"description\":\"File Already Exist\"}";
+                        }
 
-                        attachment.setId(UUID.randomUUID().toString());
-                        attachment.setNote(note);
-                        attachmentRepository.save(attachment);
-
-
-
-
-                        response.setStatus(200);
-                        return attachment;
-
-                    } else {
-                        response.setStatus(404);
-                        return "{\n \"description\":\"Not Found\"}";
                     }
+                    else if (idNotes.equals(""))
+                    {
+                        response.setStatus(400);
+                        return "{\n \"description\":\"Bad Request\"}";
+                    }
+
                 }
 
+                response.setStatus(404);
+                return "{\n \"description\":\"Not Found\"}";
 
             }
+
 
         }
 
@@ -378,13 +395,12 @@ public class NoteController {
             response.setStatus(401);
             return "{\n \"description\":\"Unauthorized\"}";
         }
-        return null;
     }
 
 
     @RequestMapping(value="/note/{idNotes}/attachments/{idAttachments}",method=RequestMethod.PUT)
 
-    public String updateAttachment(@PathVariable("idNotes") String idNotes,@PathVariable("idAttachments") String idAttachments,@RequestBody Note note, HttpServletResponse response,@RequestHeader String Authorization) {
+    public String updateAttachment(@RequestParam(value = "file",required = false) MultipartFile file,Attachment attachment, @PathVariable("idNotes") String idNotes,@PathVariable("idAttachments") String idAttachments, HttpServletResponse response,@RequestHeader String Authorization) {
 
         User user = authorization.authorizeUser(Authorization);
 
@@ -402,7 +418,8 @@ public class NoteController {
                 return "{\n \"description\":\"Note Not Found\"}";
             }
                 else {
-                    for (Note note2 : noteList) {
+
+                for (Note note2 : noteList) {
                         if (note2.getNoteId().equals(idNotes)) {
 
                             //Attachment attachment = note2.getSingleAttachment(idAttachments);
@@ -412,21 +429,38 @@ public class NoteController {
                                 response.setStatus(404);
                                 return "{\n \"description\":\"Attachment Not Found\"}";
                             } else {
-                                //update attachment
 
-                                response.setStatus(204);
-                                return null;
+                                String filename = file.getOriginalFilename();
+                                String filegetUrl = ServletUriComponentsBuilder.fromCurrentContextPath().path(filename).toUriString();
+                                attachment = attachmentRepository.findById(idAttachments);
+                                Attachment attachment1 = attachmentRepository.findByUrl(filegetUrl);
+
+                                if((attachment1!=null && attachment1.getId().equals(idAttachments))|| attachment1==null)
+                                {
+
+                                    attachment.setUrl(filegetUrl);
+                                    attachmentRepository.save(attachment);
+
+                                    response.setStatus(204);
+                                    return null;
+
+                                }
+
+                                else {
+
+                                    response.setStatus(400);
+                                    return "{\n \"description\":\"File Already Exist\"}";
+
+                                }
                             }
 
-                        } else
-                            {
-                                response.setStatus(404);
-                                return "{\n \"description\":\"Note Not Found\"}";
-                            }
+                        }
                     }
 
                 }
-                return null;
+            response.setStatus(404);
+            return "{\n \"description\":\"Note Not Found\"}";
+
         }
     }
 
@@ -481,16 +515,16 @@ public class NoteController {
 
                             }
 
-                        }else{
-                            response.setStatus(404);
-                            return "{\n \"description\":\" Note Not Found\"}";
                         }
+
                     }
                 }
+                response.setStatus(404);
+                return "{\n \"description\":\" Note Not Found\"}";
 
 
             }
-            return null;
+
         }
     }
 }

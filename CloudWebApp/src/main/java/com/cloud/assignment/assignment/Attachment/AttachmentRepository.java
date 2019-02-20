@@ -10,5 +10,9 @@ public interface AttachmentRepository extends CrudRepository<Attachment,Integer>
 
 //    Note save(Note note);
     List<Attachment> findAllByNote(Note note);
+
+    Attachment findByUrl(String url);
+
+    Attachment findById(String id);
 //   // Note findByUserandNoteId(User user, String noteId);
 }

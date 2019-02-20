@@ -17,7 +17,7 @@ public class Attachment {
     private String id;
 
     private String url;
-    private File file;
+    //private File file;
 
 
 
@@ -52,11 +52,11 @@ public class Attachment {
         this.url = url;
     }
 
-    public File getFile() {
-        return file;
-    }
-
-    public void setFile(File file) {
-        this.file = file;
-    }
+//    public File getFile() {
+//        return file;
+//    }
+//
+//    public void setFile(File file) {
+//        this.file = file;
+//    }
 }
