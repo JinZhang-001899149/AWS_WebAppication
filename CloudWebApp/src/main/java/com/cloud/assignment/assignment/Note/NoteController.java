@@ -321,7 +321,7 @@ public class NoteController {
         }
     }
 
-    @GetMapping(path = "/note/{idNotes}/{attachments}")
+    @GetMapping(path = "/note/{idNotes}/attachments")
     public Object getAllAttachment(@PathVariable("idNotes") String idNotes,
              @RequestHeader String Authorization, Note newNote, HttpServletResponse response) {
 
@@ -393,10 +393,10 @@ public class NoteController {
             } else {
 
                 Note note = noteRepository.findByNoteId(idNotes);
-                if(note!=null)
+                if(note!=null){
 
                 //for (Note note : noteList)
-                {
+                //{
 
 
 //                    String filename = file.getOriginalFilename();
@@ -512,6 +512,8 @@ public class NoteController {
                             //Attachment attachment = note2.getSingleAttachment(idAttachments);
 
                             List attachementList = attachmentRepository.findAllByNote(note2);
+
+                            attachment = attachmentRepository.findById(idAttachments);
                             if (attachementList.size() == 0) {
                                 response.setStatus(404);
                                 return "{\n \"description\":\"Attachment Not Found\" \n}";
