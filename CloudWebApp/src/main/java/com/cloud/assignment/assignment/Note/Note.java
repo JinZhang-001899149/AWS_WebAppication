@@ -1,12 +1,14 @@
 package com.cloud.assignment.assignment.Note;
 
+import com.cloud.assignment.assignment.Attachment.Attachment;
 import com.cloud.assignment.assignment.webSource.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.File;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity // This tells Hibernate to make a table out of this class
 @Table(name = "note")
@@ -19,10 +21,32 @@ public class Note implements Serializable {
   private String created_on;
   private String last_updated_on;
 
+
+
   @ManyToOne (fetch = FetchType.LAZY,optional = false)
   @JoinColumn(name = "email", nullable =false)
   @JsonIgnore
   private User user;
+
+
+
+
+
+    @OneToMany(mappedBy = "note")
+  private List<Attachment> attachment;
+
+
+    public List<Attachment> getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(List<Attachment> attachment) {
+        this.attachment = attachment;
+    }
+
+
+
+
 
 
 
@@ -74,8 +98,6 @@ public class Note implements Serializable {
     public void setLast_updated_on(String last_updated_on) {
         this.last_updated_on = last_updated_on;
     }
-
-
 
 
 
