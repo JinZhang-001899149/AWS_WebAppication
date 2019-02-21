@@ -284,7 +284,7 @@ public class NoteController {
 
                             for (Attachment attach : attachementList){
 
-                                if (amazonClient.getEndpointUrl().equals("\"\"")){
+                                if (amazonClient.getEndpointUrl().equals("")){
                                     amazonClient.deleteFileFromLocal(attach);
                                 }
                                 else{
@@ -392,7 +392,11 @@ public class NoteController {
                 return "{\n \"description\":\"Not Found\" \n}";
             } else {
 
-                for (Note note : noteList) {
+                Note note = noteRepository.findByNoteId(idNotes);
+                if(note!=null)
+
+                //for (Note note : noteList)
+                {
 
 
 //                    String filename = file.getOriginalFilename();
@@ -461,9 +465,11 @@ public class NoteController {
                     }
 
                 }
+                else {
 
-                response.setStatus(404);
-                return "{\n \"description\":\"Not Found\" \n}";
+                    response.setStatus(404);
+                    return "{\n \"description\":\"Not Found\" \n}";
+                }
 
             }
 
@@ -476,6 +482,7 @@ public class NoteController {
             response.setStatus(401);
             return "{\n \"description\":\"Unauthorized\" \n}";
         }
+        return null;
     }
 
 
