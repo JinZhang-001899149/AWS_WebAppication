@@ -1,6 +1,8 @@
-package com.cloud.assignment.assignment01;
+package com.cloud.assignment.assignment;
 
 import org.junit.Before;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import com.cloud.assignment.assignment.webSource.UserService;
@@ -21,6 +23,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
