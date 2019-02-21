@@ -4,9 +4,11 @@ package com.cloud.assignment.assignment.AmazonS3_dev;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.cloud.assignment.assignment.Attachment.Attachment;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -14,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
@@ -31,6 +34,7 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
 
 @Service
+
 public class AmazonS3Client {
 
     private AmazonS3 s3client;
@@ -96,5 +100,20 @@ public class AmazonS3Client {
 
     public void setEndpointUrl(String endpointUrl) {
         this.endpointUrl = endpointUrl;
+    }
+
+    public void deleteFileFromLocal(Attachment attachment){
+        String name = attachment.getUrl().substring(attachment.getUrl().lastIndexOf("/") + 1);
+        String path = new String();
+        try {
+            path = ResourceUtils.getURL("classpath:").getPath();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        File file = new File(path+name);
+        if(file.exists()){
+            System.out.println(file);
+            file.delete();
+        }
     }
 }
