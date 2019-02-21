@@ -14,5 +14,9 @@ public interface AttachmentRepository extends CrudRepository<Attachment,Integer>
     Attachment findByUrl(String url);
 
     Attachment findById(String id);
+
+    Attachment save(Attachment attachment);
+
+    void deleteById(String id);
 //   // Note findByUserandNoteId(User user, String noteId);
 }

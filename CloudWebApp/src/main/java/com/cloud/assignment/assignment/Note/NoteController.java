@@ -1,6 +1,7 @@
 package com.cloud.assignment.assignment.Note;
 //
 
+import com.cloud.assignment.assignment.AmazonS3_dev.AmazonS3Client;
 import com.cloud.assignment.assignment.Attachment.Attachment;
 import com.cloud.assignment.assignment.Attachment.AttachmentRepository;
 import com.cloud.assignment.assignment.webSource.User;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,6 +38,9 @@ public class NoteController {
 
     @Autowired
     Authorization authorization = new Authorization();
+
+    @Autowired
+    private AmazonS3Client amazonClient;
 
 
 
@@ -229,6 +234,10 @@ public class NoteController {
 
     }
 
+
+
+    @Transactional
+
     @RequestMapping (value="/note/{id}",method=RequestMethod.DELETE)
     public @ResponseBody
     String deleteNote(@PathVariable("id") String id, HttpServletResponse response,
@@ -367,11 +376,23 @@ public class NoteController {
                 for (Note note : noteList) {
 
 
-                    String filename = file.getOriginalFilename();
-                    String filegetUrl = ServletUriComponentsBuilder.fromCurrentContextPath().path(filename).toUriString();
+//                    String filename = file.getOriginalFilename();
+//                    String filegetUrl = ServletUriComponentsBuilder.fromCurrentContextPath().path(filename).toUriString();
+                    String filegetUrl  = new String();
+
 
 
                     if (note.getNoteId().equals(idNotes)) {
+
+
+                        if (amazonClient.getEndpointUrl().equals("\"\"")) {
+                            String filename = new Date().getTime()+"-"+file.getOriginalFilename();
+                            filegetUrl  = ServletUriComponentsBuilder.fromCurrentContextPath().path(filename).toUriString();
+                        }
+
+                        else{
+                            filegetUrl = amazonClient.uploadFile(file);
+                        }
 
                         //attachment = note.addAttachment();
                         Attachment attachment1 = attachmentRepository.findByUrl(filegetUrl);
@@ -419,7 +440,6 @@ public class NoteController {
 
 
     @RequestMapping(value="/note/{idNotes}/attachments/{idAttachments}",method=RequestMethod.PUT)
-
     public String updateAttachment(@RequestParam(value = "file",required = false) MultipartFile file,Attachment attachment, @PathVariable("idNotes") String idNotes,@PathVariable("idAttachments") String idAttachments, HttpServletResponse response,@RequestHeader String Authorization) {
 
         User user = authorization.authorizeUser(Authorization);
@@ -450,12 +470,31 @@ public class NoteController {
                                 return "{\n \"description\":\"Attachment Not Found\" \n}";
                             } else {
 
-                                String filename = file.getOriginalFilename();
-                                String filegetUrl = ServletUriComponentsBuilder.fromCurrentContextPath().path(filename).toUriString();
+//                                String filename = file.getOriginalFilename();
+//                                String filegetUrl = ServletUriComponentsBuilder.fromCurrentContextPath().path(filename).toUriString();
+
+                                String filegetUrl  = new String();
+
+
+                                if (amazonClient.getEndpointUrl().equals("\"\"")) {
+                                    String filename = new Date().getTime()+"-"+file.getOriginalFilename();
+                                    filegetUrl = ServletUriComponentsBuilder.fromCurrentContextPath().path(filename).toUriString();
+                                }
+
+
+                                else{
+                                    String url = attachment.getUrl();
+                                    amazonClient.deleteFileFromS3Bucket(url);
+                                    filegetUrl = amazonClient.uploadFile(file);
+                                }
+
+
                                 attachment = attachmentRepository.findById(idAttachments);
                                 Attachment attachment1 = attachmentRepository.findByUrl(filegetUrl);
 
-                                if((attachment1!=null && attachment1.getId().equals(idAttachments))|| attachment1==null)
+                                //if((attachment1!=null && attachment1.getId().equals(idAttachments))|| attachment1==null)
+
+                                if(attachment.getId().equals(idAttachments))
                                 {
 
                                     attachment.setUrl(filegetUrl);
@@ -465,6 +504,16 @@ public class NoteController {
                                     return null;
 
                                 }
+
+//                                if() {
+//                                    attachment.setUrl(filegetUrl);
+//
+//                                    attachmentRepository.save(attachment);
+//
+//                                    response.setStatus(204);
+//                                    return null;
+//                                }
+
 
                                 else {
 
@@ -487,6 +536,7 @@ public class NoteController {
     }
 
 
+    @Transactional
 
     @RequestMapping (value="/note/{idNotes}/attachments/{idAttachments}",method=RequestMethod.DELETE)
     public String deleteAttachment(@PathVariable("idNotes") String idNotes, @PathVariable("idAttachments") String idAttachments,HttpServletResponse response,
@@ -526,6 +576,16 @@ public class NoteController {
 
                                     if(attcahmentList.get(i).getId().equals(idAttachments))
                                     {
+
+
+                                        if (amazonClient.getEndpointUrl().equals("\"\"")){
+
+                                        }
+                                        else{
+                                            amazonClient.deleteFileFromS3Bucket(attcahmentList.get(i).getUrl());
+                                        }
+
+
                                         attachmentRepository.delete(attcahmentList.get(i));
                                         response.setStatus(204);
                                         return null;
