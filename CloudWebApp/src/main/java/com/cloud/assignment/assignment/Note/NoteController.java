@@ -275,8 +275,7 @@ public class NoteController {
 
                         if(id.equals(list.get(i).getNoteId())){
 
-
-
+                            note2 = list.get(i);
 
                             //List<Attachment> attachlist = optionalNote.get().getAttachments();
 

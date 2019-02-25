@@ -4,7 +4,6 @@ package com.cloud.assignment.assignment.AmazonS3_dev;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.cloud.assignment.assignment.Attachment.Attachment;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -24,6 +23,7 @@ import java.util.Date;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.cloud.assignment.assignment.Attachment.Attachment;
 
 
 import com.amazonaws.AmazonServiceException;
