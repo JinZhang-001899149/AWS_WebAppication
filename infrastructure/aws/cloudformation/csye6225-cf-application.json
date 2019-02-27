@@ -1,0 +1,440 @@
+{
+	"AWSTemplateFormatVersion": "2010-09-09",
+	"Description": " AWS CloudFormation template to launch instance",
+	"Parameters": {
+		"AMI": {
+			"Type": "String"
+		},
+		"KeyName": {
+			"Description": "EC2 Key Pair for SSH Access",
+			"Type": "String",
+			"Default": "csye6225",
+			"MinLength": "1",
+			"MaxLength": "64",
+			"AllowedPattern": "[-_ a-zA-Z0-9]*",
+			"ConstraintDescription": "can contain only alphanumeric characters, spaces, dashes and underscores."
+		},
+		"InstanceType": {
+			"Description": "Instance1 EC2 instance type",
+			"Type": "String",
+			"Default": "t2.micro",
+			"AllowedValues": [
+				"t2.micro",
+				"m1.small",
+				"m1.medium",
+				"m1.large",
+				"m1.xlarge",
+				"m2.xlarge",
+				"m2.2xlarge",
+				"m2.4xlarge",
+				"m3.medium",
+				"m3.xlarge",
+				"c4.xlarge",
+				"c4.4xlarge",
+				"m3.2xlarge",
+				"c1.medium",
+				"c1.xlarge",
+				"cc1.4xlarge",
+				"c4.large",
+				"cc2.8xlarge",
+				"cg1.4xlarge"
+			],
+			"ConstraintDescription": "must be a valid EC2 instance type."
+		}
+	},
+	"Mappings": {
+		"AWSInstanceMapping": {
+			"t2.micro": {
+				"Arch": "64"
+			},
+			"t2.small": {
+				"Arch": "64"
+			},
+			"t2.medium": {
+				"Arch": "64"
+			},
+			"t2.large": {
+				"Arch": "64"
+			},
+			"m3.medium": {
+				"Arch": "64"
+			},
+			"m4.large": {
+				"Arch": "64"
+			},
+			"m4.xlarge": {
+				"Arch": "64"
+			},
+			"m4.2xlarge": {
+				"Arch": "64"
+			}
+		}
+	},
+	"Resources": {
+		"VPC": {
+			"Type": "AWS::EC2::VPC",
+			"Properties": {
+				"CidrBlock": "10.0.0.0/16",
+				"EnableDnsSupport": "true",
+				"EnableDnsHostnames": "true",
+				"Tags": [
+					{
+						"Key": "Application",
+						"Value": {
+							"Ref": "AWS::StackId"
+						}
+					},
+					{
+						"Key": "Name",
+						"Value": "Assignment4_VPC"
+					},
+					{
+						"Key": "Network",
+						"Value": "Public"
+					}
+				]
+			}
+		},
+		"InstanceSecurityGroup": {
+			"Type": "AWS::EC2::SecurityGroup",
+			"Properties": {
+				"GroupDescription": "Enable HTTP access",
+				"VpcId": {
+					"Ref": "VPC"
+				},
+				"SecurityGroupIngress": [
+					{
+						"IpProtocol": "tcp",
+						"FromPort": "22",
+						"ToPort": "22",
+						"CidrIp": "0.0.0.0/0"
+					},
+					{
+						"IpProtocol": "tcp",
+						"FromPort": "80",
+						"ToPort": "80",
+						"CidrIp": "0.0.0.0/0"
+					},
+					{
+						"IpProtocol": "tcp",
+						"FromPort": "443",
+						"ToPort": "443",
+						"CidrIp": "0.0.0.0/0"
+					}
+				],
+				"Tags": [
+					{
+						"Key": "Name",
+						"Value": "Assignment_4_EC2_SG"
+					}
+				]
+			}
+		},
+		"DBTable": {
+			"Type": "AWS::DynamoDB::Table",
+			"Properties": {
+				"AttributeDefinitions": [
+					{
+						"AttributeName": "id",
+						"AttributeType": "S"
+					}
+				],
+				"KeySchema": [
+					{
+						"AttributeName": "id",
+						"KeyType": "HASH"
+					}
+				],
+				"TableName": "csye6225",
+				"ProvisionedThroughput" : {
+					"ReadCapacityUnits" : "5",
+					"WriteCapacityUnits" : "5"
+				}
+			}
+		},
+		"WebServerSecurityGroupDB": {
+			"Type": "AWS::EC2::SecurityGroup",
+			"Properties": {
+				"VpcId": {
+					"Ref": "VPC"
+				},
+				"GroupDescription": "Enable MYSQL access via port 3306",
+				"SecurityGroupIngress": [
+					{
+						"IpProtocol": "tcp",
+						"FromPort": "3306",
+						"ToPort": "3306",
+						"CidrIp": "0.0.0.0/0"
+					}
+				]
+			}
+		},
+		"PublicSubnet": {
+			"Type": "AWS::EC2::Subnet",
+			"Properties": {
+				"VpcId": {
+					"Ref": "VPC"
+				},
+				"CidrBlock": "10.0.1.0/24",
+				"AvailabilityZone": "us-east-1a",
+				"Tags": [
+					{
+						"Key": "Application",
+						"Value": {
+							"Ref": "AWS::StackId"
+						}
+					},
+					{
+						"Key": "Network",
+						"Value": "Public"
+					},
+					{
+						"Key": "Name",
+						"Value": "Assignment4_Subnet1"
+					}
+				]
+			}
+		},
+		"PublicSubnet2": {
+			"Type": "AWS::EC2::Subnet",
+			"Properties": {
+				"VpcId": {
+					"Ref": "VPC"
+				},
+				"CidrBlock": "10.0.2.0/24",
+				"AvailabilityZone": "us-east-1b",
+				"Tags": [
+					{
+						"Key": "Application",
+						"Value": {
+							"Ref": "AWS::StackId"
+						}
+					},
+					{
+						"Key": "Network",
+						"Value": "Public2"
+					},
+					{
+						"Key": "Name",
+						"Value": "Assignment4_Subnet2"
+					}
+				]
+			}
+		},
+
+		"PublicSubnet3": {
+			"Type": "AWS::EC2::Subnet",
+			"Properties": {
+				"VpcId": {
+					"Ref": "VPC"
+				},
+				"CidrBlock": "10.0.3.0/24",
+				"AvailabilityZone": "us-east-1b",
+				"Tags": [
+					{
+						"Key": "Application",
+						"Value": {
+							"Ref": "AWS::StackId"
+						}
+					},
+					{
+						"Key": "Network",
+						"Value": "Public2"
+					},
+					{
+						"Key": "Name",
+						"Value": "Assignment4_Subnet3"
+					}
+				]
+			}
+		},
+
+		"InternetGateway": {
+			"Type": "AWS::EC2::InternetGateway",
+			"Properties": {
+				"Tags": [
+					{
+						"Key": "Application",
+						"Value": {
+							"Ref": "AWS::StackId"
+						}
+					},
+					{
+						"Key": "Network",
+						"Value": "Public"
+					},
+					{
+						"Key": "Name",
+						"Value": "Assignment4_Internetgateway"
+					}
+				]
+			}
+		},
+		"AttachGateway": {
+			"Type": "AWS::EC2::VPCGatewayAttachment",
+			"Properties": {
+				"VpcId": {
+					"Ref": "VPC"
+				},
+				"InternetGatewayId": {
+					"Ref": "InternetGateway"
+				}
+			}
+		},
+		"PublicRouteTable": {
+			"Type": "AWS::EC2::RouteTable",
+			"Properties": {
+				"VpcId": {
+					"Ref": "VPC"
+				},
+				"Tags": [
+					{
+						"Key": "Application",
+						"Value": {
+							"Ref": "AWS::StackId"
+						}
+					},
+					{
+						"Key": "Network",
+						"Value": "Public"
+					},
+					{
+						"Key": "Name",
+						"Value": "Assignment4_Routetable"
+					}
+				]
+			}
+		},
+		"PublicRoute": {
+			"Type": "AWS::EC2::Route",
+			"DependsOn": "AttachGateway",
+			"Properties": {
+				"RouteTableId": {
+					"Ref": "PublicRouteTable"
+				},
+				"DestinationCidrBlock": "0.0.0.0/0",
+				"GatewayId": {
+					"Ref": "InternetGateway"
+				}
+			}
+		},
+		"PublicSubnetRouteTableAssociation": {
+			"Type": "AWS::EC2::SubnetRouteTableAssociation",
+			"Properties": {
+				"SubnetId": {
+					"Ref": "PublicSubnet"
+				},
+				"RouteTableId": {
+					"Ref": "PublicRouteTable"
+				}
+			}
+		},
+		"PublicSubnetRouteTableAssociation2": {
+			"Type": "AWS::EC2::SubnetRouteTableAssociation",
+			"Properties": {
+				"SubnetId": {
+					"Ref": "PublicSubnet2"
+				},
+				"RouteTableId": {
+					"Ref": "PublicRouteTable"
+				}
+			}
+		},
+		"PublicSubnetRouteTableAssociation3": {
+			"Type": "AWS::EC2::SubnetRouteTableAssociation",
+			"Properties": {
+				"SubnetId": {
+					"Ref": "PublicSubnet3"
+				},
+				"RouteTableId": {
+					"Ref": "PublicRouteTable"
+				}
+			}
+		},
+		"myDBSubnetGroup" : {
+			"Type" : "AWS::RDS::DBSubnetGroup",
+			"Properties" : {
+				"DBSubnetGroupDescription" : "description",
+				"SubnetIds" : [ {
+					"Ref": "PublicSubnet"
+				},{
+					"Ref": "PublicSubnet2"
+				} ],
+				"Tags" : [ {"Key" : "Name", "Value" : "DBSubnetGroup"} ]
+			}
+		},
+		"DBInstance": {
+			"Type": "AWS::RDS::DBInstance",
+			"Properties": {
+				"DBName": "csye6225",
+				"DBInstanceClass": "db.t2.medium",
+				"DBInstanceIdentifier": "csye6225-spring2019",
+				"MultiAZ": "false",
+				"DBSubnetGroupName": {
+					"Ref": "myDBSubnetGroup"
+				},
+				"VPCSecurityGroups": [
+					{
+						"Ref": "WebServerSecurityGroupDB"
+					}
+				],
+				"AllocatedStorage" : "5",
+				"Engine": "MySQL",
+				"MasterUsername": "csye6225master",
+				"MasterUserPassword": "csye6225password",
+				"PubliclyAccessible": "true",
+				"Tags": [
+					{
+						"Key": "Name",
+						"Value": "My SQL Database"
+					}
+				]
+			}
+		},
+		"Instance": {
+			"Type": "AWS::EC2::Instance",
+			"Properties": {
+				"KeyName": {
+					"Ref": "KeyName"
+				},
+				"InstanceType": {
+					"Ref": "InstanceType"
+				},
+				"ImageId":  {
+					"Ref": "AMI"
+				},
+				"BlockDeviceMappings": [
+					{
+						"DeviceName": "/dev/sdm",
+						"Ebs": {
+							"VolumeType": "gp2",
+							"DeleteOnTermination": "true",
+							"VolumeSize": "20"
+						}
+					}
+				],
+				"NetworkInterfaces": [
+					{
+						"DeviceIndex": "0",
+						"AssociatePublicIpAddress": "true",
+						"DeleteOnTermination": "true",
+						"SubnetId": {
+							"Ref": "PublicSubnet"
+						},
+						"GroupSet": [
+							{
+								"Ref": "InstanceSecurityGroup"
+							}
+						]
+					}
+				],
+				"Tags": [
+					{
+						"Key": "Name",
+						"Value": "Assignment4_Instance"
+					}
+				]
+			}
+		}
+	}
+}

@@ -264,7 +264,8 @@ public class NoteController {
                 return "{\n \"description\":\"Not Found\" \n}";
             } else {
                 //for (Note note : list) {
-                Note note2 = new Note();
+                //Note note2 = new Note();
+               Note note2 =noteRepository.findByNoteId(id);
 
                 for(int i = 0; i <list.size(); i++)
                     {
