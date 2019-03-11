@@ -125,7 +125,179 @@
 					"Ref": "DBSubnetGroup"
 				}
 			}
+		},
+
+
+		"CodeDeployEC2ServiceRole": {
+			"Type": "AWS::IAM::Role",
+			"Properties": {
+				"RoleName": "CodeDeployEC2ServiceRole",
+				"AssumeRolePolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Principal": {
+								"Service": [
+									"ec2.amazonaws.com"
+								]
+							},
+							"Action": [
+								"sts:AssumeRole"
+							]
+						}
+					]
+				}
+			}
+		},
+
+
+		"CodeDeployServiceRole": {
+			"Type": "AWS::IAM::Role",
+			"Properties": {
+				"RoleName": "CodeDeployServiceRole",
+				"AssumeRolePolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Principal": {
+								"Service": [
+									"codedeploy.amazonaws.com"
+								]
+							},
+							"Action": [
+								"sts:AssumeRole"
+							]
+						}
+					]
+				},
+				"ManagedPolicyArns": [
+					"arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
+				]
+			}
+		},
+		"circleciec2ami": {
+			"Type": "AWS::IAM::Policy",
+			"Properties": {
+				"PolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Action": [
+								"s3:Get*",
+								"s3:List*"
+							],
+							"Effect": "Allow",
+							"Resource": "*"
+						}
+					]
+				},
+				"PolicyName": "circleci-ec2-ami",
+				"Users":[
+					{
+						"Ref": "circleci"
+					}
+				]
+			}
+		},
+		"CodeDeployEC2S3Policy": {
+			"Type": "AWS::IAM::Policy",
+			"Properties": {
+				"PolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Action": [
+								"s3:Get*",
+								"s3:List*"
+							],
+							"Effect": "Allow",
+							"Resource": "arn:aws:s3:::code-deploy.csye6225-spring2019-zhangchi8.me"
+						}
+					]
+				},
+				"PolicyName": "CodeDeploy-EC2-S3Policy",
+				"Roles":[
+					{
+						"Ref":"CodeDeployEC2ServiceRole"
+					}
+				]
+			}
+		},
+		"CircleCIUploadToS3": {
+			"Type": "AWS::IAM::Policy",
+			"Properties": {
+				"PolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Action": [
+								"s3:PutObject"
+							],
+							"Resource": [
+								"arn:aws:s3:::code-deploy.csye6225-spring2019-zhangchi8.me"
+							]
+						}
+					]
+				},
+				"PolicyName": "CircleCI-Upload-To-S3",
+				"Users":[
+					{
+						"Ref": "circleci"
+					}
+				]
+			}
+		},
+		"CirlceCICodeDeploy": {
+			"Type": "AWS::IAM::Policy",
+			"Properties": {
+				"PolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Action": [
+								"codedeploy:RegisterApplicationRevision",
+								"codedeploy:GetApplicationRevision"
+							],
+							"Resource": [
+								"arn:aws:codedeploy:us-east-1:846529429189:application:CODE_DEPLOY_APPLICATION_NAME"
+							]
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
+								"codedeploy:CreateDeployment",
+								"codedeploy:GetDeployment"
+							],
+							"Resource": [
+								"*"
+							]
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
+								"codedeploy:GetDeploymentConfig"
+							],
+							"Resource": [
+								"arn:aws:codedeploy:us-east-1:846529429189:deploymentconfig:CodeDeployDefault.OneAtATime",
+								"arn:aws:codedeploy:us-east-1:846529429189:deploymentconfig:CodeDeployDefault.HalfAtATime",
+								"arn:aws:codedeploy:us-east-1:846529429189:deploymentconfig:CodeDeployDefault.AllAtOnce"
+							]
+						}
+					]
+				},
+				"PolicyName": "CirlceCI-Code-Deploy",
+				"Users": [
+					{
+						"Ref": "circleci"
+					}
+				]
+			}
 		}
+
 	},
 	"Parameters": {
 		"vpcId": {
@@ -141,6 +313,9 @@
 			"Type": "String"
 		},
 		"publicsubnet3": {
+			"Type": "String"
+		},
+		"circleci": {
 			"Type": "String"
 		}
 	}
