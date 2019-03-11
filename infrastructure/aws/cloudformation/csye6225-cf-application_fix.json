@@ -213,7 +213,7 @@
 								"s3:List*"
 							],
 							"Effect": "Allow",
-							"Resource": "arn:aws:s3:::code-deploy.csye6225-spring2019-zhangchi8.me"
+							"Resource": "arn:aws:s3:::code-deploy.csye6225-spring2019-zhangjin.me"
 						}
 					]
 				},
@@ -237,7 +237,7 @@
 								"s3:PutObject"
 							],
 							"Resource": [
-								"arn:aws:s3:::code-deploy.csye6225-spring2019-zhangchi8.me"
+								"arn:aws:s3:::code-deploy.csye6225-spring2019-zhangjin.me"
 							]
 						}
 					]
@@ -263,7 +263,7 @@
 								"codedeploy:GetApplicationRevision"
 							],
 							"Resource": [
-								"arn:aws:codedeploy:us-east-1:846529429189:application:CODE_DEPLOY_APPLICATION_NAME"
+								"arn:aws:codedeploy:us-east-1:163452949048:application:CODE_DEPLOY_APPLICATION_NAME"
 							]
 						},
 						{
@@ -282,9 +282,9 @@
 								"codedeploy:GetDeploymentConfig"
 							],
 							"Resource": [
-								"arn:aws:codedeploy:us-east-1:846529429189:deploymentconfig:CodeDeployDefault.OneAtATime",
-								"arn:aws:codedeploy:us-east-1:846529429189:deploymentconfig:CodeDeployDefault.HalfAtATime",
-								"arn:aws:codedeploy:us-east-1:846529429189:deploymentconfig:CodeDeployDefault.AllAtOnce"
+								"arn:aws:codedeploy:us-east-1:163452949048:deploymentconfig:CodeDeployDefault.OneAtATime",
+								"arn:aws:codedeploy:us-east-1:163452949048:deploymentconfig:CodeDeployDefault.HalfAtATime",
+								"arn:aws:codedeploy:us-east-1:163452949048:deploymentconfig:CodeDeployDefault.AllAtOnce"
 							]
 						}
 					]
