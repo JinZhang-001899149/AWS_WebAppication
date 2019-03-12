@@ -31,10 +31,20 @@ PublicSubnet3=`aws ec2 describe-subnets --filters Name=vpc-id,Values="${vpcid}" 
 echo $PublicSubnet3
 
 
+User=`aws iam get-user --user-name circleci --query User.UserId --output text`
+echo $User
 
+UserName="circleci"
+echo $UserName
 
+<<<<<<< HEAD
 aws cloudformation create-stack --stack-name ${stackname} --template-body file://./csye6225-cf-application_fix.json --parameters ParameterKey=vpcId,ParameterValue=$vpcid ParameterKey=ImageId,ParameterValue=$ami ParameterKey=publicsubnet1,ParameterValue=$PublicSubnet1 ParameterKey=publicsubnet2,ParameterValue=$PublicSubnet2 ParameterKey=publicsubnet3,ParameterValue=$PublicSubnet3
 >>>>>>> 75e71635868caa4326b644de4cdb9553d36804d9
+=======
+
+
+aws cloudformation create-stack --stack-name ${stackname} --template-body file://./csye6225-cf-application_fix.json --parameters ParameterKey=vpcId,ParameterValue=$vpcid ParameterKey=ImageId,ParameterValue=$ami ParameterKey=publicsubnet1,ParameterValue=$PublicSubnet1 ParameterKey=publicsubnet2,ParameterValue=$PublicSubnet2 ParameterKey=publicsubnet3,ParameterValue=$PublicSubnet3 ParameterKey=circleci,ParameterValue=$UserName
+>>>>>>> c752b396672d128861aa136590d3c215b14d52d5
 
 echo "Creating! Please wait until done"
 

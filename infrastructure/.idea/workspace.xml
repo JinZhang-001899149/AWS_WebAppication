@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb1a4c4a-2192-4e70-b702-d777256f0448" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/aws/cloudformation/csye6225-cf-application_fix.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-application-stack.sh" beforeDir="false" afterPath="$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-application-stack.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-stack.sh" beforeDir="false" afterPath="$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-stack.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-terminate-stack.sh" beforeDir="false" afterPath="$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-terminate-stack.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/cloudformation/csye6225-cf-networking.json" beforeDir="false" afterPath="$PROJECT_DIR$/aws/cloudformation/csye6225-cf-networking.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws/cloudformation/csye6225-cf-application_fix.json" beforeDir="false" afterPath="$PROJECT_DIR$/aws/cloudformation/csye6225-cf-application_fix.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +20,7 @@
         <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-terminate-application-stack.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
@@ -59,8 +55,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-application-stack.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="837">
-              <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+            <state relative-caret-position="549">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
             </state>
           </provider>
         </entry>
@@ -68,8 +64,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-cf-application_fix.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="974">
-              <caret line="133" column="21" lean-forward="true" selection-start-line="133" selection-start-column="21" selection-end-line="133" selection-end-column="21" />
+            <state relative-caret-position="830">
+              <caret line="290" column="18" lean-forward="true" selection-start-line="290" selection-start-column="18" selection-end-line="290" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -166,6 +162,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -203,18 +200,19 @@
       <workItem from="1550945991795" duration="4239000" />
       <workItem from="1550959624253" duration="157000" />
       <workItem from="1551812821794" duration="223000" />
-      <workItem from="1551813663545" duration="1594000" />
+      <workItem from="1551813663545" duration="3459000" />
+      <workItem from="1552314859697" duration="1137000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7133000" />
+    <option name="totallyTimeSpent" value="10135000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26547685" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26938093" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -250,10 +248,17 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-cf-application .json" />
-    <entry file="file://$PROJECT_DIR$/aws/scripts/csye6225-aws-networking-setup.sh">
+    <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-terminate-application-stack.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        <state relative-caret-position="360">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-terminate-stack.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -271,24 +276,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-terminate-stack.sh">
+    <entry file="file://$PROJECT_DIR$/aws/scripts/csye6225-aws-networking-setup.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-terminate-application-stack.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-application-stack.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="837">
-          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+        <state relative-caret-position="96">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -299,10 +290,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-application-stack.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="549">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-cf-application_fix.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="974">
-          <caret line="133" column="21" lean-forward="true" selection-start-line="133" selection-start-column="21" selection-end-line="133" selection-end-column="21" />
+        <state relative-caret-position="830">
+          <caret line="290" column="18" lean-forward="true" selection-start-line="290" selection-start-column="18" selection-end-line="290" selection-end-column="18" />
         </state>
       </provider>
     </entry>
