@@ -278,6 +278,7 @@ public class NoteController {
 
 
 
+                            note2 = list.get(i);
 
                             //List<Attachment> attachlist = optionalNote.get().getAttachments();
 
