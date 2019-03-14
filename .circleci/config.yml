@@ -49,4 +49,5 @@ jobs:
       - run:
           name: Make CodeDeploy API call
           command: |
+            aws deploy create-deployment --application-name csye6225-webapp --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name csye6225-webapp-deployment --description "csye6225-webapp create" --s3-location bucket=code-deploy.${s3Name}.me,bundleType=zip,key=csye6225-web-app-${CIRCLE_BUILD_NUM}.zip
             echo "Hello CodeDeploy" 
