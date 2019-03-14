@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="2b4d0dd1-6edd-47c5-9ee4-83e49c9df6ca" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/csye6225-spring2019.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csye6225-spring2019.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
@@ -12,12 +13,23 @@
       <change beforePath="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-application .json" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
+=======
+    <list default="true" id="fd5f5948-f317-4521-acb3-289d42f484ed" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/infrastructure/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-aws-cf-create-application-stack.sh" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-aws-cf-create-application-stack.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-aws-cf-create-stack.sh" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-aws-cf-create-stack.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-aws-cf-terminate-application-stack.sh" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-aws-cf-terminate-application-stack.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-application .json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/aws/scripts/.json" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/aws/scripts/.json" afterDir="false" />
+    </list>
+>>>>>>> 52527eb198cebb4aa26ef5d630511806f984450c
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
     <option name="GROUP_DATA_SOURCES" value="true" />
@@ -80,6 +92,13 @@
               <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
             </state>
           </provider>
+=======
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CloudWebApp/src/main/resources/application-dev.properties">
+          <provider selected="true" editor-type-id="text-editor" />
+>>>>>>> 52527eb198cebb4aa26ef5d630511806f984450c
         </entry>
       </file>
     </leaf>
@@ -87,6 +106,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -131,14 +151,24 @@
     <option name="y" value="74" />
     <option name="width" value="600" />
     <option name="height" value="429" />
+=======
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-1" />
+    <option name="y" value="27" />
+    <option name="width" value="1021" />
+    <option name="height" value="700" />
+>>>>>>> 52527eb198cebb4aa26ef5d630511806f984450c
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="PackagesPane" />
       <pane id="Scope" />
+=======
+>>>>>>> 52527eb198cebb4aa26ef5d630511806f984450c
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -225,7 +255,11 @@
               <item name="cloud" type="462c0819:PsiDirectoryNode" />
               <item name="assignment" type="462c0819:PsiDirectoryNode" />
               <item name="assignment" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="Note" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="AmazonS3_dev" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 52527eb198cebb4aa26ef5d630511806f984450c
             </path>
             <path>
               <item name="csye6225-spring2019" type="b2602c69:ProjectViewProjectNode" />
@@ -233,6 +267,7 @@
               <item name="CloudWebApp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -252,27 +287,55 @@
               <item name="infrastructure" type="462c0819:PsiDirectoryNode" />
               <item name="aws" type="462c0819:PsiDirectoryNode" />
               <item name="applicationstack" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="assignment" type="462c0819:PsiDirectoryNode" />
+              <item name="assignment" type="462c0819:PsiDirectoryNode" />
+              <item name="Attachment" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 52527eb198cebb4aa26ef5d630511806f984450c
             </path>
             <path>
               <item name="csye6225-spring2019" type="b2602c69:ProjectViewProjectNode" />
               <item name="csye6225-spring2019" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="infrastructure" type="462c0819:PsiDirectoryNode" />
               <item name="aws" type="462c0819:PsiDirectoryNode" />
               <item name="cloudformation" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="CloudWebApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="assignment" type="462c0819:PsiDirectoryNode" />
+              <item name="assignment" type="462c0819:PsiDirectoryNode" />
+              <item name="Note" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 52527eb198cebb4aa26ef5d630511806f984450c
             </path>
             <path>
               <item name="csye6225-spring2019" type="b2602c69:ProjectViewProjectNode" />
               <item name="csye6225-spring2019" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="csye6225-spring2019" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+=======
+              <item name="CloudWebApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 52527eb198cebb4aa26ef5d630511806f984450c
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -291,6 +354,16 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/infrastructure/aws/applicationstack" />
     </key>
+=======
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+>>>>>>> 52527eb198cebb4aa26ef5d630511806f984450c
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -304,6 +377,7 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="RunManager">
     <configuration name="csye6225-spring2019 [-Dspring.profiles.active=dev]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
       <MavenSettings>
@@ -331,11 +405,14 @@
       <method v="2" />
     </configuration>
   </component>
+=======
+>>>>>>> 52527eb198cebb4aa26ef5d630511806f984450c
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
       <changelist id="2b4d0dd1-6edd-47c5-9ee4-83e49c9df6ca" name="Default Changelist" comment="" />
       <created>1550776619916</created>
       <option name="number" value="Default" />
@@ -344,10 +421,19 @@
       <workItem from="1550776629718" duration="11780000" />
       <workItem from="1551123039858" duration="3835000" />
       <workItem from="1551127013686" duration="2461000" />
+=======
+      <changelist id="fd5f5948-f317-4521-acb3-289d42f484ed" name="Default Changelist" comment="" />
+      <created>1550951655526</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1550951655526</updated>
+      <workItem from="1550951657112" duration="168000" />
+>>>>>>> 52527eb198cebb4aa26ef5d630511806f984450c
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="6987000" />
   </component>
   <component name="TodoView" selected-index="3">
@@ -391,11 +477,49 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
+=======
+    <option name="totallyTimeSpent" value="168000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Learn" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24986057" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+>>>>>>> 52527eb198cebb4aa26ef5d630511806f984450c
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+<<<<<<< HEAD
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -603,4 +727,11 @@
   <component name="mavenExecuteGoalHistory">
     <option value="" />
   </component>
+=======
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CloudWebApp/src/main/resources/application-dev.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+  </component>
+>>>>>>> 52527eb198cebb4aa26ef5d630511806f984450c
 </project>

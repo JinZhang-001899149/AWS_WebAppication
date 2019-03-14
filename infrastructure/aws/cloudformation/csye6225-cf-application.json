@@ -1,6 +1,6 @@
 {
 	"AWSTemplateFormatVersion": "2010-09-09",
-	"Description": "TTND AWS CloudFormation template to launch first instance",
+	"Description": " AWS CloudFormation template to launch instance",
 	"Parameters": {
 		"AMI": {
 			"Type": "String"
