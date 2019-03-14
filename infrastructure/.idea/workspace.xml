@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bb1a4c4a-2192-4e70-b702-d777256f0448" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/cloudformation/README-cf.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-policy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/aws/cloudformation/csye6225-aws-cf-create-policy.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/cloudformation/csye6225-cf-application_fix.json" beforeDir="false" afterPath="$PROJECT_DIR$/aws/cloudformation/csye6225-cf-application_fix.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws/cloudformation/csye6225-cf-policy.json" beforeDir="false" afterPath="$PROJECT_DIR$/aws/cloudformation/csye6225-cf-policy.json" afterDir="false" />
-    </list>
+    <list default="true" id="bb1a4c4a-2192-4e70-b702-d777256f0448" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +89,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-cf-application_fix.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
+            <state relative-caret-position="2280">
               <caret line="164" column="17" selection-start-line="164" selection-start-column="17" selection-end-line="164" selection-end-column="17" />
             </state>
           </provider>
@@ -222,12 +216,12 @@
       <workItem from="1552525996375" duration="88000" />
       <workItem from="1552526639106" duration="2519000" />
       <workItem from="1552593279277" duration="829000" />
-      <workItem from="1552600538772" duration="2406000" />
+      <workItem from="1552600538772" duration="3124000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15977000" />
+    <option name="totallyTimeSpent" value="16695000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
@@ -364,7 +358,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/aws/cloudformation/csye6225-cf-application_fix.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
+        <state relative-caret-position="2280">
           <caret line="164" column="17" selection-start-line="164" selection-start-column="17" selection-end-line="164" selection-end-column="17" />
         </state>
       </provider>
