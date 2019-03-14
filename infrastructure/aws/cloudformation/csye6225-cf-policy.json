@@ -101,7 +101,7 @@
 				]
 			}
 		},
-                "CodeDeployEC2S3Policy": {
+	    "CodeDeployEC2S3Policy": {
 			"Type": "AWS::IAM::Policy",
 			"Properties": {
 				"PolicyDocument": {
@@ -129,7 +129,7 @@
 				]
 			}
 		},
-                "CircleCIUploadToS3": {
+	    "CircleCIUploadToS3": {
 			"Type": "AWS::IAM::Policy",
 			"Properties": {
 				"PolicyDocument": {
@@ -157,7 +157,7 @@
 				]
 			}
 		},
-                "CirlceCICodeDeploy": {
+	    "CirlceCICodeDeploy": {
 			"Type": "AWS::IAM::Policy",
 			"Properties": {
 				"PolicyDocument": {
@@ -175,7 +175,7 @@
 										"",
 										[
 											"arn:aws:codedeploy:",
-	{
+											{
 												"Ref": "AWS::Region"
 											},
 											":",
@@ -267,17 +267,12 @@
 		}
 
 	},
-      "Parameters": {
-		
+	"Parameters": {
 		"s3bucket" : {
 			"Type": "String"
 		},
 		"circleci": {
 			"Type": "String"
 		}
-	
-
-
-
   }
 }
