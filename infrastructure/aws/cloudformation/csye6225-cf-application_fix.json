@@ -214,6 +214,56 @@
 			}
 		}
 	},
+
+	"CodeDeployEC2ServiceRole": {
+		"Type": "AWS::IAM::Role",
+		"Properties": {
+			"RoleName": "CodeDeployEC2ServiceRole",
+			"AssumeRolePolicyDocument": {
+				"Version": "2012-10-17",
+				"Statement": [
+					{
+						"Effect": "Allow",
+						"Principal": {
+							"Service": [
+								"ec2.amazonaws.com"
+							]
+						},
+						"Action": [
+							"sts:AssumeRole"
+						]
+					}
+				]
+			}
+		}
+	},
+	"CodeDeployServiceRole": {
+		"Type": "AWS::IAM::Role",
+		"Properties": {
+			"RoleName": "CodeDeployServiceRole",
+			"AssumeRolePolicyDocument": {
+				"Version": "2012-10-17",
+				"Statement": [
+					{
+						"Effect": "Allow",
+						"Principal": {
+							"Service": [
+								"codedeploy.amazonaws.com"
+							]
+						},
+						"Action": [
+							"sts:AssumeRole"
+						]
+					}
+				]
+			},
+			"ManagedPolicyArns": [
+				"arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
+			]
+		}
+	},
+
+
 	"Parameters": {
 		"vpcId": {
 			"Type": "String"

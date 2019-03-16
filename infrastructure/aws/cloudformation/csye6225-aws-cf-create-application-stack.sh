@@ -37,8 +37,7 @@ echo $UserName
 
 
 
-aws cloudformation create-stack --stack-name ${stackname} --template-body file://./csye6225-cf-application_fix.json --parameters ParameterKey=vpcId,ParameterValue=$vpcid ParameterKey=ImageId,ParameterValue=$ami ParameterKey=publicsubnet1,ParameterValue=$PublicSubnet1 ParameterKey=publicsubnet2,ParameterValue=$PublicSubnet2 ParameterKey=publicsubnet3,ParameterValue=$PublicSubnet3 ParameterKey=circleci,ParameterValue=$UserName
-ParameterKey=s3bucket,ParameterValue=$s3
+aws cloudformation create-stack --stack-name ${stackname} --template-body file://./csye6225-cf-application_fix.json --parameters ParameterKey=vpcId,ParameterValue=$vpcid ParameterKey=ImageId,ParameterValue=$ami ParameterKey=publicsubnet1,ParameterValue=$PublicSubnet1 ParameterKey=publicsubnet2,ParameterValue=$PublicSubnet2 ParameterKey=publicsubnet3,ParameterValue=$PublicSubnet3 ParameterKey=circleci,ParameterValue=$UserName ParameterKey=s3bucket,ParameterValue=$s3
 
 echo "Creating! Please wait until done"
 
