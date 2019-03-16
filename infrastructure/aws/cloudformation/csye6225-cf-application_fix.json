@@ -283,5 +283,35 @@
 		"circleci": {
 			"Type": "String"
 		}
-	}
+	},
+        "CodeDeployApplication":{
+               "Type":"AWS::CodeDeploy::Application",
+               "Properties":{
+                 "ApplicationName":"csye6225-webapp",
+                 "ComputePlatform":""
+            }
+        },
+        "CodeDeploymentGroup":{
+            "Type":"AWS::CodeDeploy::DeploymentGroup",
+            "Properties":{
+                  "ApplicationName":{"Ref":"CodeDeployApplication"},
+                  "DeploymentGroupName":"csye6225-webapp-deployment",
+                  "ServiceRoleArn":{"Ref":"rolearn"},
+                  "DeploymentStyle":{"DeploymentOption":"WITHOUT_TRAFFIC_CONTROL",
+                                      "DeploymentType":"IN_PLACE"},
+                  "Ec2TagFilters":[{
+                        "Type":"KEY_AND_VALUE",
+                        "Key":"Group",
+                        "Value":"ec2-instances"
+               }],
+                  "DeploymentConfigName":"CodeDeployDefault.AllAtOnce",
+                  "AutoRollBackConfiguration":{
+                             "Enabled":"true",
+                             "Events":["DEPLOYMENT_FAILURE"]
+             }
+
+        }
+
+       }
+        
 }
