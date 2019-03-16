@@ -234,9 +234,17 @@
 						]
 					}
 				]
-			}
+	},
+	"ManagedPolicyArns": [
+	  "arn:aws:iam:aws:policy/service-role/AWSCodeDeployRole",
+		{"Fn::ImportValue": "CodeDeployEC2S3"},
+		{"Fn::ImportValue": "accessS3"}
+	  ]
 		}
 	},
+
+
+
 	"CodeDeployServiceRole": {
 		"Type": "AWS::IAM::Role",
 		"Properties": {
@@ -258,7 +266,8 @@
 				]
 			},
 			"ManagedPolicyArns": [
-				"arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
+				"arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole",
+				{"Fn::ImportValue": "CodeDeployEC2S3"}
 			]
 		}
 	},
