@@ -305,7 +305,7 @@
             "Properties":{
                   "ApplicationName":{"Ref":"CodeDeployApplication"},
                   "DeploymentGroupName":"csye6225-webapp-deployment",
-                  "ServiceRoleArn":{"Ref":"rolearn"},
+                  "ServiceRoleArn":{"Ref":"CodeDeployServiceRole"},
                   "DeploymentStyle":{"DeploymentOption":"WITHOUT_TRAFFIC_CONTROL",
                                       "DeploymentType":"IN_PLACE"},
                   "Ec2TagFilters":[{
