@@ -15,27 +15,7 @@
 				}]
 			}
 		},
-		"WebServerSecurityGroup": {
-			"Type": "AWS::EC2::SecurityGroup",
-			"Properties": {
-				"Tags": [{
-					"Key": "Web",
-					"Value": "web"
-				}],
-				"GroupName": "csye6225-webapp",
-				"GroupDescription": "Enable HTTP access via port 80, SSH access via port 22, HTTPS access via port 443",
-				"VpcId": {
-					"Ref": "csye6225VPC"
-				},
-				"SecurityGroupIngress": [{
-					"IpProtocol": "tcp",
-					"FromPort": "8080",
-					"ToPort": "8080",
-					"CidrIp": "0.0.0.0/0"
-				}]
-			}
-		},
-		
+
 
 		"PublicSubnet": {
 			"Type": "AWS::EC2::Subnet",
@@ -166,6 +146,15 @@
 			"Type": "String"
 		},
 		"routeTableName": {
+			"Type": "String"
+		},
+		"publicsubnet1": {
+			"Type": "String"
+		},
+		"publicsubnet2": {
+			"Type": "String"
+		},
+		"publicsubnet3": {
 			"Type": "String"
 		}
 	}

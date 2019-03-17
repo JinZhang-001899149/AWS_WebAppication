@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 
-echo "Enter The Stack Name:"
-read stackname
+stackname=$1
 
 echo "Terminating!  Please wait until done"
 
@@ -12,3 +11,4 @@ aws cloudformation wait stack-delete-complete --stack-name ${stackname}
 
 
 echo "Done"
+
