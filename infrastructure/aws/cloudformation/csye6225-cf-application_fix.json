@@ -4,275 +4,308 @@
 		"WebServerSecurityGroup": {
 			"Type": "AWS::EC2::SecurityGroup",
 			"Properties": {
-				"Tags": [{
-					"Key": "Web",
-					"Value": "web"
-				}],
+				"Tags": [
+					{
+						"Key": "Web",
+						"Value": "web"
+					}
+				],
 				"GroupName": "csye6225-webapp",
 				"GroupDescription": "Enable HTTP access via port 80, SSH access via port 22, HTTPS access via port 443",
 				"VpcId": {
 					"Ref": "vpcId"
 				},
-				"SecurityGroupIngress": [{
-					"IpProtocol": "tcp",
-					"FromPort": "22",
-					"ToPort": "22",
-					"CidrIp": "0.0.0.0/0"
-				},{
-					"IpProtocol": "tcp",
-					"FromPort": "80",
-					"ToPort": "80",
-					"CidrIp": "0.0.0.0/0"
-				},{
-					"IpProtocol": "tcp",
-					"FromPort": "443",
-					"ToPort": "443",
-					"CidrIp": "0.0.0.0/0"
-				}
+				"SecurityGroupIngress": [
+					{
+						"IpProtocol": "tcp",
+						"FromPort": "22",
+						"ToPort": "22",
+						"CidrIp": "0.0.0.0/0"
+					},
+					{
+						"IpProtocol": "tcp",
+						"FromPort": "80",
+						"ToPort": "80",
+						"CidrIp": "0.0.0.0/0"
+					},
+					{
+						"IpProtocol": "tcp",
+						"FromPort": "443",
+						"ToPort": "443",
+						"CidrIp": "0.0.0.0/0"
+					}
 				]
 			}
 		},
+
 		"DBSecurityGroup": {
 			"Type": "AWS::EC2::SecurityGroup",
 			"Properties": {
-				"VpcId" : {
-					"Ref" : "vpcId"
+				"VpcId": {
+					"Ref": "vpcId"
 				},
-				"Tags": [{
-					"Key": "dbs",
-					"Value": "dbs"
-				}],
-				"GroupDescription": "Enable HTTP access via port 3306 port 3306 for MySQL or whatever port only from the webapp security group.",
-				"SecurityGroupIngress": [{
-					"IpProtocol": "tcp",
-					"FromPort": "3306",
-					"ToPort": "3306",
-					"SourceSecurityGroupId": {
-						"Ref": "WebServerSecurityGroup"
+				"Tags": [
+					{
+						"Key": "dbs",
+						"Value": "dbs"
 					}
-				}]
+				],
+				"GroupDescription": "Enable HTTP access via port 3306 port 3306 for MySQL or whatever port only from the webapp security group.",
+				"SecurityGroupIngress": [
+					{
+						"IpProtocol": "tcp",
+						"FromPort": "3306",
+						"ToPort": "3306",
+						"SourceSecurityGroupId": {
+							"Ref": "WebServerSecurityGroup"
+						}
+					}
+				]
 			}
 		},
 
 		"EC2Instance": {
-			"Type" : "AWS::EC2::Instance",
-			"Properties" : {
-				"ImageId" : {"Ref" : "ImageId"},
-				"InstanceType" : "t2.micro",
+			"Type": "AWS::EC2::Instance",
+			"Properties": {
+				"ImageId": {
+					"Ref": "ImageId"
+				},
+				"InstanceType": "t2.micro",
 				"DisableApiTermination": "false",
-				"SecurityGroupIds": [{
-					"Ref" : "WebServerSecurityGroup"
-				}],
-				"SubnetId" : {"Ref": "publicsubnet1"},
-				"Tags": [{
-					"Key": "ec2",
-					"Value": "ec2"
-				}],
-				"BlockDeviceMappings": [{
-					"DeviceName" : "/dev/sdm",
-					"Ebs": {
-						"VolumeType": "gp2",
-						"VolumeSize": "20",
-						"DeleteOnTermination" : "true"
+				"KeyName": "csye6225",
+				"SecurityGroupIds": [
+					{
+						"Ref": "WebServerSecurityGroup"
 					}
-				}],
-
-
-				"UserData" : {
+				],
+				"SubnetId": {
+					"Ref": "publicsubnet1"
+				},
+				"Tags": [
+					{
+						"Key": "Group",
+						"Value": "ec2-instances"
+					}
+				],
+				"BlockDeviceMappings": [
+					{
+						"DeviceName": "/dev/sdm",
+						"Ebs": {
+							"VolumeType": "gp2",
+							"VolumeSize": "20",
+							"DeleteOnTermination": "true"
+						}
+					}
+				],
+				"IamInstanceProfile": {
+					"Ref": "AttachRoleInstanceProfile"
+				},
+				"UserData": {
 					"Fn::Base64": {
 						"Fn::Join": [
 							"",
 							[
-								"#!/bin/bash -xe \n",
-								"sudo apt-get update \n",
-								"sudo apt-get install default-jre -y \n",
-								"java -version \n",
-								"sudo apt-get install tomcat8 -y \n",
-								"sudo service tomcat8 restart \n",
-								"sudo apt-get update \n",
-								"sudo apt-get install ruby -y \n",
-								"sudo apt-get install wget -y \n",
-								"sudo apt-get install python -y \n",
-								"sudo apt-get update \n",
-								"sudo wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install \n",
-								"sudo chmod +x ./install \n",
-								"sudo ./install auto \n",
-								"sudo service codedeploy-agent start \n",
-								"sudo service codedeploy-agent status \n",
-								"echo '#!/bin/sh' >> /usr/share/tomcat8/bin/setenv.sh \n",
-								{
-									"Fn::Sub": "sudo echo \"JAVA_OPTS=\\\"\\$JAVA_OPTS -Dspring.profiles.active=aws\\\"\" >> /etc/default/tomcat  \n"
-								},
-								{
-									"Fn::Sub": "echo 'JAVA_OPTS=\"$JAVA_OPTS -Dspring.datasource.url=jdbc:mysql://${DBServer.Endpoint.Address}:3306/csye6225\"' >> /usr/share/tomcat8/bin/setenv.sh \n"
-								},
-								{
-									"Fn::Sub": "echo 'JAVA_OPTS=\"$JAVA_OPTS -Dspring.datasource.username=${DBUser}\"' >> /usr/share/tomcat8/bin/setenv.sh \n"
-								},
-								{
-									"Fn::Sub": "echo 'JAVA_OPTS=\"$JAVA_OPTS -Dspring.datasource.password=${DBPassword}\"' >> /usr/share/tomcat8/bin/setenv.sh \n"
-								},
-								{
-									"Fn::Sub": "echo 'JAVA_OPTS=\"$JAVA_OPTS -Dbucket.name=${S3BucketName}\"' >> /usr/share/tomcat8/bin/setenv.sh \n"
-								},
-								"chmod +x /usr/share/tomcat8/bin/setenv.sh\n",
-								"chown tomcat8:tomcat8 /usr/share/tomcat8/bin/setenv.sh\n",
-								"chmod 777 -R /tmp\n",
-								"chmod 777 /var/lib/tomcat8 \n",
-								"chmod 777 /var/lib/tomcat8/webapps\n",
-								"sudo service tomcat8 restart\n",
-								"sudo apt-get update\n",
-								"sudo touch /tmp/awslogs.conf\n",
-								"sudo echo '[general]' > /tmp/awslogs.conf\n",
-								"sudo echo 'state_file= /var/awslogs/agent-state' >> /tmp/awslogs.conf\n",
-								"sudo echo '[logstream1]' >> /tmp/awslogs.conf\n",
-								"sudo echo 'file = /var/log/tomcat8/csye6225-aws.log' >> /tmp/awslogs.conf\n",
-								"sudo echo 'log_group_name = csye6225-webapp' >> /tmp/awslogs.conf\n",
-								"sudo echo 'log_stream_name = csye6225-webapp' >> /tmp/awslogs.conf\n",
-								"sudo echo 'datetime_format = %d/%b/%Y:%H:%M:%S' >> /tmp/awslogs.conf\n",
-								"curl https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py -O\n",
+								"#!/bin/bash -v\n",
+								"sudo service codedeploy-agent start\n",
+								"sudo service codedeploy-agent status\n",
+								"cd /home/centos",
+								"sudo touch rdssetting.txt",
+								"sudo chmod 777 rdssetting.txt",
 								{
 									"Fn::Join": [
-										" ",
+										"",
 										[
-											"sudo python ./awslogs-agent-setup.py -n -r",
+											"echo \"RDS=\\\"",
 											{
-												"Ref": "AWS::Region"
+												"Fn::GetAtt": [
+													"DBInstance",
+													"Endpoint.Address"
+												]
 											},
-											"-c /tmp/awslogs.conf || error_exit 'Failed to run CloudWatch Logs agent setup'\n"
+											":3306/csye6225\\\"\" >> home/centos/rdssetting.txt \n"
 										]
 									]
 								},
-								"cd /etc/systemd/system\n",
-								"sudo touch awslogs.service\n",
-								"sudo echo '[Unit]' >> awslogs.service\n",
-								"sudo echo 'Description=Service for CloudWatch Logs agent' >> awslogs.service\n",
-								"sudo echo 'After=rc-local.service' >> awslogs.service\n",
-								"sudo echo '[Service]' >> awslogs.service\n",
-								"sudo echo 'Type=simple' >> awslogs.service\n",
-								"sudo echo 'Restart=always' >> awslogs.service\n",
-								"sudo echo 'KillMode=process' >> awslogs.service\n",
-								"sudo echo 'TimeoutSec=infinity' >> awslogs.service\n",
-								"sudo echo 'PIDFile=/var/awslogs/state/awslogs.pid' >> awslogs.service\n",
-								"sudo echo 'ExecStart=/var/awslogs/bin/awslogs-agent-launcher.sh --start --background --pidfile $PIDFILE --user awslogs --chuid awslogs &amp;' >> awslogs.service\n",
-								"sudo echo '[Install]' >> awslogs.service\n",
-								"sudo echo 'WantedBy=multi-user.target' >> awslogs.service\n",
-								"sudo systemctl start awslogs.service\n",
-								"sudo systemctl enable awslogs.service\n"
+								"sudo chmod +x setenv.sh\n",
+								"sudo chown tomcat:tomcat setenv.sh\n",
+								"sudo systemctl start tomcat\n",
+								"sudo /sbin/iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-potrt 8080\n",
+								"sudo /sbin/service iptables save\n",
+								"sudo systemctl restart tomcat"
 							]
 						]
 					}
 				}
+			}
+		},
+
+		"AttachRoleInstanceProfile": {
+			"Type": "AWS::IAM::InstanceProfile",
+			"Properties": {
+				"Path": "/",
+				"Roles": [
+					{
+						"Fn::ImportValue": "CodeDeployEC2ServiceRole"
+					}
+				]
 			}
 		},
 		"DynamoDBTable": {
 			"Type": "AWS::DynamoDB::Table",
 			"Properties": {
-				"AttributeDefinitions": [{
-					"AttributeName": "id",
-					"AttributeType": "S"
-				}],
-				"KeySchema": [{
-					"AttributeName": "id",
-					"KeyType": "HASH"
-				}],
-				"ProvisionedThroughput" : {
-					"ReadCapacityUnits" : "5",
-					"WriteCapacityUnits" : "5"
+				"AttributeDefinitions": [
+					{
+						"AttributeName": "id",
+						"AttributeType": "S"
+					}
+				],
+				"KeySchema": [
+					{
+						"AttributeName": "id",
+						"KeyType": "HASH"
+					}
+				],
+				"ProvisionedThroughput": {
+					"ReadCapacityUnits": "5",
+					"WriteCapacityUnits": "5"
 				},
 				"TableName": "csye6225"
 			}
 		},
-		"DBSubnetGroup":{
-			"Type" : "AWS::RDS::DBSubnetGroup",
-			"Properties" : {
-				"DBSubnetGroupDescription" : "Subnet for RDS instances",
-				"DBSubnetGroupName" : "SubnetGrouop",
-				"SubnetIds" : [{"Ref": "publicsubnet1"},
-					{"Ref": "publicsubnet2"}
+		"DBSubnetGroup": {
+			"Type": "AWS::RDS::DBSubnetGroup",
+			"Properties": {
+				"DBSubnetGroupDescription": "Subnet for RDS instances",
+				"DBSubnetGroupName": "SubnetGrouop",
+				"SubnetIds": [
+					{
+						"Ref": "publicsubnet1"
+					},
+					{
+						"Ref": "publicsubnet2"
+					}
 				]
 			}
 		},
-		"RDSInstance":{
-			"Type" : "AWS::RDS::DBInstance",
-			"Properties" :{
-				"AllocatedStorage" : "100",
+		"DBInstance": {
+			"Type": "AWS::RDS::DBInstance",
+			"Properties": {
+				"AllocatedStorage": "100",
 				"DBName": "csye6225",
-				"Engine" : "MySQL",
-				"DBInstanceClass" : "db.t2.medium",
-				"DBInstanceIdentifier" : "csye6225-spring2019",
-				"VPCSecurityGroups" : [{
-					"Ref" : "DBSecurityGroup"
-				}] ,
-				"MasterUsername" : "csye6225master",
-				"MasterUserPassword" : "csye6225password",
-				"MultiAZ" : "false",
-				"PubliclyAccessible" : "true",
-				"DBSubnetGroupName" : {
+				"Engine": "MySQL",
+				"DBInstanceClass": "db.t2.medium",
+				"DBInstanceIdentifier": "csye6225-spring2019",
+				"VPCSecurityGroups": [
+					{
+						"Ref": "DBSecurityGroup"
+					}
+				],
+				"MasterUsername": "csye6225master",
+				"MasterUserPassword": "csye6225password",
+				"MultiAZ": "false",
+				"PubliclyAccessible": "true",
+				"DBSubnetGroupName": {
 					"Ref": "DBSubnetGroup"
+				}
+			}
+		},
+		"CodeDeployEC2ServiceRole": {
+			"Type": "AWS::IAM::Role",
+			"Properties": {
+				"RoleName": "CodeDeployEC2ServiceRole",
+				"AssumeRolePolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Principal": {
+								"Service": [
+									"ec2.amazonaws.com"
+								]
+							},
+							"Action": [
+								"sts:AssumeRole"
+							]
+						}
+					]
+				},
+				"ManagedPolicyArns": [
+					"arn:aws:iam:aws:policy/service-role/AWSCodeDeployRole",
+					{
+						"Fn::ImportValue": "CodeDeployEC2S3"
+					},
+					{
+						"Fn::ImportValue": "accessS3"
+					}
+				]
+			}
+		},
+		"CodeDeployServiceRole": {
+			"Type": "AWS::IAM::Role",
+			"Properties": {
+				"RoleName": "CodeDeployServiceRole",
+				"AssumeRolePolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Principal": {
+								"Service": [
+									"codedeploy.amazonaws.com"
+								]
+							},
+							"Action": [
+								"sts:AssumeRole"
+							]
+						}
+					]
+				},
+				"ManagedPolicyArns": [
+					"arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole",
+					{
+						"Fn::ImportValue": "CodeDeployEC2S3"
+					}
+				]
+			}
+		},
+		"CodeDeployApplication": {
+			"Type": "AWS::CodeDeploy::Application",
+			"Properties": {
+				"ComputePlatform": "Server",
+				"ApplicationName": "csye6225-webapp"
+			}
+		},
+		"CodeDeploymentGroup": {
+			"Type": "AWS::CodeDeploy::DeploymentGroup",
+			"Properties": {
+				"ApplicationName": {
+					"Ref": "CodeDeployApplication"
+				},
+				"DeploymentGroupName": "csye6225-webapp-deployment",
+				"ServiceRoleArn": {
+					"Ref": "CodeDeployServiceRole"
+				},
+				"DeploymentStyle": {
+					"DeploymentOption": "WITHOUT_TRAFFIC_CONTROL",
+					"DeploymentType": "IN_PLACE"
+				},
+				"Ec2TagFilters": [
+					{
+						"Type": "KEY_AND_VALUE",
+						"Key": "Group",
+						"Value": "ec2-instances"
+					}
+				],
+				"DeploymentConfigName": "CodeDeployDefault.AllAtOnce",
+				"AutoRollbackConfiguration": {
+					"Enabled": "true",
+					"Events": [
+						"DEPLOYMENT_FAILURE"
+					]
 				}
 			}
 		}
 	},
-
-	"CodeDeployEC2ServiceRole": {
-		"Type": "AWS::IAM::Role",
-		"Properties": {
-			"RoleName": "CodeDeployEC2ServiceRole",
-			"AssumeRolePolicyDocument": {
-				"Version": "2012-10-17",
-				"Statement": [
-					{
-						"Effect": "Allow",
-						"Principal": {
-							"Service": [
-								"ec2.amazonaws.com"
-							]
-						},
-						"Action": [
-							"sts:AssumeRole"
-						]
-					}
-				]
-	},
-	"ManagedPolicyArns": [
-	  "arn:aws:iam:aws:policy/service-role/AWSCodeDeployRole",
-		{"Fn::ImportValue": "CodeDeployEC2S3"},
-		{"Fn::ImportValue": "accessS3"}
-	  ]
-		}
-	},
-
-
-
-	"CodeDeployServiceRole": {
-		"Type": "AWS::IAM::Role",
-		"Properties": {
-			"RoleName": "CodeDeployServiceRole",
-			"AssumeRolePolicyDocument": {
-				"Version": "2012-10-17",
-				"Statement": [
-					{
-						"Effect": "Allow",
-						"Principal": {
-							"Service": [
-								"codedeploy.amazonaws.com"
-							]
-						},
-						"Action": [
-							"sts:AssumeRole"
-						]
-					}
-				]
-			},
-			"ManagedPolicyArns": [
-				"arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole",
-				{"Fn::ImportValue": "CodeDeployEC2S3"}
-			]
-		}
-	},
-
-
 	"Parameters": {
 		"vpcId": {
 			"Type": "String"
@@ -292,35 +325,5 @@
 		"circleci": {
 			"Type": "String"
 		}
-	},
-        "CodeDeployApplication":{
-               "Type":"AWS::CodeDeploy::Application",
-               "Properties":{
-                 "ApplicationName":"csye6225-webapp",
-                 "ComputePlatform":""
-            }
-        },
-        "CodeDeploymentGroup":{
-            "Type":"AWS::CodeDeploy::DeploymentGroup",
-            "Properties":{
-                  "ApplicationName":{"Ref":"CodeDeployApplication"},
-                  "DeploymentGroupName":"csye6225-webapp-deployment",
-                  "ServiceRoleArn":{"Ref":"CodeDeployServiceRole"},
-                  "DeploymentStyle":{"DeploymentOption":"WITHOUT_TRAFFIC_CONTROL",
-                                      "DeploymentType":"IN_PLACE"},
-                  "Ec2TagFilters":[{
-                        "Type":"KEY_AND_VALUE",
-                        "Key":"Group",
-                        "Value":"ec2-instances"
-               }],
-                  "DeploymentConfigName":"CodeDeployDefault.AllAtOnce",
-                  "AutoRollBackConfiguration":{
-                             "Enabled":"true",
-                             "Events":["DEPLOYMENT_FAILURE"]
-             }
-
-        }
-
-       }
-        
+	}
 }
