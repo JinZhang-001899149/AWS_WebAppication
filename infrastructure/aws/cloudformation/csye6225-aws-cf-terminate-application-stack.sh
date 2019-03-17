@@ -12,4 +12,3 @@ aws cloudformation wait stack-delete-complete --stack-name ${stackname}
 
 echo "Done"
 
-
