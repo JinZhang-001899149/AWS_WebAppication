@@ -20,7 +20,6 @@ jobs:
           name: Scripts
           command: |
             cd csye_6225/csye6225-spring2019/CloudWebApp
-  5
             pwd
             ls -al
             mvn clean package -DskipTests=true
