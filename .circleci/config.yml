@@ -18,7 +18,7 @@ jobs:
 
       - run:
           name: Scripts
-          command: |
+          command: 
             cd csye6225-spring2019/CloudWebApp
             pwd
             ls -al
