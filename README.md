@@ -21,6 +21,7 @@ Postman
 Git
 Amazon(EC2 S3)
 CircleCI
+
 ## Build Instructions
 User class: user attributes
 UserRepository class: get, select, update, delete users
