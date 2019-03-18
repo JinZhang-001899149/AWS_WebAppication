@@ -145,7 +145,7 @@
 				"Path": "/",
 				"Roles": [
 					{
-						"Fn::ImportValue": "CodeDeployEC2ServiceRole"
+						"Ref": "CodeDeployEC2ServiceRole"
 					}
 				]
 			}
@@ -230,7 +230,7 @@
 					]
 				},
 				"ManagedPolicyArns": [
-					"arn:aws:iam:aws:policy/service-role/AWSCodeDeployRole",
+					"arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole",
 					{
 						"Fn::ImportValue": "CodeDeployEC2S3"
 					},
@@ -283,7 +283,10 @@
 				},
 				"DeploymentGroupName": "csye6225-webapp-deployment",
 				"ServiceRoleArn": {
-					"Ref": "CodeDeployServiceRole"
+                                      "Fn::GetAtt":[
+					 "CodeDeployServiceRole",
+                                         "Arn"
+                                     ]
 				},
 				"DeploymentStyle": {
 					"DeploymentOption": "WITHOUT_TRAFFIC_CONTROL",
@@ -326,4 +329,5 @@
 			"Type": "String"
 		}
 	}
+
 }
