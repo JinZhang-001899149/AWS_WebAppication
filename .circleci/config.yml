@@ -18,7 +18,7 @@ jobs:
 
       - run:
           name: Scripts
-          command:
+          command: |
             cd CloudWebApp
             pwd
             ls -al
