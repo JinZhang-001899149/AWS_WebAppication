@@ -47,7 +47,7 @@ jobs:
       - run:
           name: deploy to s3
           command: |
-            aws s3 cp codedeploy_artifact s3://code-deploy.csye6225-spring2019-${BUCKETNAME}.me --recursive --region us-east-1 
+            aws s3 sync codedeploy_artifact s3://code-deploy.csye6225-spring2019-${BUCKETNAME}.me --recursive --region us-east-1 
 
       - run:
           name: deploy to ec2
