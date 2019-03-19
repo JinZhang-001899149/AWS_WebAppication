@@ -49,7 +49,6 @@ jobs:
       - run:
           name: deploy to s3
           command: |
-             aws configure
             -var "aws_region=${AWS_REGION}" \
             -var "access_key=${AWS_ACCESS_KEY}" \
             -var "secret_key=${AWS_SECRET_ACCESS_KEY}"
