@@ -28,6 +28,7 @@ UserRepository class: get, select, update, delete users
 UserService class: the main controller
 BCrypt class: downloaded from "http://www.mindrot.org/projects/jBCrypt/", store password securely
 
+
 Token creation: encoded from user's email and password
 
 ## Deploy Instructions
