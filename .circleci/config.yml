@@ -5,8 +5,8 @@ jobs:
       - image: circleci/openjdk:8-jdk-browsers
 
     environment:
-        AWS_ACCESS_KEY: AKIAI3JSBMWYYLMNTBGA
-        AWS_SECRET_KEY: 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
+        access_key: AKIAI3JSBMWYYLMNTBGA
+        secret_key: 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
 
     steps:
       - checkout
