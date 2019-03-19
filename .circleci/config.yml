@@ -47,6 +47,7 @@ jobs:
       - run:
           name: deploy to s3
           command: |
+            aws configure list
             aws s3 sync codedeploy_artifact s3://code-deploy.csye6225-spring2019-${BUCKETNAME}.me --region us-east-1
 
       - run:
