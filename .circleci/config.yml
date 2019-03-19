@@ -49,9 +49,6 @@ jobs:
       - run:
           name: deploy to s3
           command: |
-            -var "aws_region=${AWS_REGION}" \
-            -var "access_key=${AWS_ACCESS_KEY}" \
-            -var "secret_key=${AWS_SECRET_ACCESS_KEY}"
             aws configure list
             aws s3 cp codedeploy_artifact/csye6225-web-app-${CIRCLE_BUILD_NUM}.zip s3://code-deploy.csye6225-spring2019-${BUCKETNAME}.me
 
