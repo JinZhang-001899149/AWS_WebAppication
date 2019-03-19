@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fd5f5948-f317-4521-acb3-289d42f484ed" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.circleci/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.circleci/config.yml" afterDir="false" />
-    </list>
+    <list default="true" id="fd5f5948-f317-4521-acb3-289d42f484ed" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +49,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
+            <state relative-caret-position="672">
               <caret line="37" column="72" selection-start-line="37" selection-start-column="72" selection-end-line="37" selection-end-column="72" />
             </state>
           </provider>
@@ -195,7 +193,7 @@
       <workItem from="1552862891600" duration="3371000" />
       <workItem from="1552935059793" duration="3638000" />
       <workItem from="1552944227843" duration="655000" />
-      <workItem from="1553023352187" duration="2703000" />
+      <workItem from="1553023352187" duration="3033000" />
     </task>
     <task id="LOCAL-00001" summary="debug">
       <created>1552776088478</created>
@@ -215,7 +213,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21326000" />
+    <option name="totallyTimeSpent" value="21656000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -332,7 +330,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
+        <state relative-caret-position="672">
           <caret line="37" column="72" selection-start-line="37" selection-start-column="72" selection-end-line="37" selection-end-column="72" />
         </state>
       </provider>

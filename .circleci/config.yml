@@ -19,7 +19,7 @@ jobs:
       - run:
           name: Scripts
           command: |
-            cd CloudWebApp
+            cd csye6225-spring2019/CloudWebApp
             pwd
             ls -al
             mvn clean package -DskipTests=true
@@ -35,7 +35,7 @@ jobs:
             mkdir codedeploy_artifact
             cp infrastructure/aws/codedeploy/*.yml .
             cp infrastructure/aws/codedeploy/*.sh .
-            zip -r csye6225-web-app-${CIRCLE_BUILD_NUM}.zip CloudWebApp/target//csye6225-0.0.1-SNAPSHOT.war *.yml *.sh
+            zip -r csye6225-web-app-${CIRCLE_BUILD_NUM}.zip csye6225-spring2019/CloudWebApp/target//csye6225-0.0.1-SNAPSHOT.war *.yml *.sh
             ls -al
             mv csye6225-web-app-${CIRCLE_BUILD_NUM}.zip codedeploy_artifact/
             ls -al
