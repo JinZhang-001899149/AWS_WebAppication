@@ -47,8 +47,8 @@ jobs:
       - run:
           name: deploy to s3
           command: |
-            aws configure --profile ~/.aws/credentials staging set access_key ${AWS_ACCESS_KEY}
-            aws configure --profile ~/.aws/credentials staging set secret_key ${AWS_SECRET_ACCESS_KEY}
+            aws configure --profile default staging set access_key ${AWS_ACCESS_KEY}
+            aws configure --profile default staging set secret_key ${AWS_SECRET_ACCESS_KEY}
             aws configure list
             aws s3 sync codedeploy_artifact s3://code-deploy.csye6225-spring2019-${BUCKETNAME}.me --region us-east-1
 
