@@ -33,6 +33,12 @@
 						"FromPort": "443",
 						"ToPort": "443",
 						"CidrIp": "0.0.0.0/0"
+					},
+					{
+						"IpProtocol": "tcp",
+						"FromPort": "8080",
+						"ToPort": "8080",
+						"CidrIp": "0.0.0.0/0"
 					}
 				]
 			}
@@ -85,8 +91,13 @@
 					{
 						"Key": "Group",
 						"Value": "ec2-instances"
-					}
-				],
+					},
+                  
+                    {
+                    "Key": "Name",
+                    "Value": "csye6225_Instance"
+                    }
+                ],
 				"BlockDeviceMappings": [
 					{
 						"DeviceName": "/dev/sdm",
@@ -105,33 +116,24 @@
 						"Fn::Join": [
 							"",
 							[
-								"#!/bin/bash -v\n",
+								"#!/bin/bash\n",
 								"sudo service codedeploy-agent start\n",
 								"sudo service codedeploy-agent status\n",
-								"cd /home/centos",
-								"sudo touch rdssetting.txt",
-								"sudo chmod 777 rdssetting.txt",
 								{
 									"Fn::Join": [
 										"",
 										[
-											"echo \"RDS=\\\"",
+											"sudo echo \"RDS=\\\"",
 											{
 												"Fn::GetAtt": [
 													"DBInstance",
 													"Endpoint.Address"
 												]
 											},
-											":3306/csye6225\\\"\" >> home/centos/rdssetting.txt \n"
+											"\\\"\" >> /home/centos/mysqlsetting.txt \n"
 										]
 									]
-								},
-								"sudo chmod +x setenv.sh\n",
-								"sudo chown tomcat:tomcat setenv.sh\n",
-								"sudo systemctl start tomcat\n",
-								"sudo /sbin/iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-potrt 8080\n",
-								"sudo /sbin/service iptables save\n",
-								"sudo systemctl restart tomcat"
+								}
 							]
 						]
 					}
