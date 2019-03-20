@@ -19,8 +19,7 @@
                         [
                           {
                             "Ref": "s3bucket2"
-                          },
-                           "*"
+                          }
                         ]
                       ]
     
@@ -51,8 +50,7 @@
                     [
                       {
                         "Ref": "s3bucket1"
-                      },
-                        "*"
+                      }
                       
                     ]
                   ]
@@ -79,9 +77,7 @@
             {
               "Effect": "Allow",
               "Action": [
-                "s3:PutObject",
-                "s3:Get*",
-                "s3:List*"
+                "s3:PutObject"
               ],
               "Resource": [
                 {
@@ -90,8 +86,7 @@
                     [
                       {
                         "Ref": "s3bucket1"
-                      },
-                        "*"
+                      }
                       
                     ]
                   ]
