@@ -3,6 +3,10 @@ jobs:
   build:
     docker:
       - image: circleci/openjdk:8-jdk-browsers
+
+    environment:
+      access_key: ${AWS_ACCESS_KEY}
+      secret_key: ${AWS_SECRET_ACCESS_KEY}
     steps:
       - checkout
 
