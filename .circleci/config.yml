@@ -46,6 +46,9 @@ jobs:
 
       - run:
           name: deploy to s3
+          environment: 
+               access_key: AKIAI3JSBMWYYLMNTBGA
+               secret_key: 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
           command: |
             aws configure list
             aws s3 sync codedeploy_artifact s3://code-deploy.csye6225-spring2019-${BUCKETNAME}.me --region us-east-1
