@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fd5f5948-f317-4521-acb3-289d42f484ed" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-application_fix.json" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-application_fix.json" afterDir="false" />
-    </list>
+    <list default="true" id="fd5f5948-f317-4521-acb3-289d42f484ed" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,11 +22,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-application_fix.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="94" column="18" selection-start-line="94" selection-start-column="18" selection-end-line="94" selection-end-column="18" />
+            <state relative-caret-position="2256">
+              <caret line="94" selection-start-line="94" selection-end-line="94" />
             </state>
           </provider>
         </entry>
@@ -49,7 +47,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/infrastructure/aws/codedeploy/start.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="168">
@@ -247,7 +245,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34761000" />
+    <option name="totallyTimeSpent" value="35371000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -381,17 +379,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-application_fix.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2256">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/infrastructure/aws/codedeploy/start.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="7" column="252" selection-start-line="7" selection-start-column="252" selection-end-line="7" selection-end-column="252" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-application_fix.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="94" column="18" selection-start-line="94" selection-start-column="18" selection-end-line="94" selection-end-column="18" />
         </state>
       </provider>
     </entry>

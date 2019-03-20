@@ -92,7 +92,7 @@
 						"Key": "Group",
 						"Value": "ec2-instances"
 					},
-                  
+
                     {
                     "Key": "Name",
                     "Value": "csye6225_Instance"
