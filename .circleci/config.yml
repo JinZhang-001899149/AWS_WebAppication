@@ -47,9 +47,8 @@ jobs:
       - run:
           name: deploy to s3
           command: |
-            ls -al
             aws configure list
-            aws s3 sync codedeploy_artifact s3://code-deploy.csye6225-spring2019-${BUCKETNAME}.me --region us-east-1
+            AWS_ACCESS_KEY_ID=AKIAI3JSBMWYYLMNTBGA AWS_SECRET_ACCESS_KEY=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 aws s3 sync codedeploy_artifact s3://code-deploy.csye6225-spring2019-${BUCKETNAME}.me --region us-east-1
 
       - run:
           name: deploy to ec2
