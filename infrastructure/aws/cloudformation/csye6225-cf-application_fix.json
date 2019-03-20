@@ -112,7 +112,7 @@
 									"Fn::Join": [
 										"",
 										[
-											"echo \"RDS=\\\"",
+											"sudo echo \"RDS=\\\"",
 											{
 												"Fn::GetAtt": [
 													"DBInstance",
