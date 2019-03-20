@@ -119,7 +119,7 @@
 													"Endpoint.Address"
 												]
 											},
-											"\\\"\" >> home/centos/mysqlsetting.txt \n"
+											"\\\"\" >> /home/centos/mysqlsetting.txt \n"
 										]
 									]
 								}
