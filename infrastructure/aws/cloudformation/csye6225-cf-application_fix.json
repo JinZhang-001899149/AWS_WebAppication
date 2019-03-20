@@ -111,9 +111,9 @@
 						"Fn::Join": [
 							"",
 							[
-								"#!/bin/bash",
-								"sudo service codedeploy-agent start",
-								"sudo service codedeploy-agent status",
+								"#!/bin/bash\n",
+								"sudo service codedeploy-agent start\n",
+								"sudo service codedeploy-agent status\n",
 								{
 									"Fn::Join": [
 										"",
