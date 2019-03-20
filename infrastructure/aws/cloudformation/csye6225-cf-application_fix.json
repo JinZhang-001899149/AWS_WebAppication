@@ -91,8 +91,13 @@
 					{
 						"Key": "Group",
 						"Value": "ec2-instances"
-					}
-				],
+					},
+                  
+                    {
+                    "Key": "Name",
+                    "Value": "csye6225_Instance"
+                    }
+                ],
 				"BlockDeviceMappings": [
 					{
 						"DeviceName": "/dev/sdm",
@@ -111,9 +116,9 @@
 						"Fn::Join": [
 							"",
 							[
-								"#!/bin/bash",
-								"sudo service codedeploy-agent start",
-								"sudo service codedeploy-agent status",
+								"#!/bin/bash\n",
+								"sudo service codedeploy-agent start\n",
+								"sudo service codedeploy-agent status\n",
 								{
 									"Fn::Join": [
 										"",
