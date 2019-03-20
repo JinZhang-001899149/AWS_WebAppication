@@ -3,9 +3,6 @@ jobs:
   build:
     docker:
       - image: circleci/openjdk:8-jdk-browsers
-    environment:
-      -AWS_ACCESS_KEY_ID=AKIAI3JSBMWYYLMNTBGA
-      -AWS_SECRET_ACCESS_KEY=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
     steps:
       - checkout
 
@@ -51,9 +48,9 @@ jobs:
           name: deploy to s3
           command: |
             aws configure list
-            aws s3 sync codedeploy_artifact s3://code-deploy.csye6225-spring2019-${BUCKETNAME}.me --region us-east-1
+            AWS_ACCESS_KEY_ID=AKIAI3JSBMWYYLMNTBGA AWS_SECRET_ACCESS_KEY=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 aws s3 sync codedeploy_artifact s3://code-deploy.csye6225-spring2019-${BUCKETNAME}.me --region us-east-1
 
       - run:
           name: deploy to ec2
           command: |
-          aws deploy create-deployment --application-name csye6225-webapp --deployment-config-name CodeDeployDefault.AllAtOnce --region us-east-1 --deployment-group-name csye6225-webapp-deployment --description "csye6225 create" --s3-location bucket=code-deploy.csye6225-spring2019-${BUCKETNAME}.me,bundleType=zip,key=csye6225-web-app-${CIRCLE_BUILD_NUM}.zip
+            AWS_ACCESS_KEY_ID=AKIAI3JSBMWYYLMNTBGA AWS_SECRET_ACCESS_KEY=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 aws deploy create-deployment --application-name csye6225-webapp --deployment-config-name CodeDeployDefault.AllAtOnce --region us-east-1 --deployment-group-name csye6225-webapp-deployment --description "csye6225 create" --s3-location bucket=code-deploy.csye6225-spring2019-${BUCKETNAME}.me,bundleType=zip,key=csye6225-web-app-${CIRCLE_BUILD_NUM}.zip
