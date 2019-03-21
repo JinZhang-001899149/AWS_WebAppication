@@ -120,7 +120,7 @@ public class UserService {
 
 
     //post for assignment
-    @PostMapping("/user/register")
+    @PostMapping("/user/register-jin")
     public @ResponseBody
     String
 
