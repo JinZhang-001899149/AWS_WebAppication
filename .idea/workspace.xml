@@ -46,7 +46,7 @@
         <entry file="file://$PROJECT_DIR$/infrastructure/aws/codedeploy/test.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="48">
-              <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+              <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -222,7 +222,7 @@
       <workItem from="1552944227843" duration="655000" />
       <workItem from="1553023352187" duration="3305000" />
       <workItem from="1553108621066" duration="1213000" />
-      <workItem from="1553194196991" duration="3042000" />
+      <workItem from="1553194196991" duration="3355000" />
     </task>
     <task id="LOCAL-00001" summary="debug">
       <created>1552776088478</created>
@@ -242,7 +242,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40740000" />
+    <option name="totallyTimeSpent" value="41053000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -378,7 +378,7 @@
     <entry file="file://$PROJECT_DIR$/infrastructure/aws/codedeploy/test.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
         </state>
       </provider>
     </entry>
