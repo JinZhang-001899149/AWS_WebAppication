@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fd5f5948-f317-4521-acb3-289d42f484ed" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/CloudWebApp/src/main/java/com/cloud/assignment/assignment/Note/NoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CloudWebApp/src/main/java/com/cloud/assignment/assignment/Note/NoteController.java" afterDir="false" />
-    </list>
+    <list default="true" id="fd5f5948-f317-4521-acb3-289d42f484ed" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,7 +239,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38810000" />
+    <option name="totallyTimeSpent" value="39089000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
