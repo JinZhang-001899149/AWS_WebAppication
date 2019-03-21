@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 cd /home/centos
 url=$(cat mysqlsetting.txt | sed -r 's/.*"(.+)".*/\1/')
 echo $url
