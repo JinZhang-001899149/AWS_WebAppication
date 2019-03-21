@@ -84,7 +84,7 @@ public class NoteController {
     }
 
 
-    @PostMapping("/note")
+    @PostMapping("/note-jin")
     public Object createNote(@RequestBody Note newNote, HttpServletResponse response, User newUser, @RequestHeader  String Authorization) {
 
 

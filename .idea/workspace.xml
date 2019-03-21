@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd5f5948-f317-4521-acb3-289d42f484ed" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/CloudWebApp/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/CloudWebApp/src/main/resources/application-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infrastructure/aws/codedeploy/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/aws/codedeploy/test.sh" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/CloudWebApp/src/main/java/com/cloud/assignment/assignment/Note/NoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CloudWebApp/src/main/java/com/cloud/assignment/assignment/Note/NoteController.java" afterDir="false" />
+>>>>>>> 6bd1620e56e3628ca554f954c4f840ec9ac3aa24
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,6 +21,7 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-aws-cf-create-application-stack.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="192">
@@ -30,6 +35,12 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2256">
               <caret line="94" selection-start-line="94" selection-end-line="94" />
+=======
+        <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-application_fix.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2256">
+              <caret line="94" column="18" selection-start-line="94" selection-start-column="18" selection-end-line="94" selection-end-column="18" />
+>>>>>>> 6bd1620e56e3628ca554f954c4f840ec9ac3aa24
             </state>
           </provider>
         </entry>
@@ -41,18 +52,55 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-aws-cf-terminate-stack.sh">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
+=======
+>>>>>>> 6bd1620e56e3628ca554f954c4f840ec9ac3aa24
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/infrastructure/aws/codedeploy/test.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
+<<<<<<< HEAD
               <caret line="5" column="44" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
+=======
+              <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
+>>>>>>> 6bd1620e56e3628ca554f954c4f840ec9ac3aa24
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="602">
+                <caret line="39" selection-start-line="39" selection-end-line="39" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LICENSE">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="312">
+              <caret line="37" column="66" selection-start-line="37" selection-start-column="66" selection-end-line="37" selection-end-column="66" />
+            </state>
+=======
+            <state relative-caret-position="-4125" />
+>>>>>>> 6bd1620e56e3628ca554f954c4f840ec9ac3aa24
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-aws-cf-create-stack.sh">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -65,10 +113,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
+<<<<<<< HEAD
+=======
+        <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-aws-cf-create-policy.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="37" column="66" selection-start-line="37" selection-start-column="66" selection-end-line="37" selection-end-column="66" />
+            <state relative-caret-position="240">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -81,18 +131,7 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="146">
-                <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+>>>>>>> 6bd1620e56e3628ca554f954c4f840ec9ac3aa24
         <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-policy.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="446">
@@ -114,9 +153,15 @@
         <option value="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-policy.json" />
         <option value="$PROJECT_DIR$/.circleci/config.yml" />
         <option value="$PROJECT_DIR$/infrastructure/aws/codedeploy/appspec.yml" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/infrastructure/aws/codedeploy/start.sh" />
         <option value="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-application_fix.json" />
+=======
+        <option value="$PROJECT_DIR$/infrastructure/aws/codedeploy/start.sh" />
+        <option value="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-application_fix.json" />
+        <option value="$PROJECT_DIR$/README.md" />
+>>>>>>> 6bd1620e56e3628ca554f954c4f840ec9ac3aa24
         <option value="$PROJECT_DIR$/infrastructure/aws/codedeploy/test.sh" />
       </list>
     </option>
@@ -187,7 +232,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/CloudWebApp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../csye6225-spring2019-ami" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -244,7 +289,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="37698000" />
+=======
+    <option name="totallyTimeSpent" value="39228000" />
+>>>>>>> 6bd1620e56e3628ca554f954c4f840ec9ac3aa24
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -314,28 +363,8 @@
     <entry file="file://$PROJECT_DIR$/infrastructure/aws/codedeploy/appspec.yml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-aws-cf-create-stack.sh">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-aws-cf-terminate-application-stack.sh">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-aws-cf-create-policy.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="146">
-            <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-aws-cf-create-application-stack.sh">
       <provider selected="true" editor-type-id="text-editor">
@@ -346,8 +375,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/infrastructure/aws/codedeploy/start.sh">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="168">
           <caret line="7" column="252" selection-start-line="7" selection-start-column="252" selection-end-line="7" selection-end-column="252" />
+=======
+        <state relative-caret-position="312">
+          <caret line="37" column="66" selection-start-line="37" selection-start-column="66" selection-end-line="37" selection-end-column="66" />
+>>>>>>> 6bd1620e56e3628ca554f954c4f840ec9ac3aa24
         </state>
       </provider>
     </entry>
@@ -363,6 +397,7 @@
         <state relative-caret-position="-2242" />
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-application_fix.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2256">
@@ -373,6 +408,35 @@
     <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-application.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2160" />
+=======
+    <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-policy.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="336" column="24" selection-start-line="336" selection-start-column="24" selection-end-line="336" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-application_fix.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2256">
+          <caret line="94" column="18" selection-start-line="94" selection-start-column="18" selection-end-line="94" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LICENSE">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4125" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="602">
+            <caret line="39" selection-start-line="39" selection-end-line="39" />
+          </first_editor>
+          <second_editor />
+        </state>
+>>>>>>> 6bd1620e56e3628ca554f954c4f840ec9ac3aa24
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-aws-cf-terminate-stack.sh">
@@ -385,10 +449,27 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/infrastructure/aws/codedeploy/test.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="5" column="44" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
+=======
+    <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-aws-cf-create-stack.sh">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-aws-cf-create-policy.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infrastructure/aws/codedeploy/test.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
+>>>>>>> 6bd1620e56e3628ca554f954c4f840ec9ac3aa24
         </state>
       </provider>
     </entry>
