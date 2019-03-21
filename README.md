@@ -19,6 +19,9 @@ JDBC
 JSON
 Postman
 Git
+Amazon(EC2 S3)
+CircleCI
+
 ## Build Instructions
 User class: user attributes
 UserRepository class: get, select, update, delete users
@@ -34,5 +37,6 @@ Deploy the application locally on Tomcat
 Since we only developed the backend, we used Postman to test the functions.
 
 ## CI/CD
+
 
 
