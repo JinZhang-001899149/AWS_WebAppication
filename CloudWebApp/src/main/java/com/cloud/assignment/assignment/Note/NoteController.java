@@ -6,9 +6,11 @@ import com.cloud.assignment.assignment.Attachment.Attachment;
 import com.cloud.assignment.assignment.Attachment.AttachmentRepository;
 import com.cloud.assignment.assignment.webSource.User;
 import com.cloud.assignment.assignment.webSource.UserRepository;
+import com.cloud.assignment.assignment.Metrics.MetricsClientBean;
 
 import com.cloud.assignment.assignment.webSource.Authorization;
 
+import com.timgroup.statsd.StatsDClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +44,9 @@ public class NoteController {
 
     @Autowired
     private AmazonS3Client amazonClient;
+
+    @Autowired
+    private StatsDClient statsDClient;
 
 
 
