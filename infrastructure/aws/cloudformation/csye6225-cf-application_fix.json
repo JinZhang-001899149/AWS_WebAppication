@@ -92,7 +92,7 @@
 						"Key": "Group",
 						"Value": "ec2-instances"
 					},
-                  
+
                     {
                     "Key": "Name",
                     "Value": "csye6225_Instance"
@@ -238,7 +238,9 @@
 					},
 					{
 						"Fn::ImportValue": "accessS3"
-					}
+					},
+                                        "arn:aws:iam::aws:policy/CloudWatchAgentAdminPolicy",
+                                        "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
 				]
 			}
 		},
