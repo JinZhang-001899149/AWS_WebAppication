@@ -11,6 +11,7 @@ import com.cloud.assignment.assignment.Metrics.MetricsClientBean;
 import com.cloud.assignment.assignment.webSource.Authorization;
 
 import com.timgroup.statsd.StatsDClient;
+import com.timgroup.statsd.NonBlockingStatsDClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
@@ -55,6 +56,7 @@ public class NoteController {
     @GetMapping(path = "/note")
     public Object getAllNote(@RequestHeader String Authorization, Note newNote, HttpServletResponse response) {
 
+        statsDClient.incrementCounter("endpoint.note.http.get");
         //Authorization authorization = new Authorization();
 
         User user = authorization.authorizeUser(Authorization);
@@ -93,6 +95,7 @@ public class NoteController {
     public Object createNote(@RequestBody Note newNote, HttpServletResponse response, User newUser, @RequestHeader  String Authorization) {
 
 
+        statsDClient.incrementCounter("endpoint.note.http.post");
 
 
         User user = authorization.authorizeUser(Authorization);
@@ -148,6 +151,7 @@ public class NoteController {
     public Object getSingleNote(@RequestHeader String Authorization,@PathVariable("id") String id, HttpServletResponse response) {
         User user = authorization.authorizeUser(Authorization);
 
+        statsDClient.incrementCounter("endpoint.note/{id}.http.get");
         if (user == null){
             response.setStatus(401);
             return "{\n \"description\":\"Unauthorized\" \n}";
@@ -177,6 +181,7 @@ public class NoteController {
         public String update(@PathVariable("id") String id,@RequestBody Note note, HttpServletResponse response,@RequestHeader String Authorization){
         //User user = authorizeUser(Authorization);
 
+        statsDClient.incrementCounter("endpoint.note/{id}.http.put");
         User user = authorization.authorizeUser(Authorization);
 
         if(user==null){
@@ -252,6 +257,7 @@ public class NoteController {
         User user = authorization.authorizeUser(Authorization);
 
 
+        statsDClient.incrementCounter("endpoint.note/{id}.http.delete");
 
         //User user = authorizeUser(Authorization);
 
@@ -334,6 +340,7 @@ public class NoteController {
 
 
 
+        statsDClient.incrementCounter("endpoint.note/{idNotes}/attachments.http.get");
         User user = authorization.authorizeUser(Authorization);
 
 
@@ -381,6 +388,7 @@ public class NoteController {
     public Object createAttachment(@PathVariable("idNotes") String idNotes, @RequestParam(value = "file",required = false) MultipartFile file, HttpServletResponse response, User newUser,Attachment attachment, @RequestHeader  String Authorization) {
 
 
+        statsDClient.incrementCounter("endpoint.note/{idNotes}/attachments.http.post");
 
 
         User user = authorization.authorizeUser(Authorization);
@@ -496,6 +504,7 @@ public class NoteController {
     @RequestMapping(value="/note/{idNotes}/attachments/{idAttachments}",method=RequestMethod.PUT)
     public String updateAttachment(@RequestParam(value = "file",required = false) MultipartFile file,Attachment attachment, @PathVariable("idNotes") String idNotes,@PathVariable("idAttachments") String idAttachments, HttpServletResponse response,@RequestHeader String Authorization) {
 
+        statsDClient.incrementCounter("endpoint.note/{idNotes}/attachments/{idAttachments}.http.put");
         User user = authorization.authorizeUser(Authorization);
 
         if (user == null) {
@@ -614,6 +623,7 @@ public class NoteController {
     public String deleteAttachment(@PathVariable("idNotes") String idNotes, @PathVariable("idAttachments") String idAttachments,HttpServletResponse response,
                       @RequestHeader String Authorization) {
 
+        statsDClient.incrementCounter("endpoint.note/{idNotes}/attachments/{idAttachments}.http.delete");
         User user = authorization.authorizeUser(Authorization);
 
         if (user == null) {
