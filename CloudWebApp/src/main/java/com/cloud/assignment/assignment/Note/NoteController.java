@@ -456,7 +456,7 @@ public class NoteController {
                         else
                         {
                             response.setStatus(400);
-                            return "{\n \"description\":\"File Already Exist\" \n}";
+                            return "{\n \"description\":\"File Already Exists\" \n}";
                         }
 
                     }
@@ -585,7 +585,7 @@ public class NoteController {
                                 else {
 
                                     response.setStatus(400);
-                                    return "{\n \"description\":\"File Already Exist\" \n}";
+                                    return "{\n \"description\":\"File Already Exists\" \n}";
 
                                 }
                             }
