@@ -8,7 +8,7 @@
 			"files": {
 				"collect_list": [
 					{
-						"file_path": "/opt/CloudWebApp.log",
+						"file_path": "/opt/logs.log",
 						"log_group_name": "csye6225_spring2019",
 						"log_stream_name": "CloudWebApp"
 					}
