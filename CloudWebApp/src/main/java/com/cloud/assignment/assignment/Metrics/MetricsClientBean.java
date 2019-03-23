@@ -20,7 +20,7 @@ public class MetricsClientBean {
     public StatsDClient metricsClient(){
 
         if (publiMetrics) {
-            return new NonBlockingStatsDClient("CloudWebApp",metricsServerHost, etricsServerPort);
+            return new NonBlockingStatsDClient("csye6225",metricsServerHost, etricsServerPort);
         }
         return new NoOpStatsDClient();
     }
