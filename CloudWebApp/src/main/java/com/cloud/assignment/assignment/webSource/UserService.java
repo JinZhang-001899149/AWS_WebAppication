@@ -1,5 +1,6 @@
 package com.cloud.assignment.assignment.webSource;
 
+import com.cloud.assignment.assignment.AmazonS3_dev.AmazonS3Client;
 import com.timgroup.statsd.StatsDClient;
 import com.timgroup.statsd.NonBlockingStatsDClient;
 import org.slf4j.Logger;
@@ -29,6 +30,9 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
+    private AmazonS3Client amazonClient;
+
+    @Autowired(required=false)
     private StatsDClient statsDClient;
 
 
@@ -146,7 +150,9 @@ public class UserService {
             //get users from database
             ArrayList<User> list = (ArrayList<User>) getAllUsers();
 
+            logger.info("{}",newUser.getEmail());
             if (list.size() == 0) {
+                logger.info("{}",newUser.getPassword());
                 if (
                                 newUser.getPassword().matches(".*[a-zA-Z].*") &&
                                 newUser.getPassword().matches(".*[0-9].*") &&
@@ -189,6 +195,7 @@ public class UserService {
 
 
 
+                    logger.info("{}",newUser);
                     //newUser.setToken(result);
 
                     //newUser.setPassword(hashed);
