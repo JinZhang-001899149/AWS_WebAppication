@@ -1,6 +1,6 @@
 package com.cloud.assignment.assignment.webSource;
 
-import com.cloud.assignment.assignment.AmazonS3_dev.AmazonS3Client;
+import com.cloud.assignment.assignment.AmazonS3_dev.AmazonClient;
 import com.timgroup.statsd.StatsDClient;
 import com.timgroup.statsd.NonBlockingStatsDClient;
 import org.slf4j.Logger;
@@ -30,7 +30,7 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private AmazonS3Client amazonClient;
+    private AmazonClient amazonClient;
 
     @Autowired(required=false)
     private StatsDClient statsDClient;
