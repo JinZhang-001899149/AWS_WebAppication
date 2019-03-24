@@ -194,7 +194,6 @@ public class UserService {
                     response.setHeader("Token",result2);
 
 
-
                     logger.info("{}",newUser);
                     //newUser.setToken(result);
 

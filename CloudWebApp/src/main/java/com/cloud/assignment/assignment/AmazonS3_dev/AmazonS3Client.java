@@ -102,9 +102,9 @@ public class AmazonS3Client {
         s3client.deleteObject(new DeleteObjectRequest(bucketName, fileName));
     }
 
-//    public String getEndpointUrl() {
-//        return endpointUrl;
-//    }
+    public String getEndpointUrl() {
+        return endpointUrl;
+    }
 //
 //    public void setEndpointUrl(String endpointUrl) {
 //        this.endpointUrl = endpointUrl;
