@@ -46,7 +46,7 @@ public class NoteController {
     @Autowired
     private AmazonClient amazonClient;
 
-    @Autowired(required = false)
+    @Autowired
     private StatsDClient statsDClient;
 
 
