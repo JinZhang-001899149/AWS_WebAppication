@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5ccf8ba-f16d-4d6c-ab03-4684bada00c3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/CloudWebApp/src/main/java/com/cloud/assignment/assignment/AmazonS3_dev/AmazonClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/CloudWebApp/src/main/java/com/cloud/assignment/assignment/AmazonS3_dev/AmazonClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-application_fix.json" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-application_fix.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-policy.json" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-policy.json" afterDir="false" />
-    </list>
+    <list default="true" id="c5ccf8ba-f16d-4d6c-ab03-4684bada00c3" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +33,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CloudWebApp/src/main/java/com/cloud/assignment/assignment/webSource/UserService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2376" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-policy.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="624">
@@ -97,6 +100,87 @@
             <path>
               <item name="csye6225-spring2019" type="b2602c69:ProjectViewProjectNode" />
               <item name="csye6225-spring2019" type="462c0819:PsiDirectoryNode" />
+              <item name="CloudWebApp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="csye6225-spring2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="csye6225-spring2019" type="462c0819:PsiDirectoryNode" />
+              <item name="CloudWebApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="csye6225-spring2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="csye6225-spring2019" type="462c0819:PsiDirectoryNode" />
+              <item name="CloudWebApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="csye6225-spring2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="csye6225-spring2019" type="462c0819:PsiDirectoryNode" />
+              <item name="CloudWebApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="csye6225-spring2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="csye6225-spring2019" type="462c0819:PsiDirectoryNode" />
+              <item name="CloudWebApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="csye6225-spring2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="csye6225-spring2019" type="462c0819:PsiDirectoryNode" />
+              <item name="CloudWebApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cloud" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="csye6225-spring2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="csye6225-spring2019" type="462c0819:PsiDirectoryNode" />
+              <item name="CloudWebApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="assignment" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="csye6225-spring2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="csye6225-spring2019" type="462c0819:PsiDirectoryNode" />
+              <item name="CloudWebApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="assignment" type="462c0819:PsiDirectoryNode" />
+              <item name="assignment" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="csye6225-spring2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="csye6225-spring2019" type="462c0819:PsiDirectoryNode" />
+              <item name="CloudWebApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="assignment" type="462c0819:PsiDirectoryNode" />
+              <item name="assignment" type="462c0819:PsiDirectoryNode" />
+              <item name="webSource" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="csye6225-spring2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="csye6225-spring2019" type="462c0819:PsiDirectoryNode" />
               <item name="infrastructure" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -153,12 +237,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1553553576306</updated>
-      <workItem from="1553553577750" duration="1832000" />
+      <workItem from="1553553577750" duration="2219000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1832000" />
+    <option name="totallyTimeSpent" value="2219000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
@@ -230,6 +314,11 @@
         <state relative-caret-position="624">
           <caret line="26" column="6" lean-forward="true" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CloudWebApp/src/main/java/com/cloud/assignment/assignment/webSource/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2376" />
       </provider>
     </entry>
   </component>
