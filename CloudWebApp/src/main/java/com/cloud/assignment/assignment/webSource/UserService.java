@@ -146,7 +146,10 @@ public class UserService {
             //get users from database
             ArrayList<User> list = (ArrayList<User>) getAllUsers();
 
+            logger.info("{}",newUser.getEmail());
+
             if (list.size() == 0) {
+                logger.info("{}",newUser.getPassword());
                 if (
                                 newUser.getPassword().matches(".*[a-zA-Z].*") &&
                                 newUser.getPassword().matches(".*[0-9].*") &&
@@ -187,8 +190,7 @@ public class UserService {
 
                     response.setHeader("Token",result2);
 
-
-
+                    logger.info("{}",newUser);
                     //newUser.setToken(result);
 
                     //newUser.setPassword(hashed);

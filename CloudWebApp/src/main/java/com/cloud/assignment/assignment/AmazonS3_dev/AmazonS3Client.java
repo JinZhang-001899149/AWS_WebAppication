@@ -38,7 +38,7 @@ public class AmazonS3Client {
 
 
     public final String endpointUrl = "https://s3.us-east-1.amazonaws.com";
-    public final static AmazonS3 s3client = new AmazonS3Client(new DefaultAWSCredentialsProviderChain.getInstance());
+    public final static AmazonS3 s3client = new AmazonS3Client(DefaultAWSCredentialsProviderChain.getInstance());
 
     public final String bucketName = getEndpointUrl(s3client.listBuckets());
 //    @Value("${amazonProperties.accessKey}")
@@ -102,9 +102,9 @@ public class AmazonS3Client {
         s3client.deleteObject(new DeleteObjectRequest(bucketName, fileName));
     }
 
-//    public String getEndpointUrl() {
-//        return endpointUrl;
-//    }
+    public String getEndpointUrl() {
+        return endpointUrl;
+    }
 //
 //    public void setEndpointUrl(String endpointUrl) {
 //        this.endpointUrl = endpointUrl;
