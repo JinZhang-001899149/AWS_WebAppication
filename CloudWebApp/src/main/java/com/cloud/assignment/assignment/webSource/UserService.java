@@ -32,7 +32,7 @@ public class UserService {
     @Autowired
     private AmazonS3Client amazonClient;
 
-    @Autowired(required=false)
+    @Autowired
     private StatsDClient statsDClient;
 
 
