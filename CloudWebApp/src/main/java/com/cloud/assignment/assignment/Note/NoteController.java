@@ -1,7 +1,7 @@
 package com.cloud.assignment.assignment.Note;
 //
 
-import com.cloud.assignment.assignment.AmazonS3_dev.AmazonS3Client;
+import com.cloud.assignment.assignment.AmazonS3_dev.AmazonClient;
 import com.cloud.assignment.assignment.Attachment.Attachment;
 import com.cloud.assignment.assignment.Attachment.AttachmentRepository;
 import com.cloud.assignment.assignment.webSource.User;
@@ -44,7 +44,7 @@ public class NoteController {
     Authorization authorization = new Authorization();
 
     @Autowired
-    private AmazonS3Client amazonClient;
+    private AmazonClient amazonClient;
 
     @Autowired
     private StatsDClient statsDClient;
