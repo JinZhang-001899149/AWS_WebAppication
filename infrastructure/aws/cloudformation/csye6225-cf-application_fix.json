@@ -232,13 +232,14 @@
 					]
 				},
 				"ManagedPolicyArns": [
+
+
+
 					"arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole",
 					{
 						"Fn::ImportValue": "CodeDeployEC2S3"
 					},
-					{
-						"Fn::ImportValue": "accessS3"
-					},
+
                                         "arn:aws:iam::aws:policy/CloudWatchAgentAdminPolicy",
                                         "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
 				]

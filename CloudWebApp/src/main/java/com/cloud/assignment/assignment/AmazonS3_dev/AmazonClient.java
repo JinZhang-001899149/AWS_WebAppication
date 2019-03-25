@@ -54,10 +54,11 @@ public class AmazonClient {
 
     public final static AmazonS3 s3client = new AmazonS3Client(DefaultAWSCredentialsProviderChain.getInstance());
 
-    public final String bucketName = getEndpointUrl(s3client.listBuckets());@Value("${amazonProperties.accessKey}")
-    private String accessKey;
-    @Value("${amazonProperties.secretKey}")
-    private String secretKey;
+    public final String bucketName = getEndpointUrl(s3client.listBuckets());
+//    @Value("${amazonProperties.accessKey}")
+//    private String accessKey;
+//    @Value("${amazonProperties.secretKey}")
+//    private String secretKey;
 
     private static String getEndpointUrl(List<Bucket> bucketList){
         for (Bucket bucket : bucketList){
@@ -118,7 +119,7 @@ public class AmazonClient {
     public String getEndpointUrl() {
         return endpointUrl;
     }
-//
+
 //    public void setEndpointUrl(String endpointUrl) {
 //        this.endpointUrl = endpointUrl;
 //    }

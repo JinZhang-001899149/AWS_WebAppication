@@ -2,68 +2,30 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "Create policies",
   "Resources": {
-    "accessS3":{
-      "Type": "AWS::IAM::ManagedPolicy",
-      "Properties": {
-        "ManagedPolicyName": "accessS3",
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-              {
-                  "Effect": "Allow",
-                  "Action": "s3:*",
-                  "Resource": [
-                    {
-                      "Fn::Join":[
-                        "",
-                        [
-                          {
-                            "Ref": "s3bucket2"
-                          },
-                           "*"
-                        ]
-                      ]
-    
-                    }
-                  ]
-              }
-          ]
-      }
-      }
-    },
+
+
     "CodeDeployEC2S3": {
       "Type": "AWS::IAM::ManagedPolicy",
       "Properties": {
-        "ManagedPolicyName": "CodeDeploy-EC2-S3",
         "PolicyDocument": {
           "Version": "2012-10-17",
           "Statement": [
             {
+              "Effect": "Allow",
               "Action": [
                 "s3:Get*",
-                "s3:List*"
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:Put*"
               ],
-              "Effect": "Allow",
-              "Resource": [
-                {
-                  "Fn::Join":[
-                    "",
-                    [
-                      {
-                        "Ref": "s3bucket1"
-                      },
-                        "*"
-                      
-                    ]
-                  ]
-
-                }
-              ]
+              "Resource": "*"
             }
           ]
-        }
+        },
+        "ManagedPolicyName": "CodeDeploy-EC2-S3Policy"
       }
     },
+
     "CircleCIUploadToS3": {
       "Type": "AWS::IAM::ManagedPolicy",
       "Properties": {
@@ -330,16 +292,6 @@
         "Name": "circleciec2ami"
 
       }
-    },
-    "accessS3":{
-      "Description": "accessS3 Policy",
-      "Value": {
-        "Ref": "accessS3"
-      },
-      "Export": {
-        "Name": "accessS3"
-
-      }
     }
-  }
+    }
 }
