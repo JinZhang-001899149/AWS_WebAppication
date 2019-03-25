@@ -119,7 +119,7 @@ public class AmazonClient {
     public String getEndpointUrl() {
         return endpointUrl;
     }
-//
+
 //    public void setEndpointUrl(String endpointUrl) {
 //        this.endpointUrl = endpointUrl;
 //    }
