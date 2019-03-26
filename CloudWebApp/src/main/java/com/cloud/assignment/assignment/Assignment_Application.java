@@ -1,13 +1,13 @@
-package com.cloud.assignment.assignment01;
+package com.cloud.assignment.assignment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Assignment01Application {
+public class Assignment_Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Assignment01Application.class, args);
+        SpringApplication.run(Assignment_Application.class, args);
     }
 
 }
