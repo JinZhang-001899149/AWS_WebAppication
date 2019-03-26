@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5ccf8ba-f16d-4d6c-ab03-4684bada00c3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/infrastructure/aws/codedeploy/start.sh" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/aws/codedeploy/start.sh" afterDir="false" />
-    </list>
+    <list default="true" id="c5ccf8ba-f16d-4d6c-ab03-4684bada00c3" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,10 +14,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-288" />
+            <state relative-caret-position="326">
+              <caret line="37" column="129" selection-start-line="37" selection-start-column="129" selection-end-line="37" selection-end-column="129" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../csye6225-spring2019-ami/centos-ami-template.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="518">
+              <caret line="48" column="26" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
+            </state>
           </provider>
         </entry>
       </file>
@@ -89,6 +98,8 @@
         <option value="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-application_fix.json" />
         <option value="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-policy.json" />
         <option value="$PROJECT_DIR$/infrastructure/aws/codedeploy/start.sh" />
+        <option value="$PROJECT_DIR$/.circleci/config.yml" />
+        <option value="$PROJECT_DIR$/../csye6225-spring2019-ami/centos-ami-template.json" />
       </list>
     </option>
   </component>
@@ -145,7 +156,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/CloudWebApp" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -169,16 +180,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1553553576306</updated>
-      <workItem from="1553553577750" duration="4180000" />
+      <workItem from="1553553577750" duration="5414000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4180000" />
+    <option name="totallyTimeSpent" value="5414000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Image Layers" />
@@ -258,7 +268,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-288" />
+        <state relative-caret-position="326">
+          <caret line="37" column="129" selection-start-line="37" selection-start-column="129" selection-end-line="37" selection-end-column="129" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../csye6225-spring2019-ami/centos-ami-template.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="48" column="26" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
+        </state>
       </provider>
     </entry>
   </component>
