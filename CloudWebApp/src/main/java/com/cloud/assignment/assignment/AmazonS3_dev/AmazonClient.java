@@ -2,16 +2,14 @@ package com.cloud.assignment.assignment.AmazonS3_dev;
 
 
 
+
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.s3.model.Bucket;
 import com.cloud.assignment.assignment.Attachment.Attachment;
 
 
 
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
+
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
@@ -21,12 +19,16 @@ import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
+import com.amazonaws.services.s3.model.Bucket;
+import com.cloud.assignment.assignment.Attachment.Attachment;
+
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.PostConstruct;
+
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -38,7 +40,7 @@ import java.util.List;
 
 public class AmazonClient {
 
-     //private AmazonS3 s3client;
+
 
 //    @Value("${amazonProperties.endpointUrl}")
 //    private String endpointUrl;
@@ -51,8 +53,8 @@ public class AmazonClient {
 
 
     public final String endpointUrl = "https://s3.us-east-1.amazonaws.com";
-
     public final static AmazonS3 s3client = new AmazonS3Client(DefaultAWSCredentialsProviderChain.getInstance());
+
 
     public final String bucketName = getEndpointUrl(s3client.listBuckets());
 //    @Value("${amazonProperties.accessKey}")
@@ -116,9 +118,11 @@ public class AmazonClient {
         s3client.deleteObject(new DeleteObjectRequest(bucketName, fileName));
     }
 
+
     public String getEndpointUrl() {
         return endpointUrl;
     }
+
 
 //    public void setEndpointUrl(String endpointUrl) {
 //        this.endpointUrl = endpointUrl;

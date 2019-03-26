@@ -14,3 +14,5 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl \
     -m ec2 \
     -c file:cloudwatch-config.json \
     -s
+
+
