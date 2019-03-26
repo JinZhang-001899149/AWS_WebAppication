@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5ccf8ba-f16d-4d6c-ab03-4684bada00c3" name="Default Changelist" comment="" />
+    <list default="true" id="c5ccf8ba-f16d-4d6c-ab03-4684bada00c3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/infrastructure/aws/codedeploy/start.sh" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/aws/codedeploy/start.sh" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,10 +17,17 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-288" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infrastructure/aws/codedeploy/start.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="7" column="207" selection-start-line="7" selection-start-column="207" selection-end-line="7" selection-end-column="207" />
+            <state relative-caret-position="264">
+              <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -79,6 +88,7 @@
       <list>
         <option value="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-application_fix.json" />
         <option value="$PROJECT_DIR$/infrastructure/aws/cloudformation/csye6225-cf-policy.json" />
+        <option value="$PROJECT_DIR$/infrastructure/aws/codedeploy/start.sh" />
       </list>
     </option>
   </component>
@@ -101,6 +111,11 @@
             <path>
               <item name="csye6225-spring2019" type="b2602c69:ProjectViewProjectNode" />
               <item name="csye6225-spring2019" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="csye6225-spring2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="csye6225-spring2019" type="462c0819:PsiDirectoryNode" />
+              <item name=".circleci" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="csye6225-spring2019" type="b2602c69:ProjectViewProjectNode" />
@@ -154,12 +169,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1553553576306</updated>
-      <workItem from="1553553577750" duration="3557000" />
+      <workItem from="1553553577750" duration="4180000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3557000" />
+    <option name="totallyTimeSpent" value="4180000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
@@ -236,9 +251,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/infrastructure/aws/codedeploy/start.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="7" column="207" selection-start-line="7" selection-start-column="207" selection-end-line="7" selection-end-column="207" />
+        <state relative-caret-position="264">
+          <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-288" />
       </provider>
     </entry>
   </component>
