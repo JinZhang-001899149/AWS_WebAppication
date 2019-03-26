@@ -133,7 +133,7 @@ public class UserService {
 
 
     //post for assignment
-    @PostMapping("/user/yanjuan/register")
+    @PostMapping("/user/register")
     public @ResponseBody
     String
 
