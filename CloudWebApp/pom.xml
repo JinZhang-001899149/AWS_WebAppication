@@ -78,6 +78,13 @@
             <version>1.11.133</version>
         </dependency>
 
+        <!--timgroup-->
+        <dependency>
+            <groupId>com.timgroup</groupId>
+            <artifactId>java-statsd-client</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
 
     </dependencies>
 
