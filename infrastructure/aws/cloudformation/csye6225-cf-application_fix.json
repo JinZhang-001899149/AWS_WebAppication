@@ -171,7 +171,11 @@
 					"ReadCapacityUnits": "5",
 					"WriteCapacityUnits": "5"
 				},
-				"TableName": "csye6225"
+				"TableName": "csye6225",
+				"TimeToLiveSpecification" : {
+					"AttributeName": "TTL",
+					"Enabled": true
+				}
 			}
 		},
 		"DBSubnetGroup": {
@@ -232,9 +236,6 @@
 					]
 				},
 				"ManagedPolicyArns": [
-
-
-
 					"arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole",
 					{
 						"Fn::ImportValue": "CodeDeployEC2S3"
