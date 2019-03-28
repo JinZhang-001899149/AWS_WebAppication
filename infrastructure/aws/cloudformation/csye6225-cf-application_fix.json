@@ -273,6 +273,71 @@
 				]
 			}
 		},
+		"LambdaSNSExecutionRole": {
+			"Type": "AWS::IAM::Role",
+			"Properties": {
+			  "RoleName": "LambdaSNSExecutionRole",
+			  "AssumeRolePolicyDocument": {
+				"Version": "2012-10-17",
+				"Statement": [
+				  {
+					"Effect": "Allow",
+					"Principal": {
+					  "Service": [
+						"lambda.amazonaws.com"
+					  ]
+					},
+					"Action": [
+					  "sts:AssumeRole"
+					]
+				  }
+				]
+			  },
+				"ManagedPolicyArns": [
+				  "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+				  "arn:aws:iam::aws:policy/AWSLambdaFullAccess",
+				  "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess",
+				  "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
+				]
+			}
+		  },
+		  "LambdaFunction": {
+			"Type": "AWS::Lambda::Function",
+			"DependsOn": [
+			  "LambdaSNSExecutionRole"
+			],
+			"Properties": {
+			  "Code": {
+				"Ref":"s3bucket",
+				"S3Key": "csye6225-lambda-0.0.1.zip"
+			  },
+			  "Role": {
+				"Fn::GetAtt": [
+				  "LambdaSNSExecutionRole",
+				  "Arn"
+				]
+			  },
+			  "Timeout": 60,
+			  "Handler": "LogEvent::handleRequest",
+			  "MemorySize": 256,
+			  "Runtime": "java8"
+			}
+		  },
+		"MySNSTopic": {
+			"Type": "AWS::SNS::Topic",
+			"Properties": {
+				"Subscription": [{
+					"Endpoint": {
+						"Fn::GetAtt": [
+							"LambdaFunction",
+							"Arn"
+						  ]
+					},
+					"Protocol": "lambda"
+				}],
+				"TopicName": "password_reset"
+			}
+		},
 		"CodeDeployApplication": {
 			"Type": "AWS::CodeDeploy::Application",
 			"Properties": {
@@ -332,6 +397,9 @@
 		},
 		"circleci": {
 			"Type": "String"
+		},
+		"s3bucket":{
+			"Type":"String"
 		}
 	}
 
