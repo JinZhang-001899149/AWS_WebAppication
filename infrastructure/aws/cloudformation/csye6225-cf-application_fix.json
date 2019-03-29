@@ -171,7 +171,11 @@
 					"ReadCapacityUnits": "5",
 					"WriteCapacityUnits": "5"
 				},
-				"TableName": "csye6225"
+				"TableName": "csye6225",
+				"TimeToLiveSpecification" : {
+					"AttributeName": "TTL",
+					"Enabled": true
+				}
 			}
 		},
 		"DBSubnetGroup": {
@@ -232,9 +236,6 @@
 					]
 				},
 				"ManagedPolicyArns": [
-
-
-
 					"arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole",
 					{
 						"Fn::ImportValue": "CodeDeployEC2S3"
@@ -301,6 +302,22 @@
 				]
 			}
 		  },
+		  "LambdaPermission": {
+			"Type": "AWS::Lambda::Permission",
+			"Properties": {
+			  "Action": "lambda:InvokeFunction",
+			  "Principal": "sns.amazonaws.com",
+			  "FunctionName": {
+				"Fn::GetAtt": [
+				  "LambdaFunction",
+				  "Arn"
+				]
+			  }, 
+			  "SourceArn": {
+				"Ref": "MySNSTopic"
+			  }
+			}
+		  },
 		  "LambdaFunction": {
 			"Type": "AWS::Lambda::Function",
 			"DependsOn": [
@@ -308,8 +325,10 @@
 			],
 			"Properties": {
 			  "Code": {
-				"Ref":"s3bucket",
-				"S3Key": "csye6225-lambda-0.0.1.zip"
+				"S3Bucket":{
+					"Ref":"s3bucket"
+				},
+				"S3Key": "csye6225-aws-lambda-0.0.1.zip"
 			  },
 			  "Role": {
 				"Fn::GetAtt": [
@@ -336,6 +355,21 @@
 					"Protocol": "lambda"
 				}],
 				"TopicName": "password_reset"
+			}
+		},
+		"MySubscription": {
+			"Type": "AWS::SNS::Subscription",
+			"Properties": {
+					"Endpoint": {
+						"Fn::GetAtt": [
+							"LambdaFunction",
+							"Arn"
+						  ]
+					},
+					"Protocol": "lambda",
+					"TopicArn": {
+						"Ref":"MySNSTopic"
+					}
 			}
 		},
 		"CodeDeployApplication": {
