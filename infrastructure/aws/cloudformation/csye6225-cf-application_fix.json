@@ -328,8 +328,8 @@
 				"S3Bucket":{
 					"Ref":"s3bucket"
 				},
-				"S3Key": "csye6225-aws-lambda-0.0.1.zip"
-			  },
+				"S3Key": "csye6225-lambda-${CIRCLE_BUILD_NUM}.zip"
+},
 			  "Role": {
 				"Fn::GetAtt": [
 				  "LambdaSNSExecutionRole",
