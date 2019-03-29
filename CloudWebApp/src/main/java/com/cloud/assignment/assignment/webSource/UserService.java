@@ -1,5 +1,8 @@
 package com.cloud.assignment.assignment.webSource;
 
+import com.amazonaws.services.sns.model.PublishRequest;
+import com.amazonaws.services.sns.AmazonSNSClient;
+import com.amazonaws.services.sns.model.PublishResult;
 import com.cloud.assignment.assignment.AmazonS3_dev.AmazonClient;
 import com.timgroup.statsd.StatsDClient;
 import com.timgroup.statsd.NonBlockingStatsDClient;
@@ -307,5 +310,43 @@ public class UserService {
         }
 
         return null;
+    }
+
+
+    @RequestMapping(value="/reset",method=RequestMethod.POST)
+    public String resetPassword(User user, HttpServletResponse response) {
+
+        if (
+                user.getEmail().matches("[\\w\\-\\.]+@[a-zA-Z0-9]+(\\.[A-Za-z]{2,3}){1,2}")
+        ) {
+            User existUser = userRepository.findByEmail(user.getEmail());
+
+            Base64 base64 = new Base64();
+            String token = base64.encodeToString((user.getEmail()).getBytes());
+            if (existUser != null) {
+                String msg = user.getEmail();
+                AmazonSNSClient snsClient = new AmazonSNSClient();
+                String topicArn = snsClient.createTopic("password_reset").getTopicArn();
+                PublishRequest publishRequest = new PublishRequest(topicArn, msg);
+                PublishResult publishResult = snsClient.publish(publishRequest);
+
+                response.setStatus(201);
+
+                return "{ \n  \"password reset link\":\"http://csye6225-spring2019/reset?email="+user.getEmail()+"&token="+token+"\"\n}";
+            } else {
+                response.setStatus(404);
+                return "{ \n  \"code\":\"404 Not Found.\",\n  \"reason\":\"The email you entered hasn't registered.\"\n}";
+            }
+
+
+
+
+        } else {
+            response.setStatus(400);
+            return "{ \n  \"code\":\"400 Bad Request.\",\n  \"reason\":\"The email you entered is not valid.\"\n}";
+
+        }
+
+
     }
 }
