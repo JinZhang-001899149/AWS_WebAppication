@@ -328,7 +328,7 @@
 				"S3Bucket":{
 					"Ref":"s3bucket"
 				},
-				"S3Key": "csye6225-aws-lambda-0.0.1.zip"
+				"S3Key": "lambda-1.0-SNAPSHOT.jar"
 },
 			  "Role": {
 				"Fn::GetAtt": [
@@ -337,7 +337,7 @@
 				]
 			  },
 			  "Timeout": 60,
-			  "Handler": "LogEvent::handleRequest",
+			  "Handler": "Lambda.LogEvent::handleRequest",
 			  "MemorySize": 256,
 			  "Runtime": "java8"
 			}
