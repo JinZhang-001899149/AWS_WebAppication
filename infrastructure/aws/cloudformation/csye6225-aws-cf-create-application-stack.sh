@@ -10,7 +10,7 @@ subnet1=$vpc"-cye6225-subnet1"
 subnet2=$vpc"-cye6225-subnet2"
 subnet3=$vpc"-cye6225-subnet3"
 domain=$4
-s3bucket="code-deploy.csye6225-Spring2019-"$domain".me"
+s3bucket="code-deploy.csye6225-spring2019-"$domain".me"
 
 
 
