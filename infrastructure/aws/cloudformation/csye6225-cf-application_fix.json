@@ -325,8 +325,10 @@
 			],
 			"Properties": {
 			  "Code": {
-				"Ref":"s3bucket",
-				"S3Key": "csye6225-lambda-0.0.1.zip"
+				"S3Bucket":{
+					"Ref":"s3bucket"
+				},
+				"S3Key": "csye6225-aws-lambda-0.0.1.zip"
 			  },
 			  "Role": {
 				"Fn::GetAtt": [
@@ -353,6 +355,21 @@
 					"Protocol": "lambda"
 				}],
 				"TopicName": "password_reset"
+			}
+		},
+		"MySubscription": {
+			"Type": "AWS::SNS::Subscription",
+			"Properties": {
+					"Endpoint": {
+						"Fn::GetAtt": [
+							"LambdaFunction",
+							"Arn"
+						  ]
+					},
+					"Protocol": "lambda",
+					"TopicArn": {
+						"Ref":"MySNSTopic"
+					}
 			}
 		},
 		"CodeDeployApplication": {
