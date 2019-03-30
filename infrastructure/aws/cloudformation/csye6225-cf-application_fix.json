@@ -241,8 +241,10 @@
 						"Fn::ImportValue": "CodeDeployEC2S3"
 					},
 
-                                        "arn:aws:iam::aws:policy/CloudWatchAgentAdminPolicy",
-                                        "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+					"arn:aws:iam::aws:policy/CloudWatchAgentAdminPolicy",
+					"arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy",
+					"arn:aws:iam::aws:policy/AWSLambdaFullAccess",
+					"arn:aws:iam::aws:policy/AmazonSESFullAccess"
 				]
 			}
 		},
@@ -301,7 +303,33 @@
 				  "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
 				]
 			}
-		  },
+			},
+			"LambdaSESExecutionRole": {
+				"Type": "AWS::IAM::Role",
+				"Properties": {
+					"RoleName": "LambdaSESExecutionRole",
+					"AssumeRolePolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+						"Effect": "Allow",
+						"Principal": {
+							"Service": [
+							"lambda.amazonaws.com"
+							]
+						},
+						"Action": [
+							"sts:AssumeRole"
+						]
+						}
+					]
+					},
+					"ManagedPolicyArns": [
+						"arn:aws:iam::aws:policy/AWSLambdaFullAccess",
+						"arn:aws:iam::aws:policy/AmazonSESFullAccess"
+					]
+				}
+				},
 		  "LambdaPermission": {
 			"Type": "AWS::Lambda::Permission",
 			"Properties": {
@@ -329,13 +357,21 @@
 					"Ref":"s3bucket"
 				},
 				"S3Key": "csye6225-aws-lambda-0.0.1.zip"
-},
-			  "Role": {
+        },
+				"Role":[ 
+				{
 				"Fn::GetAtt": [
 				  "LambdaSNSExecutionRole",
 				  "Arn"
 				]
-			  },
+				},
+				{
+					"Fn::GetAtt": [
+						"LambdaSESExecutionRole",
+						"Arn"
+					]
+					}
+				],
 			  "Timeout": 60,
 			  "Handler": "LogEvent::handleRequest",
 			  "MemorySize": 256,
