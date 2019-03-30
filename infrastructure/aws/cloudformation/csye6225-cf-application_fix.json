@@ -244,7 +244,9 @@
 					"arn:aws:iam::aws:policy/CloudWatchAgentAdminPolicy",
 					"arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy",
 					"arn:aws:iam::aws:policy/AWSLambdaFullAccess",
-					"arn:aws:iam::aws:policy/AmazonSESFullAccess"
+					"arn:aws:iam::aws:policy/AmazonSESFullAccess",
+					"arn:aws:iam::aws:policy/AmazonSNSFullAccess",
+					"arn:aws:iam::aws:policy/AmazonS3FullAccess"
 				]
 			}
 		},
@@ -297,39 +299,15 @@
 				]
 			  },
 				"ManagedPolicyArns": [
-				  "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
-				  "arn:aws:iam::aws:policy/AWSLambdaFullAccess",
-				  "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess",
-				  "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
+					"arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+					"arn:aws:iam::aws:policy/AWSLambdaFullAccess",
+					"arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess",
+					"arn:aws:iam::aws:policy/AmazonSNSFullAccess",
+					"arn:aws:iam::aws:policy/AmazonSESFullAccess",
+					"arn:aws:iam::aws:policy/service-role/AWSLambdaDynamoDBExecutionRole"
 				]
 			}
-			},
-			"LambdaSESExecutionRole": {
-				"Type": "AWS::IAM::Role",
-				"Properties": {
-					"RoleName": "LambdaSESExecutionRole",
-					"AssumeRolePolicyDocument": {
-					"Version": "2012-10-17",
-					"Statement": [
-						{
-						"Effect": "Allow",
-						"Principal": {
-							"Service": [
-							"lambda.amazonaws.com"
-							]
-						},
-						"Action": [
-							"sts:AssumeRole"
-						]
-						}
-					]
-					},
-					"ManagedPolicyArns": [
-						"arn:aws:iam::aws:policy/AWSLambdaFullAccess",
-						"arn:aws:iam::aws:policy/AmazonSESFullAccess"
-					]
-				}
-				},
+		},
 		  "LambdaPermission": {
 			"Type": "AWS::Lambda::Permission",
 			"Properties": {
@@ -356,26 +334,20 @@
 				"S3Bucket":{
 					"Ref":"s3bucket"
 				},
-				"S3Key": "csye6225-aws-lambda-0.0.1.zip"
-        },
-				"Role":[ 
-				{
-				"Fn::GetAtt": [
-				  "LambdaSNSExecutionRole",
-				  "Arn"
-				]
-				},
+				"S3Key": "lambda-1.0-SNAPSHOT.jar"
+			  },
+
+				"Role":
 				{
 					"Fn::GetAtt": [
-						"LambdaSESExecutionRole",
+						"LambdaSNSExecutionRole",
 						"Arn"
 					]
-					}
-				],
-			  "Timeout": 60,
-			  "Handler": "LogEvent::handleRequest",
-			  "MemorySize": 256,
-			  "Runtime": "java8"
+				},
+				"Timeout": 60,
+				"Handler": "Lambda.LogEvent::handleRequest",
+				"MemorySize": 256,
+				"Runtime": "java8"
 			}
 		  },
 		"MySNSTopic": {
