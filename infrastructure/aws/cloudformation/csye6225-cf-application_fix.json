@@ -157,13 +157,13 @@
 			"Properties": {
 				"AttributeDefinitions": [
 					{
-						"AttributeName": "id",
+						"AttributeName": "Id",
 						"AttributeType": "S"
 					}
 				],
 				"KeySchema": [
 					{
-						"AttributeName": "id",
+						"AttributeName": "Id",
 						"KeyType": "HASH"
 					}
 				],
