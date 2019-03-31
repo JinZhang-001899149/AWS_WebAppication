@@ -17,6 +17,7 @@ import sun.misc.BASE64Decoder;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -314,8 +315,11 @@ public class UserService {
 
 
     @RequestMapping(value="/reset",method=RequestMethod.POST)
+
     public String resetPassword(@RequestBody User user, HttpServletResponse response) {
 
+
+         User user = userRepository.findByEmail(principal.getName());
         if (
                 user.getEmail().matches("[\\w\\-\\.]+@[a-zA-Z0-9]+(\\.[A-Za-z]{2,3}){1,2}")
         ) {
