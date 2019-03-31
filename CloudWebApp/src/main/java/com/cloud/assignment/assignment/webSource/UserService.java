@@ -314,7 +314,7 @@ public class UserService {
 
 
     @RequestMapping(value="/reset",method=RequestMethod.POST)
-    public String resetPassword(User user, HttpServletResponse response) {
+    public String resetPassword(@RequestBody User user, HttpServletResponse response) {
 
         if (
                 user.getEmail().matches("[\\w\\-\\.]+@[a-zA-Z0-9]+(\\.[A-Za-z]{2,3}){1,2}")
