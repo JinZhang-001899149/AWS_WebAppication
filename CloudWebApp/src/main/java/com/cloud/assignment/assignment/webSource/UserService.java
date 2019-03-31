@@ -316,7 +316,8 @@ public class UserService {
 
     @RequestMapping(value="/reset",method=RequestMethod.POST)
 
-    public String resetPassword(Principal principal, HttpServletResponse response) {
+    public String resetPassword(@RequestBody User user, HttpServletResponse response) {
+
 
          User user = userRepository.findByEmail(principal.getName());
         if (
