@@ -1,9 +1,13 @@
 package com.cloud.assignment.assignment.webSource;
 
+import com.amazonaws.services.sns.AmazonSNS;
+import com.amazonaws.services.sns.AmazonSNSClientBuilder;
 import com.amazonaws.services.sns.model.PublishRequest;
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.model.PublishResult;
+import com.amazonaws.services.sns.model.Topic;
 import com.cloud.assignment.assignment.AmazonS3_dev.AmazonClient;
+import com.cloud.assignment.assignment.StringResponse.StringResponse;
 import com.timgroup.statsd.StatsDClient;
 import com.timgroup.statsd.NonBlockingStatsDClient;
 import org.slf4j.Logger;
@@ -21,6 +25,7 @@ import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 //@Controller    // This means that this class is a Controller
@@ -68,18 +73,17 @@ public class UserService {
     //get for assignment
     @GetMapping("/") // Map ONLY GET Requests
     public @ResponseBody
-
     String authentiction(@RequestHeader String Authorization, HttpServletResponse response) {
 
-    //String authentiction(@RequestParam String auth,Headers Authentication)
+        //String authentiction(@RequestParam String auth,Headers Authentication)
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
 
         statsDClient.incrementCounter("endpoint.http.get");
-       // auth = @RequestHeader Authorization;
+        // auth = @RequestHeader Authorization;
         ArrayList<User> list = (ArrayList<User>) getAllUsers();
-       // System.out.println(Authorization);
+        // System.out.println(Authorization);
 
 //        User newUser = new User();
 //        String token3 = newUser.getEmail()+":"+ newUser.getPassword();
@@ -93,23 +97,21 @@ public class UserService {
 //            }
 
 
-
-
         int index3 = Authorization.indexOf(" ");
-        String code = Authorization.substring(index3+1);
+        String code = Authorization.substring(index3 + 1);
         Base64 base64 = new Base64();
         BASE64Decoder decoder = new BASE64Decoder();
 
         String decode = null;
         try {
-            decode = new String(decoder.decodeBuffer(code),"UTF-8");
+            decode = new String(decoder.decodeBuffer(code), "UTF-8");
         } catch (IOException e) {
             return "Decode fail";
         }
         int index = decode.indexOf(":");
 
-        String password = decode.substring(index+1);
-        String email = decode.substring(0,index);
+        String password = decode.substring(index + 1);
+        String email = decode.substring(0, index);
 
 
         //String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
@@ -123,7 +125,7 @@ public class UserService {
                 return user.getToken()+"/"+baseAuth;
             }*/
 
-           if (user.getEmail().equals(email)&&BCrypt.checkpw(password,user.getPassword())) {
+            if (user.getEmail().equals(email) && BCrypt.checkpw(password, user.getPassword())) {
 
                 return new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 
@@ -154,12 +156,12 @@ public class UserService {
             //get users from database
             ArrayList<User> list = (ArrayList<User>) getAllUsers();
 
-            logger.info("{}",newUser.getEmail());
+            logger.info("{}", newUser.getEmail());
 
             if (list.size() == 0) {
-                logger.info("{}",newUser.getPassword());
+                logger.info("{}", newUser.getPassword());
                 if (
-                                newUser.getPassword().matches(".*[a-zA-Z].*") &&
+                        newUser.getPassword().matches(".*[a-zA-Z].*") &&
                                 newUser.getPassword().matches(".*[0-9].*") &&
                                 newUser.getPassword().length() >= 8 &&
                                 newUser.getPassword().length() <= 20) {
@@ -181,12 +183,11 @@ public class UserService {
                     String result = base64.encodeToString(token.getBytes());
 
 
-                    String token2 = newUser.getEmail()+ ":" + hashed;
+                    String token2 = newUser.getEmail() + ":" + hashed;
 
 
                     Base64 base642 = new Base64();
                     String result2 = base642.encodeToString(token2.getBytes());
-
 
 
                     ArrayList<String> listtoken = new ArrayList<String>();
@@ -196,18 +197,16 @@ public class UserService {
                     jsarray.add(listtoken);
 
 
-                    response.setHeader("Token",result2);
+                    response.setHeader("Token", result2);
 
 
-                    logger.info("{}",newUser);
+                    logger.info("{}", newUser);
                     //newUser.setToken(result);
 
                     //newUser.setPassword(hashed);
 
                     // the format of the password is correct and make it into Bcrypt token then save the user
                     userRepository.save(newUser);
-
-
 
 
                     response.setStatus(201);
@@ -218,7 +217,7 @@ public class UserService {
                 } else {
 
                     response.setStatus(406);
-                   // return "{\"password invalid, The password must containing letters and numbers\"}";
+                    // return "{\"password invalid, The password must containing letters and numbers\"}";
                     return "{ \n  \"code\":\"406 Not Acceptable.\",\n  \"reason\":\"Invalid Password. The password must containing letters and numbers.\"\n}";
 
                 }
@@ -232,10 +231,10 @@ public class UserService {
                     if (user.getEmail().equalsIgnoreCase(newUser.getEmail())) {
                         //return "{\"result\":\"exist\"}";
                         response.setStatus(403);
-                          return "{ \n  \"code\":\"403 Forbidden.\",\n  \"reason\":\"The account already exists.\"\n}";
+                        return "{ \n  \"code\":\"403 Forbidden.\",\n  \"reason\":\"The account already exists.\"\n}";
 
                     } else {
-                        if(i == list.size() - 1) {
+                        if (i == list.size() - 1) {
                             if (
                                     newUser.getPassword().matches(".*[a-zA-Z].*") &&
                                             newUser.getPassword().matches(".*[0-9].*") &&
@@ -254,7 +253,7 @@ public class UserService {
                                 String result = base64.encodeToString(token.getBytes());
 
 
-                                String token2 = newUser.getEmail()+ ":"+ hashed;
+                                String token2 = newUser.getEmail() + ":" + hashed;
                                 Base64 base642 = new Base64();
                                 String result2 = base642.encodeToString(token2.getBytes());
 
@@ -263,7 +262,7 @@ public class UserService {
                                 listtoken.add(result2);
                                 JSONArray jsarray = new JSONArray();
 
-                                response.setHeader("Token",result2);
+                                response.setHeader("Token", result2);
 
                                 jsarray.add(listtoken);
 
@@ -278,35 +277,29 @@ public class UserService {
                                 // return the token and tell user successfully registered
 
                                 response.setStatus(201);
- 
+
 
                                 return "{ \n  \"code\":\"201 Created.\",\n  \"reason\":\"Successfully Registered.\"\n}";
 
 
-                                  
-                                 
-
-                            }
-
-
-                            else {
+                            } else {
                                 response.setStatus(406);
 
-                               return "{ \n  \"code\":\"406 Not Acceptable.\",\n  \"reason\":\"Invalid Password. The password must containing letters and numbers.\"\n}";
+                                return "{ \n  \"code\":\"406 Not Acceptable.\",\n  \"reason\":\"Invalid Password. The password must containing letters and numbers.\"\n}";
 
 
                             }
                         } else {
                             continue;
                         }
-                }
+                    }
                 }
             }
 
         } else {
 
             response.setStatus(406);
-          return "{ \n  \"code\":\"406 Not Acceptable.\",\n  \"reason\":\"Invalid Email. Please input the right format of email to create an account.\"\n}";
+            return "{ \n  \"code\":\"406 Not Acceptable.\",\n  \"reason\":\"Invalid Email. Please input the right format of email to create an account.\"\n}";
 
         }
 
@@ -314,43 +307,91 @@ public class UserService {
     }
 
 
-    @RequestMapping(value="/reset",method=RequestMethod.POST)
+    @RequestMapping(value = "/reset", method = RequestMethod.POST)
 
-    public String resetPassword(@RequestBody User user, HttpServletResponse response) {
+    public Object resetPassword(@RequestBody User user, HttpServletResponse response) {
 
 
-         User user = userRepository.findByEmail(principal.getName());
-        if (
-                user.getEmail().matches("[\\w\\-\\.]+@[a-zA-Z0-9]+(\\.[A-Za-z]{2,3}){1,2}")
-        ) {
-            User existUser = userRepository.findByEmail(user.getEmail());
+        user = userRepository.findByEmail(user.getEmail());
 
-            Base64 base64 = new Base64();
-            String token = base64.encodeToString((user.getEmail()).getBytes());
-            if (existUser != null) {
-                String msg = user.getEmail();
-                AmazonSNSClient snsClient = new AmazonSNSClient();
-                String topicArn = snsClient.createTopic("password_reset").getTopicArn();
-                PublishRequest publishRequest = new PublishRequest(topicArn, msg);
-                PublishResult publishResult = snsClient.publish(publishRequest);
 
-                response.setStatus(201);
+        if (user != null) {
+            AmazonSNS snsClient = AmazonSNSClientBuilder.defaultClient();
 
-                return "{ \n  \"password reset link\":\"http://csye6225-spring2019/reset?email="+user.getEmail()+"&token="+token+"\"\n}";
-            } else {
-                response.setStatus(404);
-                return "{ \n  \"code\":\"404 Not Found.\",\n  \"reason\":\"The email you entered hasn't registered.\"\n}";
+            List<Topic> topics = snsClient.listTopics().getTopics();
+
+            System.out.println("resetting user email found: " + user.getEmail());
+            System.out.println(topics.get(1).getTopicArn());
+            PublishResult publishResult = new PublishResult();
+
+
+            for (Topic topic : topics) {
+                if (topic.getTopicArn().endsWith("password_reset")) {
+                    PublishRequest req = new PublishRequest(topic.getTopicArn(), user.getEmail());
+                    publishResult = snsClient.publish(req);
+                    System.out.println("MessageId - " + publishResult.getMessageId());
+                    break;
+                }
             }
 
+            System.out.println("publishresult" + publishResult);
 
+            if (publishResult.getMessageId() != null) {
 
-
+                response.setStatus(201);
+                return new StringResponse("Email sent");
+                //return "{ \n  \"password reset link\":\"http://csye6225-spring2019/reset?email="+user.getEmail()+"&token="+token+"\"\n}";
+            } else {
+                response.setStatus(400);
+                //return new StringResponse("Bad Request");
+                return "{ \n  \"code\":\"404 Not Found.\",\n  \"reason\":\"The email you entered hasn't registered.\"\n}";
+            }
         } else {
             response.setStatus(400);
+            //return new StringResponse("Bad Request");
             return "{ \n  \"code\":\"400 Bad Request.\",\n  \"reason\":\"The email you entered is not valid.\"\n}";
-
         }
-
-
     }
 }
+
+
+
+
+
+
+
+
+//        if (
+//                user.getEmail().matches("[\\w\\-\\.]+@[a-zA-Z0-9]+(\\.[A-Za-z]{2,3}){1,2}")
+//        ) {
+//            User existUser = userRepository.findByEmail(user.getEmail());
+//
+//            Base64 base64 = new Base64();
+//            String token = base64.encodeToString((user.getEmail()).getBytes());
+//            if (existUser != null) {
+//                String msg = user.getEmail();
+//                AmazonSNSClient snsClient = new AmazonSNSClient();
+//                String topicArn = snsClient.createTopic("password_reset").getTopicArn();
+//                PublishRequest publishRequest = new PublishRequest(topicArn, msg);
+//                PublishResult publishResult = snsClient.publish(publishRequest);
+//
+//                response.setStatus(201);
+//
+//                return "{ \n  \"password reset link\":\"http://csye6225-spring2019/reset?email="+user.getEmail()+"&token="+token+"\"\n}";
+//            } else {
+//                response.setStatus(404);
+//                return "{ \n  \"code\":\"404 Not Found.\",\n  \"reason\":\"The email you entered hasn't registered.\"\n}";
+//            }
+//
+//
+//
+//
+//        } else {
+//            response.setStatus(400);
+//            return "{ \n  \"code\":\"400 Bad Request.\",\n  \"reason\":\"The email you entered is not valid.\"\n}";
+//
+//        }
+
+
+//    }
+//}
