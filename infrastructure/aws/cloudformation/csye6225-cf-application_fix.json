@@ -335,7 +335,7 @@
 				"S3Bucket":{
 					"Ref":"s3bucket"
 				},
-				"S3Key": "lambda-1.0-SNAPSHOT.jar"
+				"S3Key": "csye6225-spring2019-lambda.zip"
 			  },
 
 				"Role":
