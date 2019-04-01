@@ -450,6 +450,9 @@
 		},
 		"s3bucket":{
 			"Type":"String"
+		},
+		"Domain":{
+			"Type":"String"
 		}
 	}
 
