@@ -11,6 +11,7 @@ subnet2=$vpc"-cye6225-subnet2"
 subnet3=$vpc"-cye6225-subnet3"
 domain=$4
 s3bucket="code-deploy.csye6225-spring2019-"$domain".me"
+Domain="csye6225-spring2019-"$domain".me"
 
 
 
@@ -44,7 +45,7 @@ echo $UserName
 
 
 
-aws cloudformation create-stack --stack-name ${stackname} --template-body file://./csye6225-cf-application_fix.json --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=vpcId,ParameterValue=$vpcid ParameterKey=ImageId,ParameterValue=$ami ParameterKey=publicsubnet1,ParameterValue=$PublicSubnet1 ParameterKey=publicsubnet2,ParameterValue=$PublicSubnet2 ParameterKey=publicsubnet3,ParameterValue=$PublicSubnet3 ParameterKey=circleci,ParameterValue=$UserName ParameterKey=s3bucket,ParameterValue=$s3bucket
+aws cloudformation create-stack --stack-name ${stackname} --template-body file://./csye6225-cf-application_fix.json --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=vpcId,ParameterValue=$vpcid ParameterKey=ImageId,ParameterValue=$ami ParameterKey=publicsubnet1,ParameterValue=$PublicSubnet1 ParameterKey=publicsubnet2,ParameterValue=$PublicSubnet2 ParameterKey=publicsubnet3,ParameterValue=$PublicSubnet3 ParameterKey=circleci,ParameterValue=$UserName ParameterKey=s3bucket,ParameterValue=$s3bucket ParameterKey=Domain,ParameterValue=$Domain
 
 echo "Creating! Please wait until done"
 
