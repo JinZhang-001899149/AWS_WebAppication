@@ -326,6 +326,7 @@
 		  },
 		  "LambdaFunction": {
 			"Type": "AWS::Lambda::Function",
+			"Functionname":"lambdaFunction",
 			"DependsOn": [
 			  "LambdaSNSExecutionRole"
 			],
@@ -347,7 +348,14 @@
 				"Timeout": 60,
 				"Handler": "Lambda.LogEvent::handleRequest",
 				"MemorySize": 256,
-				"Runtime": "java8"
+				"Runtime": "java8",
+        "Environment":{
+					"Variables":{
+						"DOMAIN":{
+							"Ref":"Domain"
+						}
+					}
+				}
 			}
 		  },
 		"MySNSTopic": {
