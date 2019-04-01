@@ -326,11 +326,11 @@
 		  },
 		  "LambdaFunction": {
 			"Type": "AWS::Lambda::Function",
-			"Functionname":"lambdaFunction",
 			"DependsOn": [
 			  "LambdaSNSExecutionRole"
 			],
 			"Properties": {
+				"FunctionName":"Lambda-Function",
 			  "Code": {
 				"S3Bucket":{
 					"Ref":"s3bucket"
