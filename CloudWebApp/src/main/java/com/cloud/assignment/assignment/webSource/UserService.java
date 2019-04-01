@@ -143,7 +143,7 @@ public class UserService {
 
 
     //post for assignment
-    @PostMapping("/user/register-jin")
+    @PostMapping("/user/register")
     public @ResponseBody
     String
 
@@ -344,12 +344,12 @@ public class UserService {
             } else {
                 response.setStatus(400);
                 //return new StringResponse("Bad Request");
-                return "{ \n  \"code\":\"404 Not Found.\",\n  \"reason\":\"The email you entered hasn't registered.\"\n}";
+                return "{ \n  \"code\":\"404 Not Found.\",\n  \"reason\":\"The email you entered is not valid or hasn't registered.\"\n}";
             }
         } else {
             response.setStatus(400);
             //return new StringResponse("Bad Request");
-            return "{ \n  \"code\":\"400 Bad Request.\",\n  \"reason\":\"The email you entered is not valid.\"\n}";
+            return "{ \n  \"code\":\"400 Bad Request.\",\n  \"reason\":\"The email you entered is not valid or hasn't registered.\"\n}";
         }
     }
 }
