@@ -312,6 +312,7 @@ public class UserService {
     public Object resetPassword(@RequestBody User user, HttpServletResponse response) {
 
 
+        statsDClient.incrementCounter("endpoint.reset.http.post");
         user = userRepository.findByEmail(user.getEmail());
 
 
