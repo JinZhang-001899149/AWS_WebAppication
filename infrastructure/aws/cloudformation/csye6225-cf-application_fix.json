@@ -330,6 +330,7 @@
 			  "LambdaSNSExecutionRole"
 			],
 			"Properties": {
+				"FunctionName":"Lambda-Function",
 			  "Code": {
 				"S3Bucket":{
 					"Ref":"s3bucket"
@@ -347,7 +348,14 @@
 				"Timeout": 60,
 				"Handler": "Lambda.LogEvent::handleRequest",
 				"MemorySize": 256,
-				"Runtime": "java8"
+				"Runtime": "java8",
+        "Environment":{
+					"Variables":{
+						"DOMAIN":{
+							"Ref":"Domain"
+						}
+					}
+				}
 			}
 		  },
 		"MySNSTopic": {
@@ -441,6 +449,9 @@
 			"Type": "String"
 		},
 		"s3bucket":{
+			"Type":"String"
+		},
+		"Domain":{
 			"Type":"String"
 		}
 	}

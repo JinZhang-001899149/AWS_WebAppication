@@ -312,6 +312,7 @@ public class UserService {
     public Object resetPassword(@RequestBody User user, HttpServletResponse response) {
 
 
+        statsDClient.incrementCounter("endpoint.reset.http.post");
         user = userRepository.findByEmail(user.getEmail());
 
 
@@ -339,7 +340,7 @@ public class UserService {
             if (publishResult.getMessageId() != null) {
 
                 response.setStatus(201);
-                return new StringResponse("Email sent");
+                return new StringResponse(new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()));
                 //return "{ \n  \"password reset link\":\"http://csye6225-spring2019/reset?email="+user.getEmail()+"&token="+token+"\"\n}";
             } else {
                 response.setStatus(400);
