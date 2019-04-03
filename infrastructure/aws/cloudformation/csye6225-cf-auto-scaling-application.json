@@ -373,6 +373,30 @@
 				"TopicName": "password_reset"
 			}
 		},
+                "LoadBalancer":{
+                        "Type":"AWS::ElasticLoadBalancingV2::LoadBalancer",
+                        "Properties":{
+                               "Name":{"Ref":"LoadBalancerName"},
+                               "Scheme":"internet-facing",
+                               "Subnets":[
+                                          {
+                                            "Ref":"WebServerSubnetID"
+                                          },
+                                          {
+                                            "Ref":"DBServerSubnetID"
+                                          }
+                                         ],
+		                "SecurityGroups":[
+                                                   {
+                                                    "Ref":"LoadBalancerSecurityGroupID"
+                                                   }
+                                                  ],
+                                "Type":"application",
+                                "IpAddressType":"ipv4"
+          
+                        }
+
+                },
 		"MySubscription": {
 			"Type": "AWS::SNS::Subscription",
 			"Properties": {
@@ -527,7 +551,19 @@
 		},
 		"Domain":{
 			"Type":"String"
-		}
+		},
+                "LoadBalancerName":{
+                        "Type":"String"
+                },
+                "WebServerSubnetID":{
+                        "Type":"String"
+                },
+                "DBServerSubnetID":{
+                        "Type":"String"
+                },
+                "LoadBalancerSecurityGroupID":{
+                        "Type":"String"
+                }
 	}
 
 }
