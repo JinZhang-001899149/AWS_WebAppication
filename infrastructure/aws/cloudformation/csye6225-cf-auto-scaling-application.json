@@ -70,6 +70,31 @@
 			}
 		},
 
+		"LoadBalancerSecurityGroup": {
+			"Type": "AWS::EC2::SecurityGroup",
+			"Properties": {
+				"GroupName":  "ALB_SG",
+				"GroupDescription": "Enable HTTP access via port 80, HTTPS via port 443",
+				"VpcId": {
+					"Ref": "VPC"
+				},
+				"SecurityGroupIngress": [
+					{
+						"IpProtocol": "tcp",
+						"FromPort": "80",
+						"ToPort": "80",
+						"CidrIp": "0.0.0.0/0"
+					},
+					{
+						"IpProtocol": "tcp",
+						"FromPort": "443",
+						"ToPort": "443",
+						"CidrIp": "0.0.0.0/0"
+					}
+				]
+			}
+		},
+
 		"EC2Instance": {
 			"Type": "AWS::EC2::Instance",
 			"Properties": {
@@ -140,6 +165,187 @@
 				}
 			}
 		},
+
+		"WebServer":{
+			"Type" : "AWS::AutoScaling::LaunchConfiguration",
+			"Properties" : {
+				"AssociatePublicIpAddress": "true",
+				"InstanceType" : "t2.micro",
+				"ImageId": {
+					"Ref": "ImageId"
+				},
+				"KeyName" : "csye6225",
+				"SecurityGroupIds": [
+					{
+						"Ref": "WebServerSecurityGroup"
+					}
+				],
+				"BlockDeviceMappings": [
+					{
+						"DeviceName": "/dev/sdm",
+						"Ebs": {
+							"VolumeType": "gp2",
+							"VolumeSize": "20",
+							"DeleteOnTermination": "true"
+						}
+					}
+				],
+				"UserData": {
+					"Fn::Base64": {
+						"Fn::Join": [
+							"",
+							[
+								"#!/bin/bash\n",
+								"sudo service codedeploy-agent start\n",
+								"sudo service codedeploy-agent status\n",
+								{
+									"Fn::Join": [
+										"",
+										[
+											"sudo echo \"RDS=\\\"",
+											{
+												"Fn::GetAtt": [
+													"DBInstance",
+													"Endpoint.Address"
+												]
+											},
+											"\\\"\" >> /home/centos/mysqlsetting.txt \n"
+										]
+									]
+								}
+							]
+						]
+					}
+				},
+				"IamInstanceProfile": {
+					"Ref": "AttachRoleInstanceProfile"
+				}
+			}
+		},
+
+		"WebServerGroup" : {
+			"Type" : "AWS::AutoScaling::AutoScalingGroup",
+			"Properties" : {
+				"LaunchConfigurationName" : { "Ref" : "WebServer" },
+				"MinSize" : "3",
+				"DesiredCapacity" : "3",
+				"MaxSize" : "10",
+				"TargetGroupARNs": [{
+					"Ref": "ALBTargetGroup"
+				}
+				],
+				"Tags": [{
+					"Key": {
+						"Ref": "TagKey"
+					},
+					"Value": {
+						"Ref": "TagValue"
+					},
+					"PropagateAtLaunch" : "true"
+				}],
+				"VPCZoneIdentifier" :[{
+					"Ref": "publicsubnet1"
+				}
+				]
+			},
+			"DependsOn": "ALBListener"
+		},
+
+		"LoadBalancer":{
+			"Type":"AWS::ElasticLoadBalancingV2::LoadBalancer",
+			"Properties":{
+				"Name":{"Ref":"LoadBalancerName"},
+				"Scheme":"internet-facing",
+				"Subnets":[
+					{
+						"Ref": "publicsubnet1"
+					},
+					{
+						"Ref": "publicsubnet2"
+					}
+				],
+				"SecurityGroups":[
+					{
+						"Ref":"LoadBalancerSecurityGroup"
+					}
+				],
+				"Type":"application",
+				"IpAddressType":"ipv4"
+
+			}
+
+		},
+
+		"ALBListener" : {
+			"Type" : "AWS::ElasticLoadBalancingV2::Listener",
+			"Properties" : {
+				"DefaultActions" : [{
+					"Type" : "forward",
+					"TargetGroupArn" : { "Ref" : "ALBTargetGroup" }
+				}],
+				"LoadBalancerArn" : { "Ref" : "LoadBalancer" },
+				"Port" : "443",
+				"Protocol" : "HTTPS",
+				"Certificates": [
+					{
+						"CertificateArn": {
+							"Ref": "CertificateArn1"
+						}
+					}
+				]
+			}
+		},
+
+
+		"ALBListener2" : {
+			"Type" : "AWS::ElasticLoadBalancingV2::Listener",
+			"Properties" : {
+				"DefaultActions" : [{
+					"Type" : "forward",
+					"TargetGroupArn" : { "Ref" : "ALBTargetGroup" }
+				}],
+				"LoadBalancerArn" : { "Ref" : "LoadBalancer" },
+				"Port" : "80",
+				"Protocol" : "HTTP"
+			}
+		},
+		"ALBTargetGroup" : {
+			"Type" : "AWS::ElasticLoadBalancingV2::TargetGroup",
+			"Properties" : {
+				"HealthCheckIntervalSeconds" : 30,
+				"UnhealthyThresholdCount" : 10,
+				"HealthCheckPath" : "/",
+				"TargetGroupAttributes": [{
+					"Key": "deregistration_delay.timeout_seconds",
+					"Value": "20"
+				}],
+				"Name" : "MyTargetGroup",
+				"HealthCheckPort" : 8080,
+				"TargetType": "instance",
+				"Port" : 8080,
+				"Protocol" : "HTTP",
+				"VpcId" : { "Ref": "ParamVpcId" }
+			}
+		},
+
+		"ResourceRecords": {
+			"Type": "AWS::Route53::RecordSet",
+			"Properties": {
+				"HostedZoneId": {
+					"Ref": "HostedZoneId"
+				},
+				"Name": {
+					"Ref": "Name"
+				},
+				"AliasTarget" : {
+					"HostedZoneId" : { "Fn::GetAtt" : ["LoadBalancer", "CanonicalHostedZoneID"] },
+					"DNSName" : { "Fn::GetAtt" : ["LoadBalancer","DNSName"] }
+				},
+				"Type": "A"
+			}
+		},
+
+
 
 		"AttachRoleInstanceProfile": {
 			"Type": "AWS::IAM::InstanceProfile",
@@ -373,30 +579,6 @@
 				"TopicName": "password_reset"
 			}
 		},
-                "LoadBalancer":{
-                        "Type":"AWS::ElasticLoadBalancingV2::LoadBalancer",
-                        "Properties":{
-                               "Name":{"Ref":"LoadBalancerName"},
-                               "Scheme":"internet-facing",
-                               "Subnets":[
-                                          {
-                                            "Ref":"WebServerSubnetID"
-                                          },
-                                          {
-                                            "Ref":"DBServerSubnetID"
-                                          }
-                                         ],
-		                "SecurityGroups":[
-                                                   {
-                                                    "Ref":"LoadBalancerSecurityGroupID"
-                                                   }
-                                                  ],
-                                "Type":"application",
-                                "IpAddressType":"ipv4"
-          
-                        }
-
-                },
 		"MySubscription": {
 			"Type": "AWS::SNS::Subscription",
 			"Properties": {
