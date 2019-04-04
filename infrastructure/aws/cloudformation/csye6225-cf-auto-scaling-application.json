@@ -76,7 +76,7 @@
 				"GroupName":  "ALB_SG",
 				"GroupDescription": "Enable HTTP access via port 80, HTTPS via port 443",
 				"VpcId": {
-					"Ref": "VPC"
+					"Ref": "vpcId"
 				},
 				"SecurityGroupIngress": [
 					{
@@ -708,7 +708,8 @@
 				"ComparisonOperator": "LessThanThreshold"
 			}
 		}
-	},
+
+},
 	"Parameters": {
 		"vpcId": {
 			"Type": "String"
@@ -734,18 +735,18 @@
 		"Domain":{
 			"Type":"String"
 		},
-                "LoadBalancerName":{
-                        "Type":"String"
-                },
-                "WebServerSubnetID":{
-                        "Type":"String"
-                },
-                "DBServerSubnetID":{
-                        "Type":"String"
-                },
-                "LoadBalancerSecurityGroupID":{
-                        "Type":"String"
-                }
+		"LoadBalancerName":{
+			"Type":"String"
+		},
+		"WebServerSubnetID":{
+			"Type":"String"
+		},
+		"DBServerSubnetID":{
+			"Type":"String"
+		},
+		"LoadBalancerSecurityGroupID":{
+			"Type":"String"
+		}
 	}
 
 }
