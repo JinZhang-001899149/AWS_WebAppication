@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 stackname=$1
 username=$2
 domain=$3
