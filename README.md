@@ -35,9 +35,9 @@ Token creation: encoded from user's email and password
 Deploy the application locally on Tomcat
 
 Deploy on AWS 
-"$bash csye6225-aws-cf-create-policy.sh policy CirclrCI domain"
-"$bash csye6225-aws-cf-create-stack.sh networkname network"
-"$bash csye6225-aws-cf-create-auto-scaling-application-stack.sh applicationstack network ami-xxxxxxxxxxx bucketname"
+"$bash csye6225-aws-cf-create-policy.sh"
+"$bash csye6225-aws-cf-create-stack.sh"
+"$bash csye6225-aws-cf-create-auto-scaling-application-stack.sh"
 
 ## Running Tests
 Since we only developed the backend, we used Postman to test the functions.
