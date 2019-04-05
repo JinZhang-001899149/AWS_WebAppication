@@ -324,7 +324,7 @@
 				"TargetType": "instance",
 				"Port" : 8080,
 				"Protocol" : "HTTP",
-				"VpcId" : { "Ref": "ParamVpcId" }
+				"VpcId" : { "Ref": "vpcId" }
 			}
 		},
 
