@@ -1,5 +1,5 @@
 {
-	"Description": "NetworkStack",
+	"Description": "ApplicationAutoStack",
 	"Resources": {
 		"WebServerSecurityGroup": {
 			"Type": "AWS::EC2::SecurityGroup",
@@ -26,19 +26,25 @@
 						"IpProtocol": "tcp",
 						"FromPort": "80",
 						"ToPort": "80",
-						"CidrIp": "0.0.0.0/0"
+						"SourceSecurityGroupId": {
+							"Ref": "LoadBalancerSecurityGroup"
+						}
 					},
 					{
 						"IpProtocol": "tcp",
 						"FromPort": "443",
 						"ToPort": "443",
-						"CidrIp": "0.0.0.0/0"
+						"SourceSecurityGroupId": {
+							"Ref": "LoadBalancerSecurityGroup"
+						}
 					},
 					{
 						"IpProtocol": "tcp",
 						"FromPort": "8080",
 						"ToPort": "8080",
-						"CidrIp": "0.0.0.0/0"
+						"SourceSecurityGroupId": {
+							"Ref": "LoadBalancerSecurityGroup"
+						}
 					}
 				]
 			}
@@ -95,76 +101,7 @@
 			}
 		},
 
-		"EC2Instance": {
-			"Type": "AWS::EC2::Instance",
-			"Properties": {
-				"ImageId": {
-					"Ref": "ImageId"
-				},
-				"InstanceType": "t2.micro",
-				"DisableApiTermination": "false",
-				"KeyName": "csye6225",
-				"SecurityGroupIds": [
-					{
-						"Ref": "WebServerSecurityGroup"
-					}
-				],
-				"SubnetId": {
-					"Ref": "publicsubnet1"
-				},
-				"Tags": [
-					{
-						"Key": "Group",
-						"Value": "ec2-instances"
-					},
 
-                    {
-                    "Key": "Name",
-                    "Value": "csye6225_Instance"
-                    }
-                ],
-				"BlockDeviceMappings": [
-					{
-						"DeviceName": "/dev/sdm",
-						"Ebs": {
-							"VolumeType": "gp2",
-							"VolumeSize": "20",
-							"DeleteOnTermination": "true"
-						}
-					}
-				],
-				"IamInstanceProfile": {
-					"Ref": "AttachRoleInstanceProfile"
-				},
-				"UserData": {
-					"Fn::Base64": {
-						"Fn::Join": [
-							"",
-							[
-								"#!/bin/bash\n",
-								"sudo service codedeploy-agent start\n",
-								"sudo service codedeploy-agent status\n",
-								{
-									"Fn::Join": [
-										"",
-										[
-											"sudo echo \"RDS=\\\"",
-											{
-												"Fn::GetAtt": [
-													"DBInstance",
-													"Endpoint.Address"
-												]
-											},
-											"\\\"\" >> /home/centos/mysqlsetting.txt \n"
-										]
-									]
-								}
-							]
-						]
-					}
-				}
-			}
-		},
 
 		"WebServer":{
 			"Type" : "AWS::AutoScaling::LaunchConfiguration",
@@ -197,22 +134,7 @@
 							[
 								"#!/bin/bash\n",
 								"sudo service codedeploy-agent start\n",
-								"sudo service codedeploy-agent status\n",
-								{
-									"Fn::Join": [
-										"",
-										[
-											"sudo echo \"RDS=\\\"",
-											{
-												"Fn::GetAtt": [
-													"DBInstance",
-													"Endpoint.Address"
-												]
-											},
-											"\\\"\" >> /home/centos/mysqlsetting.txt \n"
-										]
-									]
-								}
+								"sudo service codedeploy-agent status\n"
 							]
 						]
 					}
@@ -245,7 +167,10 @@
 				}],
 				"VPCZoneIdentifier" :[{
 					"Ref": "publicsubnet1"
-				}
+				},
+					{
+						"Ref": "publicsubnet2"
+					}
 				]
 			},
 			"DependsOn": "ALBListener"
@@ -299,7 +224,9 @@
 			"Type" : "AWS::ElasticLoadBalancingV2::TargetGroup",
 			"Properties" : {
 				"HealthCheckIntervalSeconds" : 30,
-				"UnhealthyThresholdCount" : 10,
+				"HealthCheckTimeoutSeconds": 5,
+				"HealthyThresholdCount": 3,
+				"UnhealthyThresholdCount": 5,
 				"HealthCheckPath" : "/",
 				"TargetGroupAttributes": [{
 					"Key": "deregistration_delay.timeout_seconds",
@@ -318,13 +245,30 @@
 			"Type": "AWS::Route53::RecordSet",
 			"Properties": {
 				"HostedZoneName": {
-					"Ref": "Domain"
+					"Fn::Join": [
+						"",
+						[
+							{
+								"Ref": "Domain"
+							},
+							"."
+						]
+					]
 				},
 				"Name": {
-					"Ref": "Domain"
+					"Fn::Join": [
+						"",
+						[
+							{
+								"Ref": "Domain"
+							},
+							"."
+						]
+					]
 				},
 				"AliasTarget" : {
-					"HostedZoneId" : { "Fn::GetAtt" : ["LoadBalancer", "CanonicalHostedZoneID"] },
+					"HostedZoneId" :
+					{ "Fn::GetAtt" : ["LoadBalancer", "CanonicalHostedZoneID"] },
 					"DNSName" : { "Fn::GetAtt" : ["LoadBalancer","DNSName"] }
 				},
 				"Type": "A"
@@ -617,7 +561,12 @@
 					"Events": [
 						"DEPLOYMENT_FAILURE"
 					]
-				}
+				},
+				"AutoScalingGroups": [
+					{
+						"Ref": "WebServerGroup"
+					}
+				]
 			}
 		},
 		"WebServerScaleUpPolicy": {
@@ -693,9 +642,854 @@
 				],
 				"ComparisonOperator": "LessThanThreshold"
 			}
+		},
+		"wafCSRFMethodStringSet": {
+			"Type": "AWS::WAFRegional::ByteMatchSet",
+			"Properties": {
+				"Name": "wafCSRFMethodStringSet",
+				"ByteMatchTuples": [
+					{
+						"FieldToMatch": {
+							"Type": "METHOD"
+						},
+						"PositionalConstraint": "EXACTLY",
+						"TargetString": "post",
+						"TextTransformation": "LOWERCASE"
+					}
+				]
+			}
+		},
+		"wafCSRFTokenSizeConstraint": {
+			"Type": "AWS::WAFRegional::SizeConstraintSet",
+			"Properties": {
+				"Name": "wafCSRFTokenSizeConstraint",
+				"SizeConstraints": [
+					{
+						"FieldToMatch": {
+							"Type": "HEADER",
+							"Data": {
+								"Ref": "csrfExpectedHeader"
+							}
+						},
+						"TextTransformation": "NONE",
+						"ComparisonOperator": "EQ",
+						"Size": {
+							"Ref": "csrfExpectedSize"
+						}
+					}
+				]
+			}
+		},
+		"wafCSRFRule": {
+			"Type": "AWS::WAFRegional::Rule",
+			"Properties": {
+				"MetricName": "wafCSRFRule",
+				"Name": "wafCSRFRule",
+				"Predicates": [
+					{
+						"Type": "ByteMatch",
+						"Negated": false,
+						"DataId": {
+							"Ref": "wafCSRFMethodStringSet"
+						}
+					},
+					{
+						"Type": "SizeConstraint",
+						"Negated": true,
+						"DataId": {
+							"Ref": "wafCSRFTokenSizeConstraint"
+						}
+					}
+				]
+			}
+		},
+		"wafSQLSet": {
+			"Type": "AWS::WAFRegional::SqlInjectionMatchSet",
+			"Properties": {
+				"Name": "wafSQLSet",
+				"SqlInjectionMatchTuples": [
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"TextTransformation": "HTML_ENTITY_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "QUERY_STRING"
+						},
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "QUERY_STRING"
+						},
+						"TextTransformation": "HTML_ENTITY_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "BODY"
+						},
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "BODY"
+						},
+						"TextTransformation": "HTML_ENTITY_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "HEADER",
+							"Data": "cookie"
+						},
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "HEADER",
+							"Data": "cookie"
+						},
+						"TextTransformation": "HTML_ENTITY_DECODE"
+					}
+				]
+			}
+		},
+		"wafSQLRule": {
+			"Type": "AWS::WAFRegional::Rule",
+			"Properties": {
+				"MetricName": "wafSQLRule",
+				"Name": "wafSQLRule",
+				"Predicates": [
+					{
+						"Type": "SqlInjectionMatch",
+						"Negated": false,
+						"DataId": {
+							"Ref": "wafSQLSet"
+						}
+					}
+				]
+			}
+		},
+		"wafAuthTokenStringSet": {
+			"Type": "AWS::WAFRegional::ByteMatchSet",
+			"Properties": {
+				"Name": "wafAuthTokenStringSet",
+				"ByteMatchTuples": [
+					{
+						"FieldToMatch": {
+							"Type": "HEADER",
+							"Data": "cookie"
+						},
+						"PositionalConstraint": "CONTAINS",
+						"TargetString": "example-session-id",
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "HEADER",
+							"Data": "authorization"
+						},
+						"PositionalConstraint": "ENDS_WITH",
+						"TargetString": ".TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ",
+						"TextTransformation": "URL_DECODE"
+					}
+				]
+			}
+		},
+		"wafAuthTokenRule": {
+			"Type": "AWS::WAFRegional::Rule",
+			"Properties": {
+				"MetricName": "wafAuthTokenRule",
+				"Name": "wafAuthTokenRule",
+				"Predicates": [
+					{
+						"Type": "ByteMatch",
+						"Negated": false,
+						"DataId": {
+							"Ref": "wafAuthTokenStringSet"
+						}
+					}
+				]
+			}
+		},
+		"wafXSSSet": {
+			"Type": "AWS::WAFRegional::XssMatchSet",
+			"Properties": {
+				"Name": "wafXSSSet",
+				"XssMatchTuples": [
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"TextTransformation": "HTML_ENTITY_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "QUERY_STRING"
+						},
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "QUERY_STRING"
+						},
+						"TextTransformation": "HTML_ENTITY_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "BODY"
+						},
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "BODY"
+						},
+						"TextTransformation": "HTML_ENTITY_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "HEADER",
+							"Data": "cookie"
+						},
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "HEADER",
+							"Data": "cookie"
+						},
+						"TextTransformation": "HTML_ENTITY_DECODE"
+					}
+				]
+			}
+		},
+		"wafXSSRule": {
+			"Type": "AWS::WAFRegional::Rule",
+			"Properties": {
+				"MetricName": "wafXSSRule",
+				"Name": "wafXSSRule",
+				"Predicates": [
+					{
+						"Type": "XssMatch",
+						"Negated": false,
+						"DataId": {
+							"Ref": "wafXSSSet"
+						}
+					}
+				]
+			}
+		},
+		"wafPathStringSet": {
+			"Type": "AWS::WAFRegional::ByteMatchSet",
+			"Properties": {
+				"Name": "wafPathStringSet",
+				"ByteMatchTuples": [
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"PositionalConstraint": "CONTAINS",
+						"TargetString": "../",
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"PositionalConstraint": "CONTAINS",
+						"TargetString": "../",
+						"TextTransformation": "HTML_ENTITY_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "QUERY_STRING"
+						},
+						"PositionalConstraint": "CONTAINS",
+						"TargetString": "../",
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "QUERY_STRING"
+						},
+						"PositionalConstraint": "CONTAINS",
+						"TargetString": "../",
+						"TextTransformation": "HTML_ENTITY_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"PositionalConstraint": "CONTAINS",
+						"TargetString": "://",
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"PositionalConstraint": "CONTAINS",
+						"TargetString": "://",
+						"TextTransformation": "HTML_ENTITY_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "QUERY_STRING"
+						},
+						"PositionalConstraint": "CONTAINS",
+						"TargetString": "://",
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "QUERY_STRING"
+						},
+						"PositionalConstraint": "CONTAINS",
+						"TargetString": "://",
+						"TextTransformation": "HTML_ENTITY_DECODE"
+					}
+				]
+			}
+		},
+		"wafPathRule": {
+			"Type": "AWS::WAFRegional::Rule",
+			"Properties": {
+				"MetricName": "wafPathRule",
+				"Name": "wafPathsRule",
+				"Predicates": [
+					{
+						"Type": "ByteMatch",
+						"Negated": false,
+						"DataId": {
+							"Ref": "wafPathStringSet"
+						}
+					}
+				]
+			}
+		},
+		"wafAdminUrlStringSet": {
+			"Type": "AWS::WAFRegional::ByteMatchSet",
+			"Properties": {
+				"Name": "wafAdminUrlStringSet",
+				"ByteMatchTuples": [
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"PositionalConstraint": "STARTS_WITH",
+						"TargetString": {
+							"Ref": "adminUrlPrefix"
+						},
+						"TextTransformation": "URL_DECODE"
+					}
+				]
+			}
+		},
+		"wafAdminRemoteAddIpSet": {
+			"Type": "AWS::WAFRegional::IPSet",
+			"Properties": {
+				"Name": "wafAdminRemoteAddIpSet",
+				"IPSetDescriptors": [
+					{
+						"Type": "IPV4",
+						"Value": {
+							"Ref": "adminRemoteCidr"
+						}
+					}
+				]
+			}
+		},
+		"wafAdminAccessRule": {
+			"Type": "AWS::WAFRegional::Rule",
+			"Properties": {
+				"MetricName": "wafAdminAccessRule",
+				"Name": "wafAdminAccessRule",
+				"Predicates": [
+					{
+						"Type": "ByteMatch",
+						"Negated": false,
+						"DataId": {
+							"Ref": "wafAdminUrlStringSet"
+						}
+					},
+					{
+						"Type": "IPMatch",
+						"Negated": true,
+						"DataId": {
+							"Ref": "wafAdminRemoteAddIpSet"
+						}
+					}
+				]
+			}
+		},
+		"wafPHPInsecureQSStringSet": {
+			"Type": "AWS::WAFRegional::ByteMatchSet",
+			"Properties": {
+				"Name": "wafPHPInsecureQSStringSet",
+				"ByteMatchTuples": [
+					{
+						"FieldToMatch": {
+							"Type": "QUERY_STRING"
+						},
+						"PositionalConstraint": "CONTAINS",
+						"TargetString": "_SERVER[",
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "QUERY_STRING"
+						},
+						"PositionalConstraint": "CONTAINS",
+						"TargetString": "_ENV[",
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "QUERY_STRING"
+						},
+						"PositionalConstraint": "CONTAINS",
+						"TargetString": "auto_prepend_file=",
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "QUERY_STRING"
+						},
+						"PositionalConstraint": "CONTAINS",
+						"TargetString": "auto_append_file=",
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "QUERY_STRING"
+						},
+						"PositionalConstraint": "CONTAINS",
+						"TargetString": "allow_url_include=",
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "QUERY_STRING"
+						},
+						"PositionalConstraint": "CONTAINS",
+						"TargetString": "disable_functions=",
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "QUERY_STRING"
+						},
+						"PositionalConstraint": "CONTAINS",
+						"TargetString": "open_basedir=",
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "QUERY_STRING"
+						},
+						"PositionalConstraint": "CONTAINS",
+						"TargetString": "safe_mode=",
+						"TextTransformation": "URL_DECODE"
+					}
+				]
+			}
+		},
+		"wafPHPInsecureURIStringSet": {
+			"Type": "AWS::WAFRegional::ByteMatchSet",
+			"Properties": {
+				"Name": "wafPHPInsecureURIStringSet",
+				"ByteMatchTuples": [
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"PositionalConstraint": "ENDS_WITH",
+						"TargetString": "php",
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"PositionalConstraint": "ENDS_WITH",
+						"TargetString": "/",
+						"TextTransformation": "URL_DECODE"
+					}
+				]
+			}
+		},
+		"wafPHPInsecureRule": {
+			"Type": "AWS::WAFRegional::Rule",
+			"Properties": {
+				"MetricName": "wafPHPInsecureRule",
+				"Name": "wafPHPInsecureRule",
+				"Predicates": [
+					{
+						"Type": "ByteMatch",
+						"Negated": false,
+						"DataId": {
+							"Ref": "wafPHPInsecureQSStringSet"
+						}
+					},
+					{
+						"Type": "ByteMatch",
+						"Negated": false,
+						"DataId": {
+							"Ref": "wafPHPInsecureURIStringSet"
+						}
+					}
+				]
+			}
+		},
+		"wafSizeRestrictionSet": {
+			"Type": "AWS::WAFRegional::SizeConstraintSet",
+			"Properties": {
+				"Name": "wafSizeRestrictionSet",
+				"SizeConstraints": [
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"TextTransformation": "NONE",
+						"ComparisonOperator": "GT",
+						"Size": {
+							"Ref": "maxExpectedURISize"
+						}
+					},
+					{
+						"FieldToMatch": {
+							"Type": "QUERY_STRING"
+						},
+						"TextTransformation": "NONE",
+						"ComparisonOperator": "GT",
+						"Size": {
+							"Ref": "maxExpectedQueryStringSize"
+						}
+					},
+					{
+						"FieldToMatch": {
+							"Type": "BODY"
+						},
+						"TextTransformation": "NONE",
+						"ComparisonOperator": "GT",
+						"Size": {
+							"Ref": "maxExpectedBodySize"
+						}
+					},
+					{
+						"FieldToMatch": {
+							"Type": "HEADER",
+							"Data": "cookie"
+						},
+						"TextTransformation": "NONE",
+						"ComparisonOperator": "GT",
+						"Size": {
+							"Ref": "maxExpectedCookieSize"
+						}
+					}
+				]
+			}
+		},
+		"wafSizeRestrictionRule": {
+			"Type": "AWS::WAFRegional::Rule",
+			"Properties": {
+				"MetricName": "wafSizeRestrictionRule",
+				"Name": "wafSizeRestrictionRule",
+				"Predicates": [
+					{
+						"Type": "SizeConstraint",
+						"Negated": false,
+						"DataId": {
+							"Ref": "wafSizeRestrictionSet"
+						}
+					}
+				]
+			}
+		},
+		"wafServerSideIncludeStringSet": {
+			"Type": "AWS::WAFRegional::ByteMatchSet",
+			"Properties": {
+				"Name": "wafServerSideIncludeStringSet",
+				"ByteMatchTuples": [
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"PositionalConstraint": "STARTS_WITH",
+						"TargetString": {
+							"Ref": "includesPrefix"
+						},
+						"TextTransformation": "URL_DECODE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"PositionalConstraint": "ENDS_WITH",
+						"TargetString": ".cfg",
+						"TextTransformation": "LOWERCASE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"PositionalConstraint": "ENDS_WITH",
+						"TargetString": ".conf",
+						"TextTransformation": "LOWERCASE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"PositionalConstraint": "ENDS_WITH",
+						"TargetString": ".config",
+						"TextTransformation": "LOWERCASE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"PositionalConstraint": "ENDS_WITH",
+						"TargetString": ".ini",
+						"TextTransformation": "LOWERCASE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"PositionalConstraint": "ENDS_WITH",
+						"TargetString": ".log",
+						"TextTransformation": "LOWERCASE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"PositionalConstraint": "ENDS_WITH",
+						"TargetString": ".bak",
+						"TextTransformation": "LOWERCASE"
+					},
+					{
+						"FieldToMatch": {
+							"Type": "URI"
+						},
+						"PositionalConstraint": "ENDS_WITH",
+						"TargetString": ".backup",
+						"TextTransformation": "LOWERCASE"
+					}
+				]
+			}
+		},
+		"wafServerSideIncludeRule": {
+			"Type": "AWS::WAFRegional::Rule",
+			"Properties": {
+				"MetricName": "wafServerSideIncludeRule",
+				"Name": "wafServerSideIncludeRule",
+				"Predicates": [
+					{
+						"Type": "ByteMatch",
+						"Negated": false,
+						"DataId": {
+							"Ref": "wafServerSideIncludeStringSet"
+						}
+					}
+				]
+			}
+		},
+		"wafBlacklistIpSet": {
+			"Type": "AWS::WAFRegional::IPSet",
+			"Properties": {
+				"Name": "wafBlacklistIpSet",
+				"IPSetDescriptors": [
+					{
+						"Type": "IPV4",
+						"Value": "10.0.0.0/8"
+					},
+					{
+						"Type": "IPV4",
+						"Value": "192.168.0.0/16"
+					},
+					{
+						"Type": "IPV4",
+						"Value": "169.254.0.0/16"
+					},
+					{
+						"Type": "IPV4",
+						"Value": "172.16.0.0/16"
+					},
+					{
+						"Type": "IPV4",
+						"Value": "127.0.0.1/32"
+					}
+				]
+			}
+		},
+		"wafBlacklistIpRule": {
+			"Type": "AWS::WAFRegional::Rule",
+			"Properties": {
+				"MetricName": "wafBlacklistIpRule",
+				"Name": "wafBlacklistIpRule",
+				"Predicates": [
+					{
+						"Type": "IPMatch",
+						"Negated": false,
+						"DataId": {
+							"Ref": "wafBlacklistIpSet"
+						}
+					}
+				]
+			}
+		},
+		"wafOwaspACL": {
+			"Type": "AWS::WAFRegional::WebACL",
+			"Properties": {
+				"MetricName": "MaliciousRequesters",
+				"Name": "wafOwaspACL",
+				"DefaultAction": {
+					"Type": "ALLOW"
+				},
+				"Rules": [
+					{
+						"Action": {
+							"Type": {
+								"Ref": "ruleAction"
+							}
+						},
+						"Priority": 10,
+						"RuleId": {
+							"Ref": "wafSizeRestrictionRule"
+						}
+					},
+					{
+						"Action": {
+							"Type": {
+								"Ref": "ruleAction"
+							}
+						},
+						"Priority": 20,
+						"RuleId": {
+							"Ref": "wafBlacklistIpRule"
+						}
+					},
+					{
+						"Action": {
+							"Type": {
+								"Ref": "ruleAction"
+							}
+						},
+						"Priority": 30,
+						"RuleId": {
+							"Ref": "wafAuthTokenRule"
+						}
+					},
+					{
+						"Action": {
+							"Type": {
+								"Ref": "ruleAction"
+							}
+						},
+						"Priority": 40,
+						"RuleId": {
+							"Ref": "wafSQLRule"
+						}
+					},
+					{
+						"Action": {
+							"Type": {
+								"Ref": "ruleAction"
+							}
+						},
+						"Priority": 50,
+						"RuleId": {
+							"Ref": "wafXSSRule"
+						}
+					},
+					{
+						"Action": {
+							"Type": {
+								"Ref": "ruleAction"
+							}
+						},
+						"Priority": 60,
+						"RuleId": {
+							"Ref": "wafPathRule"
+						}
+					},
+					{
+						"Action": {
+							"Type": {
+								"Ref": "ruleAction"
+							}
+						},
+						"Priority": 70,
+						"RuleId": {
+							"Ref": "wafPHPInsecureRule"
+						}
+					},
+					{
+						"Action": {
+							"Type": {
+								"Ref": "ruleAction"
+							}
+						},
+						"Priority": 80,
+						"RuleId": {
+							"Ref": "wafCSRFRule"
+						}
+					},
+					{
+						"Action": {
+							"Type": {
+								"Ref": "ruleAction"
+							}
+						},
+						"Priority": 90,
+						"RuleId": {
+							"Ref": "wafServerSideIncludeRule"
+						}
+					},
+					{
+						"Action": {
+							"Type": {
+								"Ref": "ruleAction"
+							}
+						},
+						"Priority": 100,
+						"RuleId": {
+							"Ref": "wafAdminAccessRule"
+						}
+					}
+				]
+			}
+		},
+		"MyWebACLAssociation": {
+			"Type": "AWS::WAFRegional::WebACLAssociation",
+			"Properties": {
+				"ResourceArn": {
+					"Ref": "LoadBalancer"
+				},
+				"WebACLId": {
+					"Ref": "wafOwaspACL"
+				}
+			}
 		}
+	},
 
-},
+
 	"Parameters": {
 		"vpcId": {
 			"Type": "String"
@@ -724,15 +1518,48 @@
 		"LoadBalancerName":{
 			"Type":"String"
 		},
-		"WebServerSubnetID":{
-			"Type":"String"
+		"certificatearn1": {
+			"Type": "String"
 		},
-		"DBServerSubnetID":{
-			"Type":"String"
+		"adminUrlPrefix": {
+			"Type": "String",
+			"Default": "/admin"
 		},
-		"LoadBalancerSecurityGroupID":{
-			"Type":"String"
+		"adminRemoteCidr": {
+			"Type": "String",
+			"Default": "127.0.0.1/32"
+		},
+		"maxExpectedURISize": {
+			"Type": "Number",
+			"Default": 512
+		},
+		"maxExpectedQueryStringSize": {
+			"Type": "Number",
+			"Default": 1024
+		},
+		"maxExpectedBodySize": {
+			"Type": "Number",
+			"Default": 4096
+		},
+		"maxExpectedCookieSize": {
+			"Type": "Number",
+			"Default": 4093
+		},
+		"csrfExpectedHeader": {
+			"Type": "String",
+			"Default": "x-csrf-token"
+		},
+		"csrfExpectedSize": {
+			"Type": "Number",
+			"Default": 36
+		},
+		"includesPrefix": {
+			"Type": "String",
+			"Default": "/includes"
+		},
+		"ruleAction": {
+			"Type": "String",
+			"Default": "BLOCK"
 		}
 	}
-
 }

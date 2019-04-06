@@ -39,25 +39,14 @@ UserName="circleci"
 echo $UserName
 
 
-DBServerSubnetID=`aws ec2 describe-subnets --filters "Name=tag:Name, Values=SubnetForDBServers" --query "Subnets[*].SubnetId" --output text`
-
-WebServerSubnetID=`aws ec2 describe-subnets --filters "Name=tag:Name, Values=SubnetForWebServers" --query "Subnets[*].SubnetId" --output text`
-
-LoadBalancerSecurityGroupID=`aws ec2 describe-security-groups --filters "Name=tag:aws:cloudformation:logical-id, Values=LoadBalancerSecurityGroup" --query "SecurityGroups[*].GroupId" --output text`
 
 
 
+CERTIFICATE_ARN=`aws acm list-certificates --query 'CertificateSummaryList[0].CertificateArn' --output text`
+echo $CERTIFICATE_ARN
 
-export CERTIFICATE_ARN=$(aws acm list-certificates --query "CertificateSummaryList[0].CertificateArn" --output text)
 
-
-
-aws cloudformation create-stack --stack-name ${stackname} --template-body file://./csye6225-cf-application_fix.json --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=vpcId,ParameterValue=$vpcid ParameterKey=ImageId,ParameterValue=$ami ParameterKey=publicsubnet1,ParameterValue=$PublicSubnet1 ParameterKey=publicsubnet2,ParameterValue=$PublicSubnet2 ParameterKey=publicsubnet3,ParameterValue=$PublicSubnet3 ParameterKey=circleci,ParameterValue=$UserName ParameterKey=s3bucket,ParameterValue=$s3bucket ParameterKey=Domain,ParameterValue=$Domain
-ParameterKey=LoadBalancerName,ParameterValue=$LoadBalancerName
-ParameterKey=DBServerSubnetID,ParameterValue=$DBServerSubnetID
-ParameterKey=WebServerSubnetID,ParameterValue=$WebServerSubnetID
-ParameterKey=LoadBalancerSecurityGroupID,ParameterValue=$LoadBalancerSecurityGroupID
-ParameterKey=CertificateArn1,ParameterValue=$CERTIFICATE_ARN
+aws cloudformation create-stack --stack-name ${stackname} --template-body file://./csye6225-cf-application_fix.json --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=vpcId,ParameterValue=$vpcid ParameterKey=ImageId,ParameterValue=$ami ParameterKey=publicsubnet1,ParameterValue=$PublicSubnet1 ParameterKey=publicsubnet2,ParameterValue=$PublicSubnet2 ParameterKey=publicsubnet3,ParameterValue=$PublicSubnet3 ParameterKey=circleci,ParameterValue=$UserName ParameterKey=s3bucket,ParameterValue=$s3bucket ParameterKey=Domain,ParameterValue=$Domain ParameterKey=LoadBalancerName,ParameterValue=$LoadBalancerName ParameterKey=CertificateArn1,ParameterValue=$CERTIFICATE_ARN
 
 echo "Creating! Please wait until done"
 
