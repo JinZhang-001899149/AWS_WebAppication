@@ -112,7 +112,7 @@
 					"Ref": "ImageId"
 				},
 				"KeyName" : "csye6225",
-				"SecurityGroupIds": [
+				"SecurityGroups": [
 					{
 						"Ref": "WebServerSecurityGroup"
 					}
