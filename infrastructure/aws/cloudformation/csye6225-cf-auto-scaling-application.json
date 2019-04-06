@@ -157,12 +157,8 @@
 				}
 				],
 				"Tags": [{
-					"Key": {
-						"Ref": "TagKey"
-					},
-					"Value": {
-						"Ref": "TagValue"
-					},
+					"Key":"Group",
+					"Value":"ec2-instances",
 					"PropagateAtLaunch" : "true"
 				}],
 				"VPCZoneIdentifier" :[{
