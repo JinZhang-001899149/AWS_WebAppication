@@ -134,7 +134,22 @@
 							[
 								"#!/bin/bash\n",
 								"sudo service codedeploy-agent start\n",
-								"sudo service codedeploy-agent status\n"
+								"sudo service codedeploy-agent status\n",
+								{
+									"Fn::Join": [
+										"",
+										[
+											"sudo echo \"RDS=\\\"",
+											{
+												"Fn::GetAtt": [
+													"DBInstance",
+													"Endpoint.Address"
+												]
+											},
+											"\\\"\" >> /home/centos/mysqlsetting.txt \n"
+										]
+									]
+								}
 							]
 						]
 					}
