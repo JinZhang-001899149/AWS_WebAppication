@@ -46,7 +46,7 @@ CERTIFICATE_ARN=`aws acm list-certificates --query 'CertificateSummaryList[0].Ce
 echo $CERTIFICATE_ARN
 
 
-aws cloudformation create-stack --stack-name ${stackname} --template-body file://./csye6225-cf-application_fix.json --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=vpcId,ParameterValue=$vpcid ParameterKey=ImageId,ParameterValue=$ami ParameterKey=publicsubnet1,ParameterValue=$PublicSubnet1 ParameterKey=publicsubnet2,ParameterValue=$PublicSubnet2 ParameterKey=publicsubnet3,ParameterValue=$PublicSubnet3 ParameterKey=circleci,ParameterValue=$UserName ParameterKey=s3bucket,ParameterValue=$s3bucket ParameterKey=Domain,ParameterValue=$Domain ParameterKey=LoadBalancerName,ParameterValue=$LoadBalancerName ParameterKey=CertificateArn1,ParameterValue=$CERTIFICATE_ARN
+aws cloudformation create-stack --stack-name ${stackname} --template-body file://./csye6225-cf-auto-scaling-application.json --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=vpcId,ParameterValue=$vpcid ParameterKey=ImageId,ParameterValue=$ami ParameterKey=publicsubnet1,ParameterValue=$PublicSubnet1 ParameterKey=publicsubnet2,ParameterValue=$PublicSubnet2 ParameterKey=publicsubnet3,ParameterValue=$PublicSubnet3 ParameterKey=circleci,ParameterValue=$UserName ParameterKey=s3bucket,ParameterValue=$s3bucket ParameterKey=Domain,ParameterValue=$Domain ParameterKey=LoadBalancerName,ParameterValue=$LoadBalancerName ParameterKey=CertificateArn1,ParameterValue=$CERTIFICATE_ARN
 
 echo "Creating! Please wait until done"
 

@@ -1518,7 +1518,7 @@
 		"LoadBalancerName":{
 			"Type":"String"
 		},
-		"certificatearn1": {
+		"CertificateArn1": {
 			"Type": "String"
 		},
 		"adminUrlPrefix": {
