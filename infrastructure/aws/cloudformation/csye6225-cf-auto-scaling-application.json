@@ -654,66 +654,6 @@
 				"ComparisonOperator": "LessThanThreshold"
 			}
 		},
-		"wafCSRFMethodStringSet": {
-			"Type": "AWS::WAFRegional::ByteMatchSet",
-			"Properties": {
-				"Name": "wafCSRFMethodStringSet",
-				"ByteMatchTuples": [
-					{
-						"FieldToMatch": {
-							"Type": "METHOD"
-						},
-						"PositionalConstraint": "EXACTLY",
-						"TargetString": "post",
-						"TextTransformation": "LOWERCASE"
-					}
-				]
-			}
-		},
-		"wafCSRFTokenSizeConstraint": {
-			"Type": "AWS::WAFRegional::SizeConstraintSet",
-			"Properties": {
-				"Name": "wafCSRFTokenSizeConstraint",
-				"SizeConstraints": [
-					{
-						"FieldToMatch": {
-							"Type": "HEADER",
-							"Data": {
-								"Ref": "csrfExpectedHeader"
-							}
-						},
-						"TextTransformation": "NONE",
-						"ComparisonOperator": "EQ",
-						"Size": {
-							"Ref": "csrfExpectedSize"
-						}
-					}
-				]
-			}
-		},
-		"wafCSRFRule": {
-			"Type": "AWS::WAFRegional::Rule",
-			"Properties": {
-				"MetricName": "wafCSRFRule",
-				"Name": "wafCSRFRule",
-				"Predicates": [
-					{
-						"Type": "ByteMatch",
-						"Negated": false,
-						"DataId": {
-							"Ref": "wafCSRFMethodStringSet"
-						}
-					},
-					{
-						"Type": "SizeConstraint",
-						"Negated": true,
-						"DataId": {
-							"Ref": "wafCSRFTokenSizeConstraint"
-						}
-					}
-				]
-			}
-		},
 		"wafSQLSet": {
 			"Type": "AWS::WAFRegional::SqlInjectionMatchSet",
 			"Properties": {
@@ -1226,6 +1166,66 @@
 						"Negated": false,
 						"DataId": {
 							"Ref": "wafSizeRestrictionSet"
+						}
+					}
+				]
+			}
+		},
+		"wafCSRFMethodStringSet": {
+			"Type": "AWS::WAFRegional::ByteMatchSet",
+			"Properties": {
+				"Name": "wafCSRFMethodStringSet",
+				"ByteMatchTuples": [
+					{
+						"FieldToMatch": {
+							"Type": "METHOD"
+						},
+						"PositionalConstraint": "EXACTLY",
+						"TargetString": "post",
+						"TextTransformation": "LOWERCASE"
+					}
+				]
+			}
+		},
+		"wafCSRFTokenSizeConstraint": {
+			"Type": "AWS::WAFRegional::SizeConstraintSet",
+			"Properties": {
+				"Name": "wafCSRFTokenSizeConstraint",
+				"SizeConstraints": [
+					{
+						"FieldToMatch": {
+							"Type": "HEADER",
+							"Data": {
+								"Ref": "csrfExpectedHeader"
+							}
+						},
+						"TextTransformation": "NONE",
+						"ComparisonOperator": "EQ",
+						"Size": {
+							"Ref": "csrfExpectedSize"
+						}
+					}
+				]
+			}
+		},
+		"wafCSRFRule": {
+			"Type": "AWS::WAFRegional::Rule",
+			"Properties": {
+				"MetricName": "wafCSRFRule",
+				"Name": "wafCSRFRule",
+				"Predicates": [
+					{
+						"Type": "ByteMatch",
+						"Negated": false,
+						"DataId": {
+							"Ref": "wafCSRFMethodStringSet"
+						}
+					},
+					{
+						"Type": "SizeConstraint",
+						"Negated": true,
+						"DataId": {
+							"Ref": "wafCSRFTokenSizeConstraint"
 						}
 					}
 				]
