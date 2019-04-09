@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 cd /home/centos
-url=$(cat mysqlsetting.txt | sed -r 's/.*"(.+)".*/\1/')
+export url=$(</home/centos/db.txt)
 echo $url
 
 cd /home/centos/CloudWebApp/target
