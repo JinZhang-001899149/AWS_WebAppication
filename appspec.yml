@@ -1,0 +1,15 @@
+version: 0.0
+os: linux
+
+files:
+  - source: ./
+    destination: /home/centos
+
+hooks:
+  AfterInstall:
+    - location: ./test.sh
+      timeout: 100
+  ApplicationStart:
+    - location: ./start.sh
+      timeout: 30
+runas: centos
