@@ -40,7 +40,7 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">csye6225-spring2019-cuijingy.me</stringProp>
+          <stringProp name="HTTPSampler.domain">csye6225-spring2019-zhangjin.me</stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
@@ -140,7 +140,7 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">csye6225-spring2019-cuijingy.me</stringProp>
+          <stringProp name="HTTPSampler.domain">csye6225-spring2019-zhangjin.me</stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
@@ -208,7 +208,7 @@
           <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager" enabled="true">
             <collectionProp name="AuthManager.auth_list">
               <elementProp name="" elementType="Authorization">
-                <stringProp name="Authorization.url">https://csye6225-spring2019-cuijingy.me/note</stringProp>
+                <stringProp name="Authorization.url">https://csye6225-spring2019-zhangjin.me/note</stringProp>
                 <stringProp name="Authorization.username">${email}</stringProp>
                 <stringProp name="Authorization.password">1234567ab</stringProp>
                 <stringProp name="Authorization.domain"></stringProp>
@@ -229,8 +229,8 @@
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="CreateAttachment" enabled="true">
           <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
             <collectionProp name="HTTPFileArgs.files">
-              <elementProp name="/home/cuijingyi/Documents/README.md" elementType="HTTPFileArg">
-                <stringProp name="File.path">/home/cuijingyi/Documents/README.md</stringProp>
+              <elementProp name="/home/jin/csye_6225/csye6225-spring2019/jmeter/1111.csv" elementType="HTTPFileArg">
+                <stringProp name="File.path">/home/jin/csye_6225/csye6225-spring2019/jmeter/1111.csv</stringProp>
                 <stringProp name="File.paramname">file</stringProp>
                 <stringProp name="File.mimetype">application/octet-stream</stringProp>
               </elementProp>
@@ -239,7 +239,7 @@
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">csye6225-spring2019-cuijingy.me</stringProp>
+          <stringProp name="HTTPSampler.domain">csye6225-spring2019-zhangjin.me</stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
@@ -303,7 +303,7 @@
           <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager" enabled="true">
             <collectionProp name="AuthManager.auth_list">
               <elementProp name="" elementType="Authorization">
-                <stringProp name="Authorization.url">https://csye6225-spring2019-cuijingy.me/note/${noteId}/attachments</stringProp>
+                <stringProp name="Authorization.url">https://csye6225-spring2019-zhangjin.me/note/${noteId}/attachments</stringProp>
                 <stringProp name="Authorization.username">${email}</stringProp>
                 <stringProp name="Authorization.password">1234567ab</stringProp>
                 <stringProp name="Authorization.domain"></stringProp>
@@ -348,7 +348,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">/home/cuijingyi/csye6225/dev/csye6225-spring2019/jmeter/newuser.csv</stringProp>
+          <stringProp name="filename">/home/jin/csye_6225/csye6225-spring2019/jmeter/newuser.csv</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
