@@ -10,9 +10,9 @@ subnet1=$vpc"-cye6225-subnet1"
 subnet2=$vpc"-cye6225-subnet2"
 subnet3=$vpc"-cye6225-subnet3"
 domain=$4
-LoadBalancerName=$5
 s3bucket="code-deploy.csye6225-spring2019-"$domain".me"
 Domain="csye6225-spring2019-"$domain".me"
+NoWAFDomain="nowaf.csye6225-spring2019-"$domain".me"
 
 
 
@@ -46,7 +46,7 @@ CERTIFICATE_ARN=`aws acm list-certificates --query 'CertificateSummaryList[0].Ce
 echo $CERTIFICATE_ARN
 
 
-aws cloudformation create-stack --stack-name ${stackname} --template-body file://./csye6225-cf-auto-scaling-application.json --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=vpcId,ParameterValue=$vpcid ParameterKey=ImageId,ParameterValue=$ami ParameterKey=publicsubnet1,ParameterValue=$PublicSubnet1 ParameterKey=publicsubnet2,ParameterValue=$PublicSubnet2 ParameterKey=publicsubnet3,ParameterValue=$PublicSubnet3 ParameterKey=circleci,ParameterValue=$UserName ParameterKey=s3bucket,ParameterValue=$s3bucket ParameterKey=Domain,ParameterValue=$Domain ParameterKey=LoadBalancerName,ParameterValue=$LoadBalancerName ParameterKey=CertificateArn1,ParameterValue=$CERTIFICATE_ARN
+aws cloudformation create-stack --stack-name ${stackname} --template-body file://./csye6225-cf-auto-scaling-application.json --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=vpcId,ParameterValue=$vpcid ParameterKey=ImageId,ParameterValue=$ami ParameterKey=publicsubnet1,ParameterValue=$PublicSubnet1 ParameterKey=publicsubnet2,ParameterValue=$PublicSubnet2 ParameterKey=publicsubnet3,ParameterValue=$PublicSubnet3 ParameterKey=circleci,ParameterValue=$UserName ParameterKey=s3bucket,ParameterValue=$s3bucket ParameterKey=Domain,ParameterValue=$Domain ParameterKey=CertificateArn1,ParameterValue=$CERTIFICATE_ARN ParameterKey=NoWAFDomain,ParameterValue=$NoWAFDomain
 
 echo "Creating! Please wait until done"
 

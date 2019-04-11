@@ -154,6 +154,9 @@
 				"MaxSize" : "10",
 				"TargetGroupARNs": [{
 					"Ref": "ALBTargetGroup"
+				},
+				{
+					"Ref": "ALBTargetGroupDemo"
 				}
 				],
 				"Tags": [{
@@ -168,14 +171,13 @@
 						"Ref": "publicsubnet2"
 					}
 				]
-			},
-			"DependsOn": "ALBListener"
+			}
 		},
 
 		"LoadBalancer":{
 			"Type":"AWS::ElasticLoadBalancingV2::LoadBalancer",
 			"Properties":{
-				"Name":{"Ref":"LoadBalancerName"},
+				"Name":"LoadBalancer",
 				"Scheme":"internet-facing",
 				"Subnets":[
 					{
@@ -270,9 +272,104 @@
 				"Type": "A"
 			}
 		},
+    "LoadBalancerDemo":{
+			"Type":"AWS::ElasticLoadBalancingV2::LoadBalancer",
+			"Properties":{
+				"Name":"LoadBalancerNoWAF",
+				"Scheme":"internet-facing",
+				"Subnets":[
+					{
+						"Ref": "publicsubnet1"
+					},
+					{
+						"Ref": "publicsubnet2"
+					}
+				],
+				"SecurityGroups":[
+					{
+						"Ref":"LoadBalancerSecurityGroup"
+					}
+				],
+				"Type":"application",
+				"IpAddressType":"ipv4"
 
+			}
 
+		},
 
+		"ALBListenerDemo" : {
+			"Type" : "AWS::ElasticLoadBalancingV2::Listener",
+			"Properties" : {
+				"DefaultActions" : [{
+					"Type" : "forward",
+					"TargetGroupArn" : { "Ref" : "ALBTargetGroupDemo" }
+				}],
+				"LoadBalancerArn" : { "Ref" : "LoadBalancerDemo" },
+				"Port" : "443",
+				"Protocol" : "HTTPS",
+				"Certificates": [
+					{
+						"CertificateArn": {
+							"Ref": "CertificateArn1"
+						}
+					}
+				]
+			}
+		},
+		"ALBTargetGroupDemo" : {
+			"Type" : "AWS::ElasticLoadBalancingV2::TargetGroup",
+			"Properties" : {
+				"HealthCheckIntervalSeconds" : 30,
+				"HealthCheckTimeoutSeconds": 5,
+				"HealthyThresholdCount": 3,
+				"UnhealthyThresholdCount": 5,
+				"HealthCheckPath" : "/",
+				"TargetGroupAttributes": [{
+					"Key": "deregistration_delay.timeout_seconds",
+					"Value": "20"
+				}],
+				"Name" : "MyTargetGroupDemo",
+				"HealthCheckPort" : 8080,
+				"TargetType": "instance",
+				"Port" : 8080,
+				"Protocol" : "HTTP",
+				"VpcId" : { "Ref": "vpcId" }
+			}
+		},
+
+		"ResourceRecordsDemo": {
+			"Type": "AWS::Route53::RecordSet",
+			"Properties": {
+				"HostedZoneName": {
+					"Fn::Join": [
+						"",
+						[
+							{
+								"Ref": "NoWAFDomain"
+							},
+							"."
+						]
+					]
+				},
+				"Name": {
+					"Fn::Join": [
+						"",
+						[
+							{
+								"Ref": "NoWAFDomain"
+							},
+							"."
+						]
+					]
+				},
+				"AliasTarget" : {
+					"HostedZoneId" :
+					{ "Fn::GetAtt" : ["LoadBalancerDemo", "CanonicalHostedZoneID"] },
+					"DNSName" : { "Fn::GetAtt" : ["LoadBalancerDemo","DNSName"] }
+				},
+				"Type": "A"
+			}
+		},
 		"AttachRoleInstanceProfile": {
 			"Type": "AWS::IAM::InstanceProfile",
 			"Properties": {
@@ -590,7 +687,7 @@
 		"CPUAlarmHigh": {
 			"Type": "AWS::CloudWatch::Alarm",
 			"Properties": {
-				"AlarmDescription": "Scale-up if CPU > 10% for 10 minutes",
+				"AlarmDescription": "Scale-up if CPU > 10% for 5 minutes",
 				"MetricName": "CPUUtilization",
 				"Namespace": "AWS/EC2",
 				"Statistic": "Average",
@@ -616,7 +713,7 @@
 		"CPUAlarmLow": {
 			"Type": "AWS::CloudWatch::Alarm",
 			"Properties": {
-				"AlarmDescription": "Scale-down if CPU < 5% for 10 minutes",
+				"AlarmDescription": "Scale-down if CPU < 5% for 5 minutes",
 				"MetricName": "CPUUtilization",
 				"Namespace": "AWS/EC2",
 				"Statistic": "Average",
@@ -1511,7 +1608,7 @@
 		"Domain":{
 			"Type":"String"
 		},
-		"LoadBalancerName":{
+		"NoWAFDomain":{
 			"Type":"String"
 		},
 		"CertificateArn1": {
