@@ -345,7 +345,7 @@
 						"",
 						[
 							{
-								"Ref": "Domain"
+								"Ref": "NoWAFDomain"
 							},
 							"."
 						]
@@ -354,9 +354,9 @@
 				"Name": {
 					"Fn::Join": [
 						"",
-						["nowaf.",
+						[
 							{
-								"Ref": "Domain"
+								"Ref": "NoWAFDomain"
 							},
 							"."
 						]
@@ -1606,6 +1606,9 @@
 			"Type":"String"
 		},
 		"Domain":{
+			"Type":"String"
+		},
+		"NoWAFDomain":{
 			"Type":"String"
 		},
 		"CertificateArn1": {
