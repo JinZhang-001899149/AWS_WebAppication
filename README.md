@@ -1,19 +1,17 @@
-# CSYE6225-Spring2018 Cloud Computing Team
+# CSYE6225-Spring2019 Cloud Computing Team
 
-[![Build Status](https://travis-ci.com/YichuanZhang/csye6225-spring2018.svg?token=tKA3sSWpCQ9Gbyx5A8dJ&branch=master)](https://travis-ci.com/YichuanZhang/csye6225-spring2018)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/36cbec36e60049c39a1c9319714b8dee)](https://www.codacy.com/app/YichuanZhang/csye6225-spring2018?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=YichuanZhang/csye6225-spring2018&amp;utm_campaign=Badge_Grade)
+
 <p>Team Member<p>
 
-Yichuan Zhang  -  zhang.yichu@husky.neu.edu (Scrum master)
+Jin Zhang  -  zhang.jin2@husky.neu.edu (Scrum master)
 
-Xiao Li  -  li.xiao5@husky.neu.edu
+Yanjuan Li  -  li.yanj@husky.neu.edu
 
-Yang Yuan  -  yuan.yang@husky.neu.edu
+Jingyi Cui  -  cui.jingy@husky.neu.edu
 
-# Web Cluster Structure
-<img src="https://spring2018.csye6225.com/assignments/A09.png"></a>
 
-Lambda function can be found here: <a href="https://github.com/YichuanZhang/csye6225-spring2018-lambda">Email Service Lambda</a>
+
+Lambda function can be found here: <a href="https://github.com/JinZhang-001899149/AWS-LambdaFunction">Email Service Lambda</a>
 
 # Instructions on Scripts and Structure of Server Cluster
 	Make sure you have installed AWS Cli on machine and granted User access to it
@@ -24,16 +22,16 @@ Lambda function can be found here: <a href="https://github.com/YichuanZhang/csye
 <ul>
 	<li>The cloudFormation template for network stack</li>
 </ul>
-<p>"csye6225-cf-ci-cd.json"</p>
+<p>"csye6225-cf-policy.json"</p>
 <ul>
 	<li>The cloudFormation template for policy stack</li>
 </ul>
-<p>"csye6225-cf-application.json"</p>
+<p>"csye6225-aws-cf-terminate-auto-scaling-application-stack.sh"</p>
 <ul>
 	<li>The cloudFormation template for application stack</li>
 </ul>
 
-## "csye6225-aws-cf-create-stack.sh" script will
+## "csye6225-aws-cf-create-application-stack.sh	" script will
 <ul>
   <li>Create a cloudformation stack taking STACK_NAME as parameter</li>
 	<li>Create and configure required networking resources</li>
@@ -44,7 +42,7 @@ Lambda function can be found here: <a href="https://github.com/YichuanZhang/csye
 	<li>Create a public route in STACK_NAME-csye6225-public-route-table route table with destination CIDR block 0.0.0.0/0 and STACK_NAME-csye6225-InternetGateway as the target</li>
 </ul>
 
-## "csye6225-aws-cf-create-ci-cd-stack.sh" script will
+## "csye6225-aws-cf-create-policy.sh" script will
 <ul>
 	<li>Create "CodeDeployEC2S3" policy which allows EC2 instance put or get object from S3 bucket</li>
 	<li>Create "TravisUploadToS3" policy which allows Travis CI deploy the application .WAR on S3 bucket</li>
@@ -55,7 +53,7 @@ Lambda function can be found here: <a href="https://github.com/YichuanZhang/csye
 	<li>Create "LambdaExecutionRole" role for Lambda functions</li>
 </ul>
 
-## "csye6225-aws-cf-create-application-stack.sh" script will
+## "csye6225-aws-cf-create-auto-scaling-application-stack.sh" script will
 <ul>
 	<li>Create EC2 launch configuration with User-data</li>
 	<li>Create an auto-scaling group with minimum of 3 instances and maximum of 7</li>
@@ -74,9 +72,9 @@ Lambda function can be found here: <a href="https://github.com/YichuanZhang/csye
 	script should take STACK_NAME as parameter
 	Sequence of termination stacks should be application->cicd->network
 <ul>
-	<li> "csye6225-aws-cf-terminate-stack.sh": Delete the stack and all networking resources.</li>
-	<li> "csye6225-aws-cf-terminate-ci-cd-stack.sh": Delete the stack and all policy resources.</li>
-	<li> "csye6225-aws-cf-terminate-application-stack.sh": Delete the stack and all application and server resources
+	<li> "csye6225-aws-cf-terminate-application-stack.sh": Delete the stack and all networking resources.</li>
+	<li> "csye6225-aws-cf-terminate-stack.sh": Delete the stack and all policy resources.</li>
+	<li> "csye6225-aws-cf-terminate-auto-scaling-application-stack.sh": Delete the stack and all application and server resources
 </ul>
 
 # Prerequisites for building and deploying web application on local machine
